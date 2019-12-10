@@ -56,9 +56,9 @@
       bit  ENET1_MDIO_I;
       bit  ENET1_EXT_INTIN;
       bit  [7 : 0] ENET1_GMII_RXD;
-      bit  [63 : 0] GPIO_I;
-      bit  [63 : 0] GPIO_O;
-      bit  [63 : 0] GPIO_T;
+      bit  [31 : 0] GPIO_I;
+      bit  [31 : 0] GPIO_O;
+      bit  [31 : 0] GPIO_T;
       bit  I2C0_SDA_I;
       bit  I2C0_SDA_O;
       bit  I2C0_SDA_T;
@@ -681,6 +681,9 @@
   ENET0_MDIO_O,
   ENET0_MDIO_T,
   ENET0_MDIO_I,
+  GPIO_I,
+  GPIO_O,
+  GPIO_T,
   USB0_PORT_INDCTL,
   USB0_VBUS_PWRSELECT,
   USB0_VBUS_PWRFAULT,
@@ -760,7 +763,7 @@
       parameter USE_TRACE_DATA_EDGE_DETECTOR = 0;
       parameter C_TRACE_PIPELINE_WIDTH = 8;
       parameter C_TRACE_BUFFER_CLOCK_DELAY = 12;
-      parameter C_EMIO_GPIO_WIDTH = 64;
+      parameter C_EMIO_GPIO_WIDTH = 32;
       parameter C_INCLUDE_ACP_TRANS_CHECK = 0;
       parameter C_USE_DEFAULT_ACP_USER_VAL = 0;
       parameter C_S_AXI_ACP_ARUSER_VAL = 31;
@@ -814,6 +817,9 @@
       output  ENET0_MDIO_O;
       output  ENET0_MDIO_T;
       input  ENET0_MDIO_I;
+      input  [31 : 0] GPIO_I;
+      output  [31 : 0] GPIO_O;
+      output  [31 : 0] GPIO_T;
       output  [1 : 0] USB0_PORT_INDCTL;
       output  USB0_VBUS_PWRSELECT;
       input  USB0_VBUS_PWRFAULT;
@@ -886,6 +892,8 @@
       reg ENET0_MDIO_MDC;
       reg ENET0_MDIO_O;
       reg ENET0_MDIO_T;
+      reg [31 : 0] GPIO_O;
+      reg [31 : 0] GPIO_T;
       reg [1 : 0] USB0_PORT_INDCTL;
       reg USB0_VBUS_PWRSELECT;
       reg M_AXI_GP0_ARVALID;

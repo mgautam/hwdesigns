@@ -57,20 +57,23 @@ module encoder_design_freqDivider_0_0 (
   clk,
   enable,
   divisor,
-  clk_out
+  clk_out,
+  cnter
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN encoder_design_processing_system7_0_0_FCLK_CLK0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN encoder_design_processing_system7_0_0_FCLK_CLK1" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 input wire enable;
 input wire [4 : 0] divisor;
 output wire clk_out;
+output wire [31 : 0] cnter;
 
   freqDivider inst (
     .clk(clk),
     .enable(enable),
     .divisor(divisor),
-    .clk_out(clk_out)
+    .clk_out(clk_out),
+    .cnter(cnter)
   );
 endmodule

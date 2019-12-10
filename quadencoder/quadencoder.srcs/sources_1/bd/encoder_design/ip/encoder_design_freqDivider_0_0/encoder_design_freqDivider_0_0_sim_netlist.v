@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-// Date        : Mon Dec  9 16:45:59 2019
+// Date        : Tue Dec 10 14:20:13 2019
 // Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 // Command     : write_verilog -force -mode funcsim
-//               c:/Users/Gautam/Vivado/quadencoder/quadencoder.srcs/sources_1/bd/encoder_design/ip/encoder_design_freqDivider_0_0/encoder_design_freqDivider_0_0_sim_netlist.v
+//               C:/Users/Gautam/Vivado/quadencoder/quadencoder.srcs/sources_1/bd/encoder_design/ip/encoder_design_freqDivider_0_0/encoder_design_freqDivider_0_0_sim_netlist.v
 // Design      : encoder_design_freqDivider_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -18,17 +18,57 @@ module encoder_design_freqDivider_0_0
    (clk,
     enable,
     divisor,
-    clk_out);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN encoder_design_processing_system7_0_0_FCLK_CLK0" *) input clk;
+    clk_out,
+    cnter);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN encoder_design_processing_system7_0_0_FCLK_CLK1" *) input clk;
   input enable;
   input [4:0]divisor;
   output clk_out;
+  output [31:0]cnter;
 
+  wire \<const0> ;
+  wire \<const1> ;
   wire clk;
   wire clk_out;
   wire [4:0]divisor;
   wire enable;
 
+  assign cnter[31] = \<const0> ;
+  assign cnter[30] = \<const0> ;
+  assign cnter[29] = \<const0> ;
+  assign cnter[28] = \<const0> ;
+  assign cnter[27] = \<const0> ;
+  assign cnter[26] = \<const0> ;
+  assign cnter[25] = \<const0> ;
+  assign cnter[24] = \<const0> ;
+  assign cnter[23] = \<const0> ;
+  assign cnter[22] = \<const0> ;
+  assign cnter[21] = \<const0> ;
+  assign cnter[20] = \<const1> ;
+  assign cnter[19] = \<const0> ;
+  assign cnter[18] = \<const0> ;
+  assign cnter[17] = \<const1> ;
+  assign cnter[16] = \<const0> ;
+  assign cnter[15] = \<const0> ;
+  assign cnter[14] = \<const0> ;
+  assign cnter[13] = \<const1> ;
+  assign cnter[12] = \<const1> ;
+  assign cnter[11] = \<const0> ;
+  assign cnter[10] = \<const1> ;
+  assign cnter[9] = \<const0> ;
+  assign cnter[8] = \<const0> ;
+  assign cnter[7] = \<const0> ;
+  assign cnter[6] = \<const1> ;
+  assign cnter[5] = \<const0> ;
+  assign cnter[4] = \<const1> ;
+  assign cnter[3] = \<const0> ;
+  assign cnter[2] = \<const1> ;
+  assign cnter[1] = \<const1> ;
+  assign cnter[0] = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
+  VCC VCC
+       (.P(\<const1> ));
   encoder_design_freqDivider_0_0_freqDivider inst
        (.clk(clk),
         .clk_out(clk_out),

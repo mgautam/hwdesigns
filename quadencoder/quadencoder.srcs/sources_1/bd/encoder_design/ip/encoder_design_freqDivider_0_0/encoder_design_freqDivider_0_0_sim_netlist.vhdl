@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
--- Date        : Mon Dec  9 16:45:59 2019
+-- Date        : Tue Dec 10 14:20:13 2019
 -- Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 -- Command     : write_vhdl -force -mode funcsim
---               c:/Users/Gautam/Vivado/quadencoder/quadencoder.srcs/sources_1/bd/encoder_design/ip/encoder_design_freqDivider_0_0/encoder_design_freqDivider_0_0_sim_netlist.vhdl
+--               C:/Users/Gautam/Vivado/quadencoder/quadencoder.srcs/sources_1/bd/encoder_design/ip/encoder_design_freqDivider_0_0/encoder_design_freqDivider_0_0_sim_netlist.vhdl
 -- Design      : encoder_design_freqDivider_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -743,7 +743,8 @@ entity encoder_design_freqDivider_0_0 is
     clk : in STD_LOGIC;
     enable : in STD_LOGIC;
     divisor : in STD_LOGIC_VECTOR ( 4 downto 0 );
-    clk_out : out STD_LOGIC
+    clk_out : out STD_LOGIC;
+    cnter : out STD_LOGIC_VECTOR ( 31 downto 0 )
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of encoder_design_freqDivider_0_0 : entity is true;
@@ -756,11 +757,53 @@ entity encoder_design_freqDivider_0_0 is
 end encoder_design_freqDivider_0_0;
 
 architecture STRUCTURE of encoder_design_freqDivider_0_0 is
+  signal \<const0>\ : STD_LOGIC;
+  signal \<const1>\ : STD_LOGIC;
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN encoder_design_processing_system7_0_0_FCLK_CLK0";
+  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN encoder_design_processing_system7_0_0_FCLK_CLK1";
 begin
+  cnter(31) <= \<const0>\;
+  cnter(30) <= \<const0>\;
+  cnter(29) <= \<const0>\;
+  cnter(28) <= \<const0>\;
+  cnter(27) <= \<const0>\;
+  cnter(26) <= \<const0>\;
+  cnter(25) <= \<const0>\;
+  cnter(24) <= \<const0>\;
+  cnter(23) <= \<const0>\;
+  cnter(22) <= \<const0>\;
+  cnter(21) <= \<const0>\;
+  cnter(20) <= \<const1>\;
+  cnter(19) <= \<const0>\;
+  cnter(18) <= \<const0>\;
+  cnter(17) <= \<const1>\;
+  cnter(16) <= \<const0>\;
+  cnter(15) <= \<const0>\;
+  cnter(14) <= \<const0>\;
+  cnter(13) <= \<const1>\;
+  cnter(12) <= \<const1>\;
+  cnter(11) <= \<const0>\;
+  cnter(10) <= \<const1>\;
+  cnter(9) <= \<const0>\;
+  cnter(8) <= \<const0>\;
+  cnter(7) <= \<const0>\;
+  cnter(6) <= \<const1>\;
+  cnter(5) <= \<const0>\;
+  cnter(4) <= \<const1>\;
+  cnter(3) <= \<const0>\;
+  cnter(2) <= \<const1>\;
+  cnter(1) <= \<const1>\;
+  cnter(0) <= \<const0>\;
+GND: unisim.vcomponents.GND
+     port map (
+      G => \<const0>\
+    );
+VCC: unisim.vcomponents.VCC
+     port map (
+      P => \<const1>\
+    );
 inst: entity work.encoder_design_freqDivider_0_0_freqDivider
      port map (
       clk => clk,

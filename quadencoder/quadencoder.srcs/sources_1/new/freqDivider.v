@@ -24,20 +24,21 @@ module freqDivider(
     input clk,
     input enable,
     input [4:0] divisor,
-    output clk_out
-    
+    output clk_out,
+    output reg [31:0] cnter
     );    
-
+    reg [31:0] counter;
     wire [31:0] cntrwire;        
     assign cntrwire = counter >> divisor;// 2 power division
     assign clk_out = cntrwire[0];
     
-    reg [31:0] counter;
+    
     initial begin
         counter <= 0;
     end
     
     always@(posedge clk) begin
+        cnter <= 32'h123456;
         counter <= counter + enable;
     end
 endmodule
