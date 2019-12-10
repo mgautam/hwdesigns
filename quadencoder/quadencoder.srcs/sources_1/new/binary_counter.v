@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 09.12.2019 13:18:55
+// Create Date: 10.12.2019 18:52:49
 // Design Name: 
-// Module Name: freqDivider
+// Module Name: binary_counter
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,24 +20,20 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module freqDivider(
+module binary_counter(
     input clk,
+    input pulse_in,
     input enable,
-    input [4:0] divisor,
-    output clk_out,
-    output [31:0] cnter
-    );    
-    reg [31:0] counter;
-    wire [31:0] cntrwire;        
-    assign cntrwire = counter >> divisor;// 2 power division
-    assign clk_out = cntrwire[0];
-    
-    assign cnter = cntrwire;//counter;
+    output reg [31:0] counter
+    );
+    reg prev_pulse_state;
     initial begin
+        prev_pulse_state <= 0;
         counter <= 0;
     end
     
-    always@(posedge clk) begin
-        counter <= counter + enable;
+    always@(posedge clk) begin        
+        counter <= counter + (enable & pulse_in & ~prev_pulse_state);
+        prev_pulse_state <= pulse_in;
     end
 endmodule

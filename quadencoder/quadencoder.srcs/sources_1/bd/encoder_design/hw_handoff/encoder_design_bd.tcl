@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# clkToQuad, freqDivider
+# binary_counter, clkToQuad, freqDivider
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -167,6 +167,7 @@ proc create_root_design { parentCell } {
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
 
   # Create ports
+  set bnctr_clk_in [ create_bd_port -dir I bnctr_clk_in ]
   set dir [ create_bd_port -dir I dir ]
   set divisor [ create_bd_port -dir I -from 4 -to 0 divisor ]
   set enable [ create_bd_port -dir I enable ]
@@ -181,6 +182,17 @@ proc create_root_design { parentCell } {
    CONFIG.C_IS_DUAL {1} \
  ] $axi_gpio_0
 
+  # Create instance: binary_counter_0, and set properties
+  set block_name binary_counter
+  set block_cell_name binary_counter_0
+  if { [catch {set binary_counter_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $binary_counter_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: clkToQuad_0, and set properties
   set block_name clkToQuad
   set block_cell_name clkToQuad_0
@@ -212,7 +224,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_ACT_ENET0_PERIPHERAL_FREQMHZ {125.000000} \
    CONFIG.PCW_ACT_ENET1_PERIPHERAL_FREQMHZ {10.000000} \
    CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ {100.000000} \
-   CONFIG.PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ {100.000000} \
+   CONFIG.PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ {12.500000} \
    CONFIG.PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ {10.000000} \
    CONFIG.PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ {10.000000} \
    CONFIG.PCW_ACT_PCAP_PERIPHERAL_FREQMHZ {200.000000} \
@@ -235,7 +247,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_CAN_PERIPHERAL_DIVISOR0 {1} \
    CONFIG.PCW_CAN_PERIPHERAL_DIVISOR1 {1} \
    CONFIG.PCW_CLK0_FREQ {100000000} \
-   CONFIG.PCW_CLK1_FREQ {100000000} \
+   CONFIG.PCW_CLK1_FREQ {12500000} \
    CONFIG.PCW_CLK2_FREQ {10000000} \
    CONFIG.PCW_CLK3_FREQ {10000000} \
    CONFIG.PCW_CPU_CPU_6X4X_MAX_RANGE {667} \
@@ -290,15 +302,15 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_EN_USB0 {1} \
    CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0 {5} \
    CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1 {2} \
-   CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR0 {5} \
-   CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR1 {2} \
+   CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR0 {10} \
+   CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR1 {8} \
    CONFIG.PCW_FCLK2_PERIPHERAL_DIVISOR0 {1} \
    CONFIG.PCW_FCLK2_PERIPHERAL_DIVISOR1 {1} \
    CONFIG.PCW_FCLK3_PERIPHERAL_DIVISOR0 {1} \
    CONFIG.PCW_FCLK3_PERIPHERAL_DIVISOR1 {1} \
    CONFIG.PCW_FCLK_CLK1_BUF {TRUE} \
    CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100} \
-   CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ {100} \
+   CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ {12.5} \
    CONFIG.PCW_FPGA_FCLK0_ENABLE {1} \
    CONFIG.PCW_FPGA_FCLK1_ENABLE {1} \
    CONFIG.PCW_FPGA_FCLK2_ENABLE {0} \
@@ -700,14 +712,16 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins axi_gpio_0/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M00_AXI]
 
   # Create port connections
+  connect_bd_net -net binary_counter_0_counter [get_bd_pins axi_gpio_0/gpio2_io_i] [get_bd_pins binary_counter_0/counter]
+  connect_bd_net -net bnctr_clk_in_1 [get_bd_ports bnctr_clk_in] [get_bd_pins binary_counter_0/pulse_in]
   connect_bd_net -net clkToQuad_0_encout [get_bd_ports encout] [get_bd_ports incenc] [get_bd_pins clkToQuad_0/encout]
   connect_bd_net -net dir_1 [get_bd_ports dir] [get_bd_pins clkToQuad_0/dir]
   connect_bd_net -net divisor_1 [get_bd_ports divisor] [get_bd_pins freqDivider_0/divisor]
-  connect_bd_net -net enable_1 [get_bd_ports enable] [get_bd_pins clkToQuad_0/enable] [get_bd_pins freqDivider_0/enable]
+  connect_bd_net -net enable_1 [get_bd_ports enable] [get_bd_pins binary_counter_0/enable] [get_bd_pins clkToQuad_0/enable] [get_bd_pins freqDivider_0/enable]
   connect_bd_net -net freqDivider_0_clk_out [get_bd_pins clkToQuad_0/clk] [get_bd_pins freqDivider_0/clk_out]
-  connect_bd_net -net freqDivider_0_cnter [get_bd_pins axi_gpio_0/gpio2_io_i] [get_bd_pins axi_gpio_0/gpio_io_i] [get_bd_pins freqDivider_0/cnter] [get_bd_pins processing_system7_0/GPIO_I]
+  connect_bd_net -net freqDivider_0_cnter [get_bd_pins axi_gpio_0/gpio_io_i] [get_bd_pins freqDivider_0/cnter] [get_bd_pins processing_system7_0/GPIO_I]
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk]
-  connect_bd_net -net processing_system7_0_FCLK_CLK1 [get_bd_pins freqDivider_0/clk] [get_bd_pins processing_system7_0/FCLK_CLK1]
+  connect_bd_net -net processing_system7_0_FCLK_CLK1 [get_bd_pins binary_counter_0/clk] [get_bd_pins freqDivider_0/clk] [get_bd_pins processing_system7_0/FCLK_CLK1]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_100M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_100M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_100M/interconnect_aresetn]
   connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn]

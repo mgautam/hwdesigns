@@ -1,7 +1,7 @@
 //Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-//Date        : Tue Dec 10 15:53:43 2019
+//Date        : Tue Dec 10 19:32:58 2019
 //Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 //Command     : generate_target encoder_design_wrapper.bd
 //Design      : encoder_design_wrapper
@@ -31,6 +31,7 @@ module encoder_design_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
+    bnctr_clk_in,
     dir,
     divisor,
     enable,
@@ -57,6 +58,7 @@ module encoder_design_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
+  input bnctr_clk_in;
   input dir;
   input [4:0]divisor;
   input enable;
@@ -84,6 +86,7 @@ module encoder_design_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
+  wire bnctr_clk_in;
   wire dir;
   wire [4:0]divisor;
   wire enable;
@@ -112,6 +115,7 @@ module encoder_design_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
+        .bnctr_clk_in(bnctr_clk_in),
         .dir(dir),
         .divisor(divisor),
         .enable(enable),

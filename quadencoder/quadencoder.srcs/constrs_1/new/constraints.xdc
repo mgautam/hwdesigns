@@ -42,3 +42,7 @@ set_property SLEW FAST [get_ports {incenc[3]}]
 set_property SLEW FAST [get_ports {incenc[2]}]
 set_property SLEW FAST [get_ports {incenc[1]}]
 set_property SLEW FAST [get_ports {incenc[0]}]
+
+
+set_property IOSTANDARD LVCMOS33 [get_ports bnctr_clk_in]
+set_property PACKAGE_PIN V18 [get_ports bnctr_clk_in]

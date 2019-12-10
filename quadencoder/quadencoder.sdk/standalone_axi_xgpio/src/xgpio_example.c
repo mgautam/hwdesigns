@@ -150,7 +150,7 @@ int main(void)
 	datareadb=Xil_In32(0x41200000);
 	datareadc=Xil_In32(0x41200008);
 
-	xil_printf("Successfully ran Gpio Example: %x, %x\r\n",dataread,datareada);
+	xil_printf("Successfully ran Gpio Example: %d, %d\r\n",dataread,datareada);
 	xil_printf("ran Gpio Example: %x, %x\r\n\n",datareadb,datareadc);
 	return XST_SUCCESS;
 }
