@@ -226,13 +226,8 @@ int XAxiDma_SimplePollExample(u16 DeviceId)
 {
 	XAxiDma_Config *CfgPtr;
 	int Status;
-	int Tries = NUMBER_OF_TRANSFERS;
-	int Index;
-	u8 *TxBufferPtr;
 	u8 *RxBufferPtr;
-	u8 Value;
 
-	TxBufferPtr = (u8 *)TX_BUFFER_BASE ;
 	RxBufferPtr = (u8 *)RX_BUFFER_BASE;
 
 	/* Initialize the XAxiDma device.

@@ -1,7 +1,7 @@
 //Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-//Date        : Sat Dec 14 08:09:25 2019
+//Date        : Sat Dec 14 00:28:41 2019
 //Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -30,8 +30,7 @@ module design_1_wrapper
     FIXED_IO_mio,
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
-    FIXED_IO_ps_srstb,
-    axis_data_count_0);
+    FIXED_IO_ps_srstb);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -53,7 +52,6 @@ module design_1_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  output [31:0]axis_data_count_0;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -76,7 +74,6 @@ module design_1_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
-  wire [31:0]axis_data_count_0;
 
   design_1 design_1_i
        (.DDR_addr(DDR_addr),
@@ -99,6 +96,5 @@ module design_1_wrapper
         .FIXED_IO_mio(FIXED_IO_mio),
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
-        .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
-        .axis_data_count_0(axis_data_count_0));
+        .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb));
 endmodule

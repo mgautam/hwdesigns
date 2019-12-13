@@ -1,7 +1,7 @@
 //Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-//Date        : Sat Dec 14 08:09:25 2019
+//Date        : Sat Dec 14 00:28:41 2019
 //Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=9,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=6,da_board_cnt=1,da_ps7_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=8,numReposBlks=6,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (DDR_addr,
     DDR_ba,
@@ -31,8 +31,7 @@ module design_1
     FIXED_IO_mio,
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
-    FIXED_IO_ps_srstb,
-    axis_data_count_0);
+    FIXED_IO_ps_srstb);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_addr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR BA" *) inout [2:0]DDR_ba;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CAS_N" *) inout DDR_cas_n;
@@ -54,7 +53,6 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK" *) inout FIXED_IO_ps_clk;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
-  output [31:0]axis_data_count_0;
 
   wire [31:0]axi_dma_0_M_AXI_S2MM_AWADDR;
   wire [1:0]axi_dma_0_M_AXI_S2MM_AWBURST;
@@ -91,11 +89,6 @@ module design_1
   wire axi_smc_M00_AXI_WREADY;
   wire [3:0]axi_smc_M00_AXI_WSTRB;
   wire axi_smc_M00_AXI_WVALID;
-  wire [31:0]axis_data_fifo_0_M_AXIS_TDATA;
-  wire axis_data_fifo_0_M_AXIS_TLAST;
-  wire axis_data_fifo_0_M_AXIS_TREADY;
-  wire axis_data_fifo_0_M_AXIS_TVALID;
-  wire [31:0]axis_data_fifo_0_axis_data_count;
   wire [14:0]processing_system7_0_DDR_ADDR;
   wire [2:0]processing_system7_0_DDR_BA;
   wire processing_system7_0_DDR_CAS_N;
@@ -175,13 +168,11 @@ module design_1
   wire ps7_0_axi_periph_M00_AXI_WVALID;
   wire [0:0]rst_ps7_0_50M_interconnect_aresetn;
   wire [0:0]rst_ps7_0_50M_peripheral_aresetn;
-  wire [31:0]streamer_0_M00_AXIS_TDATA;
-  wire streamer_0_M00_AXIS_TLAST;
-  wire streamer_0_M00_AXIS_TREADY;
-  wire [3:0]streamer_0_M00_AXIS_TSTRB;
-  wire streamer_0_M00_AXIS_TVALID;
+  wire [31:0]streamgen_0_M_AXIS_TDATA;
+  wire streamgen_0_M_AXIS_TLAST;
+  wire streamgen_0_M_AXIS_TREADY;
+  wire streamgen_0_M_AXIS_TVALID;
 
-  assign axis_data_count_0[31:0] = axis_data_fifo_0_axis_data_count;
   design_1_axi_dma_0_0 axi_dma_0
        (.axi_resetn(rst_ps7_0_50M_peripheral_aresetn),
         .m_axi_s2mm_aclk(processing_system7_0_FCLK_CLK0),
@@ -219,12 +210,12 @@ module design_1
         .s_axi_lite_wdata(ps7_0_axi_periph_M00_AXI_WDATA),
         .s_axi_lite_wready(ps7_0_axi_periph_M00_AXI_WREADY),
         .s_axi_lite_wvalid(ps7_0_axi_periph_M00_AXI_WVALID),
-        .s_axis_s2mm_tdata(axis_data_fifo_0_M_AXIS_TDATA),
+        .s_axis_s2mm_tdata(streamgen_0_M_AXIS_TDATA),
         .s_axis_s2mm_tkeep({1'b1,1'b1,1'b1,1'b1}),
-        .s_axis_s2mm_tlast(axis_data_fifo_0_M_AXIS_TLAST),
-        .s_axis_s2mm_tready(axis_data_fifo_0_M_AXIS_TREADY),
-        .s_axis_s2mm_tvalid(axis_data_fifo_0_M_AXIS_TVALID));
-  design_1_axi_smc_1 axi_smc
+        .s_axis_s2mm_tlast(streamgen_0_M_AXIS_TLAST),
+        .s_axis_s2mm_tready(streamgen_0_M_AXIS_TREADY),
+        .s_axis_s2mm_tvalid(streamgen_0_M_AXIS_TVALID));
+  design_1_axi_smc_0 axi_smc
        (.M00_AXI_awaddr(axi_smc_M00_AXI_AWADDR),
         .M00_AXI_awburst(axi_smc_M00_AXI_AWBURST),
         .M00_AXI_awcache(axi_smc_M00_AXI_AWCACHE),
@@ -263,19 +254,6 @@ module design_1
         .S00_AXI_wvalid(axi_dma_0_M_AXI_S2MM_WVALID),
         .aclk(processing_system7_0_FCLK_CLK0),
         .aresetn(rst_ps7_0_50M_peripheral_aresetn));
-  design_1_axis_data_fifo_0_0 axis_data_fifo_0
-       (.axis_data_count(axis_data_fifo_0_axis_data_count),
-        .m_axis_tdata(axis_data_fifo_0_M_AXIS_TDATA),
-        .m_axis_tlast(axis_data_fifo_0_M_AXIS_TLAST),
-        .m_axis_tready(axis_data_fifo_0_M_AXIS_TREADY),
-        .m_axis_tvalid(axis_data_fifo_0_M_AXIS_TVALID),
-        .s_axis_aclk(processing_system7_0_FCLK_CLK0),
-        .s_axis_aresetn(rst_ps7_0_50M_peripheral_aresetn),
-        .s_axis_tdata(streamer_0_M00_AXIS_TDATA),
-        .s_axis_tlast(streamer_0_M00_AXIS_TLAST),
-        .s_axis_tready(streamer_0_M00_AXIS_TREADY),
-        .s_axis_tstrb(streamer_0_M00_AXIS_TSTRB),
-        .s_axis_tvalid(streamer_0_M00_AXIS_TVALID));
   design_1_processing_system7_0_0 processing_system7_0
        (.DDR_Addr(DDR_addr[14:0]),
         .DDR_BankAddr(DDR_ba[2:0]),
@@ -376,7 +354,7 @@ module design_1
         .S_AXI_HP0_WSTRB(axi_smc_M00_AXI_WSTRB),
         .S_AXI_HP0_WVALID(axi_smc_M00_AXI_WVALID),
         .USB0_VBUS_PWRFAULT(1'b0));
-  design_1_ps7_0_axi_periph_1 ps7_0_axi_periph
+  design_1_ps7_0_axi_periph_0 ps7_0_axi_periph
        (.ACLK(processing_system7_0_FCLK_CLK0),
         .ARESETN(rst_ps7_0_50M_interconnect_aresetn),
         .M00_ACLK(processing_system7_0_FCLK_CLK0),
@@ -437,7 +415,7 @@ module design_1
         .S00_AXI_wready(processing_system7_0_M_AXI_GP0_WREADY),
         .S00_AXI_wstrb(processing_system7_0_M_AXI_GP0_WSTRB),
         .S00_AXI_wvalid(processing_system7_0_M_AXI_GP0_WVALID));
-  design_1_rst_ps7_0_50M_1 rst_ps7_0_50M
+  design_1_rst_ps7_0_50M_0 rst_ps7_0_50M
        (.aux_reset_in(1'b1),
         .dcm_locked(1'b1),
         .ext_reset_in(processing_system7_0_FCLK_RESET0_N),
@@ -445,17 +423,16 @@ module design_1
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(rst_ps7_0_50M_peripheral_aresetn),
         .slowest_sync_clk(processing_system7_0_FCLK_CLK0));
-  design_1_streamer_0_0 streamer_0
-       (.m00_axis_aclk(processing_system7_0_FCLK_CLK0),
-        .m00_axis_aresetn(rst_ps7_0_50M_peripheral_aresetn),
-        .m00_axis_tdata(streamer_0_M00_AXIS_TDATA),
-        .m00_axis_tlast(streamer_0_M00_AXIS_TLAST),
-        .m00_axis_tready(streamer_0_M00_AXIS_TREADY),
-        .m00_axis_tstrb(streamer_0_M00_AXIS_TSTRB),
-        .m00_axis_tvalid(streamer_0_M00_AXIS_TVALID));
+  design_1_streamgen_0_0 streamgen_0
+       (.M_AXIS_ACLK(processing_system7_0_FCLK_CLK0),
+        .M_AXIS_ARESETN(rst_ps7_0_50M_peripheral_aresetn),
+        .M_AXIS_TDATA(streamgen_0_M_AXIS_TDATA),
+        .M_AXIS_TLAST(streamgen_0_M_AXIS_TLAST),
+        .M_AXIS_TREADY(streamgen_0_M_AXIS_TREADY),
+        .M_AXIS_TVALID(streamgen_0_M_AXIS_TVALID));
 endmodule
 
-module design_1_ps7_0_axi_periph_1
+module design_1_ps7_0_axi_periph_0
    (ACLK,
     ARESETN,
     M00_ACLK,
