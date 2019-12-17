@@ -135,14 +135,14 @@
 	        // The example design streaming master functionality starts       
 	        // when the master drives output tdata from the FIFO and the slave
 	        // has finished storing the S_AXIS_TDATA                          
-	        if (tx_done)                                                      
+	        /*if (tx_done)                                                      
 	          begin                                                           
 	            mst_exec_state <= IDLE;                                       
 	          end                                                             
 	        else                                                              
-	          begin                                                           
+	          begin*/                                                           
 	            mst_exec_state <= SEND_STREAM;                                
-	          end                                                             
+	          //end                                                             
 	    endcase                                                               
 	end                                                                       
 
@@ -150,7 +150,7 @@
 	//tvalid generation
 	//axis_tvalid is asserted when the control state machine's state is SEND_STREAM and
 	//number of output streaming data is less than the NUMBER_OF_OUTPUT_WORDS.
-	assign axis_tvalid = ((mst_exec_state == SEND_STREAM) && (read_pointer < NUMBER_OF_OUTPUT_WORDS));
+	assign axis_tvalid = ((mst_exec_state == SEND_STREAM));// && (read_pointer < NUMBER_OF_OUTPUT_WORDS));
 	                                                                                               
 	// AXI tlast generation                                                                        
 	// axis_tlast is asserted number of output streaming data is NUMBER_OF_OUTPUT_WORDS-1          
@@ -185,23 +185,13 @@
 	      tx_done <= 1'b0;                                                           
 	    end                                                                          
 	  else                                                                           
-	    if (read_pointer <= NUMBER_OF_OUTPUT_WORDS-1)                                
-	      begin                                                                      
-	        if (tx_en)                                                               
-	          // read pointer is incremented after every read from the FIFO          
-	          // when FIFO read signal is enabled.                                   
-	          begin                                                                  
-	            read_pointer <= read_pointer + 1;                                    
-	            tx_done <= 1'b0;                                                     
-	          end                                                                    
-	      end                                                                        
-	    else if (read_pointer == NUMBER_OF_OUTPUT_WORDS)                             
-	      begin                                                                      
-	        // tx_done is asserted when NUMBER_OF_OUTPUT_WORDS numbers of streaming data
-	        // has been out.                                                                         
-            //read_pointer <= 0;                                                        
-	        tx_done <= 1'b1;                                                         
-	      end                                                                        
+	    if (tx_en)                                                               
+                    // read pointer is incremented after every read from the FIFO          
+                    // when FIFO read signal is enabled.                                   
+                    begin                                                                  
+                      read_pointer <= read_pointer + 1;                                    
+                      tx_done <= 1'b0;                                                     
+                    end                                                                            
 	end                                                                              
 
 
@@ -218,7 +208,7 @@
 	        end                                          
 	      else if (tx_en)// && M_AXIS_TSTRB[byte_index]  
 	        begin                                        
-	          stream_data_out <= read_pointer + 32'h87654321;   
+	          stream_data_out <= stream_data_out + 32'h1;   
 	        end                                          
 	    end                                              
 
