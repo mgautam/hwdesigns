@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-// Date        : Wed Dec 18 00:55:35 2019
+// Date        : Sat Dec 21 11:05:51 2019
 // Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 // Command     : write_verilog -force -mode funcsim
-//               c:/Users/Gautam/Vivado/axistreamer/axistreamer/axistreamer.srcs/sources_1/bd/design_1/ip/design_1_streamgen_0_0/design_1_streamgen_0_0_sim_netlist.v
+//               C:/Users/Gautam/Vivado/axistreamer/axistreamer.srcs/sources_1/bd/design_1/ip/design_1_streamgen_0_0/design_1_streamgen_0_0_sim_netlist.v
 // Design      : design_1_streamgen_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -22,13 +22,13 @@ module design_1_streamgen_0_0
     M_AXIS_TSTRB,
     M_AXIS_TLAST,
     M_AXIS_TREADY);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 M_AXIS_ACLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXIS_ACLK, ASSOCIATED_BUSIF M_AXIS, ASSOCIATED_RESET M_AXIS_ARESETN, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0" *) input M_AXIS_ACLK;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 M_AXIS_ACLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXIS_ACLK, ASSOCIATED_BUSIF M_AXIS, ASSOCIATED_RESET M_AXIS_ARESETN, FREQ_HZ 5e+07, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0" *) input M_AXIS_ACLK;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 M_AXIS_ARESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXIS_ARESETN, POLARITY ACTIVE_LOW" *) input M_AXIS_ARESETN;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TVALID" *) output M_AXIS_TVALID;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TDATA" *) output [31:0]M_AXIS_TDATA;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TSTRB" *) output [3:0]M_AXIS_TSTRB;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TLAST" *) output M_AXIS_TLAST;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef" *) input M_AXIS_TREADY;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 5e+07, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef" *) input M_AXIS_TREADY;
 
   wire \<const1> ;
   wire M_AXIS_ACLK;
@@ -75,6 +75,7 @@ module design_1_streamgen_0_0_streamgen
   wire M_AXIS_TREADY;
   wire M_AXIS_TVALID;
   wire axis_tlast_delay_i_1_n_0;
+  wire axis_tlast_n_0;
   wire axis_tvalid_delay_i_1_n_0;
   wire clear;
   wire count0;
@@ -85,9 +86,9 @@ module design_1_streamgen_0_0_streamgen
   wire \mst_exec_state[1]_i_1_n_0 ;
   wire \mst_exec_state[1]_i_2_n_0 ;
   wire [4:0]p_0_in;
-  wire [3:0]p_0_in__0;
-  wire \read_pointer[2]_i_1_n_0 ;
-  wire [3:0]read_pointer_reg__0;
+  wire [5:0]read_pointer;
+  wire \read_pointer[0]_i_1_n_0 ;
+  wire [5:1]read_pointer_0;
   wire [4:0]sel0;
   wire \stream_data_out[3]_i_2_n_0 ;
   wire \stream_data_out_reg[11]_i_1_n_0 ;
@@ -156,13 +157,21 @@ module design_1_streamgen_0_0_streamgen
   wire tx_en;
   wire [3:3]\NLW_stream_data_out_reg[31]_i_3_CO_UNCONNECTED ;
 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT3 #(
+    .INIT(8'h7F)) 
+    axis_tlast
+       (.I0(read_pointer[1]),
+        .I1(read_pointer[0]),
+        .I2(read_pointer[2]),
+        .O(axis_tlast_n_0));
   LUT5 #(
-    .INIT(32'h00800000)) 
+    .INIT(32'h00400000)) 
     axis_tlast_delay_i_1
-       (.I0(read_pointer_reg__0[0]),
-        .I1(read_pointer_reg__0[1]),
-        .I2(read_pointer_reg__0[2]),
-        .I3(read_pointer_reg__0[3]),
+       (.I0(axis_tlast_n_0),
+        .I1(read_pointer[4]),
+        .I2(read_pointer[3]),
+        .I3(read_pointer[5]),
         .I4(M_AXIS_ARESETN),
         .O(axis_tlast_delay_i_1_n_0));
   FDRE axis_tlast_delay_reg
@@ -185,7 +194,7 @@ module design_1_streamgen_0_0_streamgen
         .D(axis_tvalid_delay_i_1_n_0),
         .Q(M_AXIS_TVALID),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \count[0]_i_1 
@@ -206,7 +215,7 @@ module design_1_streamgen_0_0_streamgen
         .I1(sel0[1]),
         .I2(sel0[2]),
         .O(\count[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \count[3]_i_1 
@@ -225,7 +234,7 @@ module design_1_streamgen_0_0_streamgen
         .I4(\mst_exec_state[0]_i_2_n_0 ),
         .I5(sel0[3]),
         .O(count0));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \count[4]_i_2 
@@ -275,7 +284,7 @@ module design_1_streamgen_0_0_streamgen
         .I4(mst_exec_state[0]),
         .I5(mst_exec_state[1]),
         .O(\mst_exec_state[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \mst_exec_state[0]_i_2 
@@ -316,55 +325,87 @@ module design_1_streamgen_0_0_streamgen
   LUT1 #(
     .INIT(2'h1)) 
     \read_pointer[0]_i_1 
-       (.I0(read_pointer_reg__0[0]),
-        .O(p_0_in__0[0]));
+       (.I0(read_pointer[0]),
+        .O(\read_pointer[0]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \read_pointer[1]_i_1 
-       (.I0(read_pointer_reg__0[0]),
-        .I1(read_pointer_reg__0[1]),
-        .O(p_0_in__0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+       (.I0(read_pointer[1]),
+        .I1(read_pointer[0]),
+        .O(read_pointer_0[1]));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
-    .INIT(8'h78)) 
+    .INIT(8'h6A)) 
     \read_pointer[2]_i_1 
-       (.I0(read_pointer_reg__0[1]),
-        .I1(read_pointer_reg__0[0]),
-        .I2(read_pointer_reg__0[2]),
-        .O(\read_pointer[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+       (.I0(read_pointer[2]),
+        .I1(read_pointer[1]),
+        .I2(read_pointer[0]),
+        .O(read_pointer_0[2]));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
-    .INIT(16'h7F80)) 
+    .INIT(16'h6CCC)) 
     \read_pointer[3]_i_1 
-       (.I0(read_pointer_reg__0[0]),
-        .I1(read_pointer_reg__0[1]),
-        .I2(read_pointer_reg__0[2]),
-        .I3(read_pointer_reg__0[3]),
-        .O(p_0_in__0[3]));
+       (.I0(read_pointer[2]),
+        .I1(read_pointer[3]),
+        .I2(read_pointer[1]),
+        .I3(read_pointer[0]),
+        .O(read_pointer_0[3]));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT5 #(
+    .INIT(32'h7F80FF00)) 
+    \read_pointer[4]_i_1 
+       (.I0(read_pointer[2]),
+        .I1(read_pointer[3]),
+        .I2(read_pointer[1]),
+        .I3(read_pointer[4]),
+        .I4(read_pointer[0]),
+        .O(read_pointer_0[4]));
+  LUT6 #(
+    .INIT(64'h7F00FF00FF00FF00)) 
+    \read_pointer[5]_i_1 
+       (.I0(read_pointer[2]),
+        .I1(read_pointer[3]),
+        .I2(read_pointer[1]),
+        .I3(read_pointer[5]),
+        .I4(read_pointer[4]),
+        .I5(read_pointer[0]),
+        .O(read_pointer_0[5]));
   FDRE \read_pointer_reg[0] 
        (.C(M_AXIS_ACLK),
         .CE(tx_en),
-        .D(p_0_in__0[0]),
-        .Q(read_pointer_reg__0[0]),
+        .D(\read_pointer[0]_i_1_n_0 ),
+        .Q(read_pointer[0]),
         .R(clear));
   FDRE \read_pointer_reg[1] 
        (.C(M_AXIS_ACLK),
         .CE(tx_en),
-        .D(p_0_in__0[1]),
-        .Q(read_pointer_reg__0[1]),
+        .D(read_pointer_0[1]),
+        .Q(read_pointer[1]),
         .R(clear));
   FDRE \read_pointer_reg[2] 
        (.C(M_AXIS_ACLK),
         .CE(tx_en),
-        .D(\read_pointer[2]_i_1_n_0 ),
-        .Q(read_pointer_reg__0[2]),
+        .D(read_pointer_0[2]),
+        .Q(read_pointer[2]),
         .R(clear));
   FDRE \read_pointer_reg[3] 
        (.C(M_AXIS_ACLK),
         .CE(tx_en),
-        .D(p_0_in__0[3]),
-        .Q(read_pointer_reg__0[3]),
+        .D(read_pointer_0[3]),
+        .Q(read_pointer[3]),
+        .R(clear));
+  FDRE \read_pointer_reg[4] 
+       (.C(M_AXIS_ACLK),
+        .CE(tx_en),
+        .D(read_pointer_0[4]),
+        .Q(read_pointer[4]),
+        .R(clear));
+  FDRE \read_pointer_reg[5] 
+       (.C(M_AXIS_ACLK),
+        .CE(tx_en),
+        .D(read_pointer_0[5]),
+        .Q(read_pointer[5]),
         .R(clear));
   LUT1 #(
     .INIT(2'h1)) 
@@ -383,12 +424,12 @@ module design_1_streamgen_0_0_streamgen
     \stream_data_out[3]_i_2 
        (.I0(M_AXIS_TDATA[0]),
         .O(\stream_data_out[3]_i_2_n_0 ));
-  FDSE \stream_data_out_reg[0] 
+  FDRE \stream_data_out_reg[0] 
        (.C(M_AXIS_ACLK),
         .CE(tx_en),
         .D(\stream_data_out_reg[3]_i_1_n_7 ),
         .Q(M_AXIS_TDATA[0]),
-        .S(clear));
+        .R(clear));
   FDRE \stream_data_out_reg[10] 
        (.C(M_AXIS_ACLK),
         .CE(tx_en),

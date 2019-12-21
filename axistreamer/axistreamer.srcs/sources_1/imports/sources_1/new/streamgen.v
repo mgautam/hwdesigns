@@ -35,7 +35,7 @@
 		input wire  M_AXIS_TREADY
 	);
 	// Total number of output data                                                 
-	localparam NUMBER_OF_OUTPUT_WORDS = 8;                                               
+	localparam NUMBER_OF_OUTPUT_WORDS = 32;                                               
 	                                                                                     
 	// function called clogb2 that returns an integer which has the                      
 	// value of the ceiling of the log base 2.                                           
@@ -186,12 +186,20 @@
 	    end                                                                          
 	  else                                                                           
 	    if (tx_en)                                                               
-                    // read pointer is incremented after every read from the FIFO          
-                    // when FIFO read signal is enabled.                                   
-                    begin                                                                  
-                      read_pointer <= read_pointer + 1;                                    
-                      tx_done <= 1'b0;                                                     
-                    end                                                                            
+            // read pointer is incremented after every read from the FIFO          
+            // when FIFO read signal is enabled.                                   
+            begin 
+            if (read_pointer == NUMBER_OF_OUTPUT_WORDS-1)                                                                
+            begin                                                                        
+                read_pointer <= 0;                                                         
+                tx_done <= 1'b0;                                                           
+            end                                                                  
+            else                                                                
+            begin 
+                read_pointer <= read_pointer + 1;                                    
+                tx_done <= 1'b0;
+            end
+        end                                                                            
 	end                                                                              
 
 
@@ -204,7 +212,7 @@
 	    begin                                            
 	      if(!M_AXIS_ARESETN)                            
 	        begin                                        
-	          stream_data_out <= 1;                      
+	          stream_data_out <= 0;                      
 	        end                                          
 	      else if (tx_en)// && M_AXIS_TSTRB[byte_index]  
 	        begin                                        

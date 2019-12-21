@@ -138,11 +138,10 @@
  */
 #define RESET_TIMEOUT_COUNTER	10000
 
-#define TEST_START_VALUE	0xC
 /*
  * Buffer and Buffer Descriptor related constant definition
  */
-#define MAX_PKT_LEN		64/*256*/
+#define MAX_PKT_LEN		128/*256*/
 
 #define NUMBER_OF_TRANSFERS	10
 
@@ -266,23 +265,22 @@ int main(void)
 	//XAxiDma_IntrEnable(&AxiDma, XAXIDMA_IRQ_ALL_MASK,
 							//XAXIDMA_DMA_TO_DEVICE);
 
-
 	XAxiDma_IntrEnable(&AxiDma, XAXIDMA_IRQ_ALL_MASK,
 							XAXIDMA_DEVICE_TO_DMA);
 
-	/* Initialize flags before start transfer test  */
-	RxDone = 0;
-	Error = 0;
-
-	/* Flush the SrcBuffer before the DMA transfer, in case the Data Cache
-	 * is enabled
-	 */
-#ifdef __aarch64__
-	Xil_DCacheFlushRange((UINTPTR)RxBufferPtr, MAX_PKT_LEN);
-#endif
-
 	/* Send a packet */
 	for(Index = 0; Index < Tries; Index ++) {
+
+		/* Initialize flags before start transfer test  */
+		RxDone = 0;
+		Error = 0;
+
+		/* Flush the SrcBuffer before the DMA transfer, in case the Data Cache
+		 * is enabled
+		 */
+		#ifdef __aarch64__
+			Xil_DCacheFlushRange((UINTPTR)RxBufferPtr, MAX_PKT_LEN);
+		#endif
 
 		Status = XAxiDma_SimpleTransfer(&AxiDma,(UINTPTR) RxBufferPtr,
 					MAX_PKT_LEN, XAXIDMA_DEVICE_TO_DMA);
@@ -364,7 +362,7 @@ static int CheckData(int Length, u8 StartValue)
 	xil_printf("Checkdata!\r\n");
 		for(Index = 0; Index < MAX_PKT_LEN; Index+=4) {
 //				/xil_printf("Data read  %d: %x\r\n", Index, (unsigned int)RxPacket[Index]);
-				xil_printf("Data read  %d: %x\r\n", Index, (u32)RxPacket[Index]);
+				xil_printf("Data read  %2d: %2x %2x %2x %2x\r\n", Index, (u32)RxPacket[Index], (u32)RxPacket[Index+1], (u32)RxPacket[Index+2], (u32)RxPacket[Index+3]);
 		}
 
 	return XST_SUCCESS;

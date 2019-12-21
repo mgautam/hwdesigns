@@ -1,7 +1,7 @@
 //Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-//Date        : Wed Dec 18 00:54:50 2019
+//Date        : Sat Dec 21 11:05:02 2019
 //Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=8,numReposBlks=6,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=9,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_clkrst_cnt=9,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (DDR_addr,
     DDR_ba,
@@ -54,22 +54,22 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
 
-  wire [31:0]axi_dma_0_M_AXI_S2MM_AWADDR;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 AWADDR" *) (* DONT_TOUCH *) wire [31:0]axi_dma_0_M_AXI_S2MM_AWADDR;
   wire [1:0]axi_dma_0_M_AXI_S2MM_AWBURST;
   wire [3:0]axi_dma_0_M_AXI_S2MM_AWCACHE;
-  wire [7:0]axi_dma_0_M_AXI_S2MM_AWLEN;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 AWLEN" *) (* DONT_TOUCH *) wire [7:0]axi_dma_0_M_AXI_S2MM_AWLEN;
   wire [2:0]axi_dma_0_M_AXI_S2MM_AWPROT;
-  wire axi_dma_0_M_AXI_S2MM_AWREADY;
-  wire [2:0]axi_dma_0_M_AXI_S2MM_AWSIZE;
-  wire axi_dma_0_M_AXI_S2MM_AWVALID;
-  wire axi_dma_0_M_AXI_S2MM_BREADY;
-  wire [1:0]axi_dma_0_M_AXI_S2MM_BRESP;
-  wire axi_dma_0_M_AXI_S2MM_BVALID;
-  wire [31:0]axi_dma_0_M_AXI_S2MM_WDATA;
-  wire axi_dma_0_M_AXI_S2MM_WLAST;
-  wire axi_dma_0_M_AXI_S2MM_WREADY;
-  wire [3:0]axi_dma_0_M_AXI_S2MM_WSTRB;
-  wire axi_dma_0_M_AXI_S2MM_WVALID;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 AWREADY" *) (* DONT_TOUCH *) wire axi_dma_0_M_AXI_S2MM_AWREADY;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 AWSIZE" *) (* DONT_TOUCH *) wire [2:0]axi_dma_0_M_AXI_S2MM_AWSIZE;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 AWVALID" *) (* DONT_TOUCH *) wire axi_dma_0_M_AXI_S2MM_AWVALID;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 BREADY" *) (* DONT_TOUCH *) wire axi_dma_0_M_AXI_S2MM_BREADY;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 BRESP" *) (* DONT_TOUCH *) wire [1:0]axi_dma_0_M_AXI_S2MM_BRESP;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 BVALID" *) (* DONT_TOUCH *) wire axi_dma_0_M_AXI_S2MM_BVALID;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 WDATA" *) (* DONT_TOUCH *) wire [31:0]axi_dma_0_M_AXI_S2MM_WDATA;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 WLAST" *) (* DONT_TOUCH *) wire axi_dma_0_M_AXI_S2MM_WLAST;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 WREADY" *) (* DONT_TOUCH *) wire axi_dma_0_M_AXI_S2MM_WREADY;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 WSTRB" *) (* DONT_TOUCH *) wire [3:0]axi_dma_0_M_AXI_S2MM_WSTRB;
+  (* CONN_BUS_INFO = "axi_dma_0_M_AXI_S2MM xilinx.com:interface:aximm:1.0 AXI4 WVALID" *) (* DONT_TOUCH *) wire axi_dma_0_M_AXI_S2MM_WVALID;
   wire axi_dma_0_s2mm_introut;
   wire [31:0]axi_smc_M00_AXI_AWADDR;
   wire [1:0]axi_smc_M00_AXI_AWBURST;
@@ -168,10 +168,11 @@ module design_1
   wire ps7_0_axi_periph_M00_AXI_WVALID;
   wire [0:0]rst_ps7_0_50M_interconnect_aresetn;
   wire [0:0]rst_ps7_0_50M_peripheral_aresetn;
-  wire [31:0]streamgen_0_M_AXIS_TDATA;
-  wire streamgen_0_M_AXIS_TLAST;
-  wire streamgen_0_M_AXIS_TREADY;
-  wire streamgen_0_M_AXIS_TVALID;
+  (* CONN_BUS_INFO = "streamgen_0_M_AXIS xilinx.com:interface:axis:1.0 None TDATA" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]streamgen_0_M_AXIS_TDATA;
+  (* CONN_BUS_INFO = "streamgen_0_M_AXIS xilinx.com:interface:axis:1.0 None TLAST" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire streamgen_0_M_AXIS_TLAST;
+  (* CONN_BUS_INFO = "streamgen_0_M_AXIS xilinx.com:interface:axis:1.0 None TREADY" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire streamgen_0_M_AXIS_TREADY;
+  (* CONN_BUS_INFO = "streamgen_0_M_AXIS xilinx.com:interface:axis:1.0 None TSTRB" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire [3:0]streamgen_0_M_AXIS_TSTRB;
+  (* CONN_BUS_INFO = "streamgen_0_M_AXIS xilinx.com:interface:axis:1.0 None TVALID" *) (* DEBUG = "true" *) (* MARK_DEBUG *) wire streamgen_0_M_AXIS_TVALID;
 
   design_1_axi_dma_0_0 axi_dma_0
        (.axi_resetn(rst_ps7_0_50M_peripheral_aresetn),
@@ -429,7 +430,39 @@ module design_1
         .M_AXIS_TDATA(streamgen_0_M_AXIS_TDATA),
         .M_AXIS_TLAST(streamgen_0_M_AXIS_TLAST),
         .M_AXIS_TREADY(streamgen_0_M_AXIS_TREADY),
+        .M_AXIS_TSTRB(streamgen_0_M_AXIS_TSTRB),
         .M_AXIS_TVALID(streamgen_0_M_AXIS_TVALID));
+  design_1_system_ila_0_0 system_ila_0
+       (.SLOT_0_AXIS_tdata(streamgen_0_M_AXIS_TDATA),
+        .SLOT_0_AXIS_tlast(streamgen_0_M_AXIS_TLAST),
+        .SLOT_0_AXIS_tready(streamgen_0_M_AXIS_TREADY),
+        .SLOT_0_AXIS_tstrb(streamgen_0_M_AXIS_TSTRB),
+        .SLOT_0_AXIS_tvalid(streamgen_0_M_AXIS_TVALID),
+        .SLOT_1_AXI_araddr({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .SLOT_1_AXI_arlen({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .SLOT_1_AXI_arready(1'b0),
+        .SLOT_1_AXI_arsize({1'b0,1'b1,1'b0}),
+        .SLOT_1_AXI_arvalid(1'b0),
+        .SLOT_1_AXI_awaddr(axi_dma_0_M_AXI_S2MM_AWADDR),
+        .SLOT_1_AXI_awlen(axi_dma_0_M_AXI_S2MM_AWLEN),
+        .SLOT_1_AXI_awready(axi_dma_0_M_AXI_S2MM_AWREADY),
+        .SLOT_1_AXI_awsize(axi_dma_0_M_AXI_S2MM_AWSIZE),
+        .SLOT_1_AXI_awvalid(axi_dma_0_M_AXI_S2MM_AWVALID),
+        .SLOT_1_AXI_bready(axi_dma_0_M_AXI_S2MM_BREADY),
+        .SLOT_1_AXI_bresp(axi_dma_0_M_AXI_S2MM_BRESP),
+        .SLOT_1_AXI_bvalid(axi_dma_0_M_AXI_S2MM_BVALID),
+        .SLOT_1_AXI_rdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .SLOT_1_AXI_rlast(1'b0),
+        .SLOT_1_AXI_rready(1'b0),
+        .SLOT_1_AXI_rvalid(1'b0),
+        .SLOT_1_AXI_wdata(axi_dma_0_M_AXI_S2MM_WDATA),
+        .SLOT_1_AXI_wlast(axi_dma_0_M_AXI_S2MM_WLAST),
+        .SLOT_1_AXI_wready(axi_dma_0_M_AXI_S2MM_WREADY),
+        .SLOT_1_AXI_wstrb(axi_dma_0_M_AXI_S2MM_WSTRB),
+        .SLOT_1_AXI_wvalid(axi_dma_0_M_AXI_S2MM_WVALID),
+        .clk(processing_system7_0_FCLK_CLK0),
+        .probe0(axi_dma_0_s2mm_introut),
+        .resetn(rst_ps7_0_50M_peripheral_aresetn));
 endmodule
 
 module design_1_ps7_0_axi_periph_0
