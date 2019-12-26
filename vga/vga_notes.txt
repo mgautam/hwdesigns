@@ -1,0 +1,7 @@
+1. Removing any sync signal turns the display off
+2. Removing color (RGB) signals doesnot turn off the display
+3. If 2(R,G) color signals are floating and the 3rd(B) one is connected, the 3rd(B) color is displayed.
+4. We can mix and match colors by coneecting combination of r,g,b signals
+5. If vga connector is completely unplugged, the screen detects it and "check signal cable" error is displayed.
+6. When screen's R,G or B wire is connected to fpga output, voltage significantly drops. This happens even when 3.3v-5v level shifters are used.
+7. The bitstream doesn't configure the FCLK clocks and PLL's at all. This is done by the ps7_init functions in the hw_platform and FSBL. So if you want to change the FCLK_CLK0 frequency you must rebuild the FSBL, rebuild boot.bin and copy it to SD-card or QSPI (or whatever you boot from).
