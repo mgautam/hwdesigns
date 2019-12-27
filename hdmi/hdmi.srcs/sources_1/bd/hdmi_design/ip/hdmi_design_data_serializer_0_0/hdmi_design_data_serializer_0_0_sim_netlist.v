@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-// Date        : Thu Dec 26 21:05:38 2019
+// Date        : Fri Dec 27 19:20:10 2019
 // Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 // Command     : write_verilog -force -mode funcsim
-//               c:/Users/Gautam/Vivado/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_data_serializer_0_0/hdmi_design_data_serializer_0_0_sim_netlist.v
+//               C:/Users/Gautam/Vivado/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_data_serializer_0_0/hdmi_design_data_serializer_0_0_sim_netlist.v
 // Design      : hdmi_design_data_serializer_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -18,32 +18,44 @@ module hdmi_design_data_serializer_0_0
    (clk,
     tmds_in,
     tmds_out,
+    tmds_p,
+    tmds_n,
     done);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 250000000, PHASE 0.000, CLK_DOMAIN hdmi_design_processing_system7_0_0_FCLK_CLK0" *) input clk;
   input [9:0]tmds_in;
   output tmds_out;
+  output tmds_p;
+  output tmds_n;
   output done;
 
   wire clk;
   wire done;
   wire [9:0]tmds_in;
-  wire tmds_out;
+  (* SLEW = "SLOW" *) wire tmds_n;
+  (* SLEW = "SLOW" *) wire tmds_out;
+  (* SLEW = "SLOW" *) wire tmds_p;
 
   hdmi_design_data_serializer_0_0_data_serializer inst
        (.clk(clk),
         .done(done),
         .tmds_in(tmds_in),
-        .tmds_out(tmds_out));
+        .tmds_n(tmds_n),
+        .tmds_out(tmds_out),
+        .tmds_p(tmds_p));
 endmodule
 
 (* ORIG_REF_NAME = "data_serializer" *) 
 module hdmi_design_data_serializer_0_0_data_serializer
-   (done,
+   (tmds_p,
+    tmds_n,
     tmds_out,
+    done,
     clk,
     tmds_in);
-  output done;
+  output tmds_p;
+  output tmds_n;
   output tmds_out;
+  output done;
   input clk;
   input [9:0]tmds_in;
 
@@ -52,11 +64,22 @@ module hdmi_design_data_serializer_0_0_data_serializer
   wire done;
   wire [3:0]p_0_in;
   wire [9:0]tmds_in;
+  wire tmds_n;
   wire tmds_out;
   wire tmds_out_INST_0_i_1_n_0;
   wire tmds_out_INST_0_i_2_n_0;
   wire tmds_out_INST_0_i_3_n_0;
+  wire tmds_p;
 
+  (* BOX_TYPE = "PRIMITIVE" *) 
+  (* CAPACITANCE = "DONT_CARE" *) 
+  (* XILINX_LEGACY_PRIM = "OBUFDS" *) 
+  OBUFDS #(
+    .IOSTANDARD("DEFAULT")) 
+    OBUFDS_inst
+       (.I(tmds_out),
+        .O(tmds_p),
+        .OB(tmds_n));
   LUT1 #(
     .INIT(2'h1)) 
     \bitcounter[0]_i_1 

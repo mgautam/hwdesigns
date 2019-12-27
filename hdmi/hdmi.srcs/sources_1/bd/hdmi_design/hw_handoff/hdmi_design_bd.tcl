@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# clock_divider, clock_divider, data_serializer, data_serializer, data_serializer, dc_balancer, dc_balancer, dc_balancer, tmds_encoder, tmds_encoder, tmds_encoder, vga_generator
+# clock_divider, data_serializer, data_serializer, data_serializer, dc_balancer, dc_balancer, dc_balancer, signal_delay, tmds_encoder, tmds_encoder, tmds_encoder, vga_generator
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -165,8 +165,45 @@ proc create_root_design { parentCell } {
   # Create interface ports
   set DDR [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR ]
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
+  set HDMI_DDC [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:iic_rtl:1.0 HDMI_DDC ]
 
   # Create ports
+  set HPD_IN [ create_bd_port -dir I -type data HPD_IN ]
+  set HPD_STATUS [ create_bd_port -dir O -type data HPD_STATUS ]
+  set clk_n_0 [ create_bd_port -dir O -type clk clk_n_0 ]
+  set clk_p_0 [ create_bd_port -dir O -type clk clk_p_0 ]
+  set done_0 [ create_bd_port -dir O done_0 ]
+  set tmds_n_0 [ create_bd_port -dir O tmds_n_0 ]
+  set tmds_n_1 [ create_bd_port -dir O tmds_n_1 ]
+  set tmds_n_2 [ create_bd_port -dir O tmds_n_2 ]
+  set tmds_p_0 [ create_bd_port -dir O tmds_p_0 ]
+  set tmds_p_1 [ create_bd_port -dir O tmds_p_1 ]
+  set tmds_p_2 [ create_bd_port -dir O tmds_p_2 ]
+
+  # Create instance: clk_wiz_0, and set properties
+  set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:5.4 clk_wiz_0 ]
+  set_property -dict [ list \
+   CONFIG.CLKIN1_JITTER_PS {40.0} \
+   CONFIG.CLKOUT1_DRIVES {BUFG} \
+   CONFIG.CLKOUT1_JITTER {149.424} \
+   CONFIG.CLKOUT1_PHASE_ERROR {132.906} \
+   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {252} \
+   CONFIG.CLKOUT2_DRIVES {BUFG} \
+   CONFIG.CLKOUT3_DRIVES {BUFG} \
+   CONFIG.CLKOUT4_DRIVES {BUFG} \
+   CONFIG.CLKOUT5_DRIVES {BUFG} \
+   CONFIG.CLKOUT6_DRIVES {BUFG} \
+   CONFIG.CLKOUT7_DRIVES {BUFG} \
+   CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {15.750} \
+   CONFIG.MMCM_CLKIN1_PERIOD {4.000} \
+   CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {3.125} \
+   CONFIG.MMCM_COMPENSATION {ZHOLD} \
+   CONFIG.MMCM_DIVCLK_DIVIDE {5} \
+   CONFIG.PRIMITIVE {MMCM} \
+   CONFIG.PRIM_IN_FREQ {250} \
+ ] $clk_wiz_0
 
   # Create instance: clock_divider_0, and set properties
   set block_name clock_divider
@@ -179,20 +216,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  # Create instance: clock_divider_for_debug, and set properties
-  set block_name clock_divider
-  set block_cell_name clock_divider_for_debug
-  if { [catch {set clock_divider_for_debug [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $clock_divider_for_debug eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.DIVISOR {2} \
- ] $clock_divider_for_debug
-
   # Create instance: data_serializer_0, and set properties
   set block_name data_serializer
   set block_cell_name data_serializer_0
@@ -267,7 +290,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_ACT_DCI_PERIPHERAL_FREQMHZ {10.158730} \
    CONFIG.PCW_ACT_ENET0_PERIPHERAL_FREQMHZ {125.000000} \
    CONFIG.PCW_ACT_ENET1_PERIPHERAL_FREQMHZ {10.000000} \
-   CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ {25.000000} \
+   CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ {250.000000} \
    CONFIG.PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ {10.000000} \
    CONFIG.PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ {10.000000} \
    CONFIG.PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ {10.000000} \
@@ -290,7 +313,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_ARMPLL_CTRL_FBDIV {40} \
    CONFIG.PCW_CAN_PERIPHERAL_DIVISOR0 {1} \
    CONFIG.PCW_CAN_PERIPHERAL_DIVISOR1 {1} \
-   CONFIG.PCW_CLK0_FREQ {25000000} \
+   CONFIG.PCW_CLK0_FREQ {250000000} \
    CONFIG.PCW_CLK1_FREQ {10000000} \
    CONFIG.PCW_CLK2_FREQ {10000000} \
    CONFIG.PCW_CLK3_FREQ {10000000} \
@@ -336,21 +359,23 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_ENET_RESET_POLARITY {Active Low} \
    CONFIG.PCW_ENET_RESET_SELECT {Share reset pin} \
    CONFIG.PCW_EN_4K_TIMER {0} \
+   CONFIG.PCW_EN_EMIO_I2C0 {1} \
    CONFIG.PCW_EN_ENET0 {1} \
    CONFIG.PCW_EN_GPIO {1} \
+   CONFIG.PCW_EN_I2C0 {1} \
    CONFIG.PCW_EN_QSPI {1} \
    CONFIG.PCW_EN_SDIO0 {1} \
    CONFIG.PCW_EN_UART1 {1} \
    CONFIG.PCW_EN_USB0 {1} \
-   CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0 {8} \
-   CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1 {5} \
+   CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0 {2} \
+   CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1 {2} \
    CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR0 {1} \
    CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR1 {1} \
    CONFIG.PCW_FCLK2_PERIPHERAL_DIVISOR0 {1} \
    CONFIG.PCW_FCLK2_PERIPHERAL_DIVISOR1 {1} \
    CONFIG.PCW_FCLK3_PERIPHERAL_DIVISOR0 {1} \
    CONFIG.PCW_FCLK3_PERIPHERAL_DIVISOR1 {1} \
-   CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {25} \
+   CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {250} \
    CONFIG.PCW_FPGA_FCLK0_ENABLE {1} \
    CONFIG.PCW_FPGA_FCLK1_ENABLE {0} \
    CONFIG.PCW_FPGA_FCLK2_ENABLE {0} \
@@ -358,10 +383,15 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_GPIO_MIO_GPIO_ENABLE {1} \
    CONFIG.PCW_GPIO_MIO_GPIO_IO {MIO} \
    CONFIG.PCW_GPIO_PERIPHERAL_ENABLE {0} \
+   CONFIG.PCW_I2C0_GRP_INT_ENABLE {1} \
+   CONFIG.PCW_I2C0_GRP_INT_IO {EMIO} \
+   CONFIG.PCW_I2C0_I2C0_IO {EMIO} \
+   CONFIG.PCW_I2C0_PERIPHERAL_ENABLE {1} \
    CONFIG.PCW_I2C0_RESET_ENABLE {0} \
    CONFIG.PCW_I2C1_RESET_ENABLE {0} \
-   CONFIG.PCW_I2C_PERIPHERAL_FREQMHZ {25} \
+   CONFIG.PCW_I2C_PERIPHERAL_FREQMHZ {111.111115} \
    CONFIG.PCW_I2C_RESET_ENABLE {1} \
+   CONFIG.PCW_I2C_RESET_SELECT {Share reset pin} \
    CONFIG.PCW_IOPLL_CTRL_FBDIV {30} \
    CONFIG.PCW_IO_IO_PLL_FREQMHZ {1000.000} \
    CONFIG.PCW_IRQ_F2P_INTR {1} \
@@ -731,12 +761,23 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_USB_RESET_SELECT {Share reset pin} \
    CONFIG.PCW_USE_AXI_NONSECURE {0} \
    CONFIG.PCW_USE_CROSS_TRIGGER {0} \
-   CONFIG.PCW_USE_FABRIC_INTERRUPT {1} \
-   CONFIG.PCW_USE_M_AXI_GP0 {1} \
+   CONFIG.PCW_USE_FABRIC_INTERRUPT {0} \
+   CONFIG.PCW_USE_M_AXI_GP0 {0} \
  ] $processing_system7_0
 
-  # Create instance: system_ila_1, and set properties
-  set system_ila_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_1 ]
+  # Create instance: signal_delay_0, and set properties
+  set block_name signal_delay
+  set block_cell_name signal_delay_0
+  if { [catch {set signal_delay_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $signal_delay_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: system_ila_0, and set properties
+  set system_ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_0 ]
   set_property -dict [ list \
    CONFIG.ALL_PROBE_SAME_MU_CNT {2} \
    CONFIG.C_ADV_TRIGGER {true} \
@@ -746,37 +787,24 @@ proc create_root_design { parentCell } {
    CONFIG.C_MON_TYPE {NATIVE} \
    CONFIG.C_NUM_OF_PROBES {12} \
    CONFIG.C_PROBE0_MU_CNT {2} \
-   CONFIG.C_PROBE0_TYPE {0} \
    CONFIG.C_PROBE10_MU_CNT {2} \
+   CONFIG.C_PROBE10_WIDTH {10} \
    CONFIG.C_PROBE11_MU_CNT {2} \
-   CONFIG.C_PROBE12_MU_CNT {2} \
-   CONFIG.C_PROBE13_MU_CNT {2} \
-   CONFIG.C_PROBE14_MU_CNT {2} \
-   CONFIG.C_PROBE14_WIDTH {1} \
-   CONFIG.C_PROBE15_MU_CNT {2} \
-   CONFIG.C_PROBE15_WIDTH {1} \
+   CONFIG.C_PROBE11_WIDTH {10} \
    CONFIG.C_PROBE1_MU_CNT {2} \
-   CONFIG.C_PROBE1_TYPE {0} \
    CONFIG.C_PROBE2_MU_CNT {2} \
-   CONFIG.C_PROBE2_TYPE {0} \
-   CONFIG.C_PROBE2_WIDTH {1} \
    CONFIG.C_PROBE3_MU_CNT {2} \
-   CONFIG.C_PROBE3_TYPE {0} \
    CONFIG.C_PROBE4_MU_CNT {2} \
-   CONFIG.C_PROBE4_TYPE {0} \
-   CONFIG.C_PROBE4_WIDTH {8} \
+   CONFIG.C_PROBE4_WIDTH {10} \
    CONFIG.C_PROBE5_MU_CNT {2} \
-   CONFIG.C_PROBE5_WIDTH {10} \
    CONFIG.C_PROBE6_MU_CNT {2} \
-   CONFIG.C_PROBE6_WIDTH {10} \
    CONFIG.C_PROBE7_MU_CNT {2} \
-   CONFIG.C_PROBE7_WIDTH {9} \
    CONFIG.C_PROBE8_MU_CNT {2} \
-   CONFIG.C_PROBE8_WIDTH {10} \
+   CONFIG.C_PROBE8_WIDTH {8} \
    CONFIG.C_PROBE9_MU_CNT {2} \
-   CONFIG.C_PROBE9_WIDTH {1} \
+   CONFIG.C_PROBE9_WIDTH {9} \
    CONFIG.C_PROBE_WIDTH_PROPAGATION {MANUAL} \
- ] $system_ila_1
+ ] $system_ila_0
 
   # Create instance: tmds_encoder_0, and set properties
   set block_name tmds_encoder
@@ -837,67 +865,77 @@ proc create_root_design { parentCell } {
   # Create interface connections
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
+  connect_bd_intf_net -intf_net processing_system7_0_IIC_0 [get_bd_intf_ports HDMI_DDC] [get_bd_intf_pins processing_system7_0/IIC_0]
 
   # Create port connections
-  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins clock_divider_0/clk_out] [get_bd_pins dc_balancer_0/clk] [get_bd_pins dc_balancer_1/clk] [get_bd_pins dc_balancer_2/clk] [get_bd_pins system_ila_1/probe0] [get_bd_pins tmds_encoder_0/clk] [get_bd_pins tmds_encoder_1/clk] [get_bd_pins tmds_encoder_2/clk] [get_bd_pins vga_generator_0/clk]
+  connect_bd_net -net HPD_IN_1 [get_bd_ports HPD_IN] [get_bd_ports HPD_STATUS]
+  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins clock_divider_0/clk_out] [get_bd_pins dc_balancer_0/clk] [get_bd_pins dc_balancer_1/clk] [get_bd_pins dc_balancer_2/clk] [get_bd_pins signal_delay_0/sig_in] [get_bd_pins system_ila_0/probe0] [get_bd_pins tmds_encoder_0/clk] [get_bd_pins tmds_encoder_1/clk] [get_bd_pins tmds_encoder_2/clk] [get_bd_pins vga_generator_0/clk]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets clk_wiz_0_clk_out1]
-  connect_bd_net -net clock_divider_1_clk_out [get_bd_pins clock_divider_0/clk_in] [get_bd_pins clock_divider_for_debug/clk_out] [get_bd_pins data_serializer_0/clk] [get_bd_pins data_serializer_1/clk] [get_bd_pins data_serializer_2/clk] [get_bd_pins system_ila_1/probe11]
-  set_property -dict [ list \
-HDL_ATTRIBUTE.DEBUG {true} \
- ] [get_bd_nets clock_divider_1_clk_out]
-  connect_bd_net -net data_serializer_0_done [get_bd_pins data_serializer_0/done] [get_bd_pins system_ila_1/probe10]
-  set_property -dict [ list \
-HDL_ATTRIBUTE.DEBUG {true} \
- ] [get_bd_nets data_serializer_0_done]
-  connect_bd_net -net data_serializer_0_tmds_out [get_bd_pins data_serializer_0/tmds_out] [get_bd_pins system_ila_1/probe9]
+  connect_bd_net -net clk_wiz_0_clk_out2 [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins clock_divider_0/clk_in] [get_bd_pins data_serializer_0/clk] [get_bd_pins data_serializer_1/clk] [get_bd_pins data_serializer_2/clk] [get_bd_pins signal_delay_0/clk] [get_bd_pins system_ila_0/clk]
+  connect_bd_net -net clock_divider_0_clk_n [get_bd_ports clk_n_0] [get_bd_pins clock_divider_0/clk_n]
+  connect_bd_net -net clock_divider_0_clk_p [get_bd_ports clk_p_0] [get_bd_pins clock_divider_0/clk_p]
+  connect_bd_net -net data_serializer_0_done [get_bd_ports done_0] [get_bd_pins data_serializer_0/done]
+  connect_bd_net -net data_serializer_0_tmds_n [get_bd_ports tmds_n_0] [get_bd_pins data_serializer_0/tmds_n]
+  connect_bd_net -net data_serializer_0_tmds_out [get_bd_pins data_serializer_0/tmds_out] [get_bd_pins system_ila_0/probe1]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets data_serializer_0_tmds_out]
-  connect_bd_net -net dc_balancer_0_tmds_out [get_bd_pins data_serializer_0/tmds_in] [get_bd_pins dc_balancer_0/tmds_out] [get_bd_pins system_ila_1/probe8]
+  connect_bd_net -net data_serializer_0_tmds_p [get_bd_ports tmds_p_0] [get_bd_pins data_serializer_0/tmds_p]
+  connect_bd_net -net data_serializer_1_done [get_bd_pins data_serializer_1/done] [get_bd_pins system_ila_0/probe2]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets data_serializer_1_done]
+  connect_bd_net -net data_serializer_1_tmds_n [get_bd_ports tmds_n_1] [get_bd_pins data_serializer_1/tmds_n]
+  connect_bd_net -net data_serializer_1_tmds_p [get_bd_ports tmds_p_1] [get_bd_pins data_serializer_1/tmds_p]
+  connect_bd_net -net data_serializer_2_tmds_n [get_bd_ports tmds_n_2] [get_bd_pins data_serializer_2/tmds_n]
+  connect_bd_net -net data_serializer_2_tmds_p [get_bd_ports tmds_p_2] [get_bd_pins data_serializer_2/tmds_p]
+  connect_bd_net -net dc_balancer_0_tmds_out [get_bd_pins data_serializer_0/tmds_in] [get_bd_pins dc_balancer_0/tmds_out] [get_bd_pins system_ila_0/probe4]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets dc_balancer_0_tmds_out]
   connect_bd_net -net dc_balancer_1_tmds_out [get_bd_pins data_serializer_1/tmds_in] [get_bd_pins dc_balancer_1/tmds_out]
   connect_bd_net -net dc_balancer_2_tmds_out [get_bd_pins data_serializer_2/tmds_in] [get_bd_pins dc_balancer_2/tmds_out]
-  connect_bd_net -net processing_system7_0_FCLK_CLK1 [get_bd_pins clock_divider_for_debug/clk_in] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins system_ila_1/clk]
-  connect_bd_net -net tmds_encoder_0_tmds_out [get_bd_pins dc_balancer_0/tmds_in] [get_bd_pins system_ila_1/probe7] [get_bd_pins tmds_encoder_0/tmds_out]
+  connect_bd_net -net hcounter [get_bd_pins system_ila_0/probe10] [get_bd_pins vga_generator_0/hcounter]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets hcounter]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins processing_system7_0/FCLK_CLK0]
+  connect_bd_net -net signal_delay_0_sig_out [get_bd_pins signal_delay_0/sig_out] [get_bd_pins system_ila_0/probe3]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets signal_delay_0_sig_out]
+  connect_bd_net -net tmds_encoder_0_tmds_out [get_bd_pins dc_balancer_0/tmds_in] [get_bd_pins system_ila_0/probe9] [get_bd_pins tmds_encoder_0/tmds_out]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets tmds_encoder_0_tmds_out]
   connect_bd_net -net tmds_encoder_1_tmds_out [get_bd_pins dc_balancer_1/tmds_in] [get_bd_pins tmds_encoder_1/tmds_out]
   connect_bd_net -net tmds_encoder_2_tmds_out [get_bd_pins dc_balancer_2/tmds_in] [get_bd_pins tmds_encoder_2/tmds_out]
-  connect_bd_net -net tmds_out_1 [get_bd_pins data_serializer_1/tmds_out]
-  connect_bd_net -net tmds_out_2 [get_bd_pins data_serializer_2/tmds_out]
-  connect_bd_net -net vga_generator_0_blue [get_bd_pins system_ila_1/probe4] [get_bd_pins tmds_encoder_0/data_in] [get_bd_pins vga_generator_0/blue]
+  connect_bd_net -net vcounter [get_bd_pins system_ila_0/probe11] [get_bd_pins vga_generator_0/vcounter]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets vcounter]
+  connect_bd_net -net vga_generator_0_blue [get_bd_pins system_ila_0/probe8] [get_bd_pins tmds_encoder_0/data_in] [get_bd_pins vga_generator_0/blue]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vga_generator_0_blue]
   connect_bd_net -net vga_generator_0_green [get_bd_pins tmds_encoder_1/data_in] [get_bd_pins vga_generator_0/green]
-  connect_bd_net -net vga_generator_0_hcounter [get_bd_pins system_ila_1/probe5] [get_bd_pins vga_generator_0/hcounter]
-  set_property -dict [ list \
-HDL_ATTRIBUTE.DEBUG {true} \
- ] [get_bd_nets vga_generator_0_hcounter]
-  connect_bd_net -net vga_generator_0_hsync [get_bd_pins dc_balancer_0/C0] [get_bd_pins system_ila_1/probe1] [get_bd_pins vga_generator_0/hsync]
+  connect_bd_net -net vga_generator_0_hsync [get_bd_pins dc_balancer_0/C0] [get_bd_pins system_ila_0/probe5] [get_bd_pins vga_generator_0/hsync]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vga_generator_0_hsync]
   connect_bd_net -net vga_generator_0_red [get_bd_pins tmds_encoder_2/data_in] [get_bd_pins vga_generator_0/red]
-  connect_bd_net -net vga_generator_0_vcounter [get_bd_pins system_ila_1/probe6] [get_bd_pins vga_generator_0/vcounter]
-  set_property -dict [ list \
-HDL_ATTRIBUTE.DEBUG {true} \
- ] [get_bd_nets vga_generator_0_vcounter]
-  connect_bd_net -net vga_generator_0_video_on [get_bd_pins dc_balancer_0/data_enable] [get_bd_pins dc_balancer_1/data_enable] [get_bd_pins dc_balancer_2/data_enable] [get_bd_pins system_ila_1/probe3] [get_bd_pins vga_generator_0/video_on]
+  connect_bd_net -net vga_generator_0_video_on [get_bd_pins dc_balancer_0/data_enable] [get_bd_pins dc_balancer_1/data_enable] [get_bd_pins dc_balancer_2/data_enable] [get_bd_pins system_ila_0/probe7] [get_bd_pins vga_generator_0/video_on]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vga_generator_0_video_on]
-  connect_bd_net -net vga_generator_0_vsync [get_bd_pins dc_balancer_0/C1] [get_bd_pins system_ila_1/probe2] [get_bd_pins vga_generator_0/vsync]
+  connect_bd_net -net vga_generator_0_vsync [get_bd_pins dc_balancer_0/C1] [get_bd_pins system_ila_0/probe6] [get_bd_pins vga_generator_0/vsync]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vga_generator_0_vsync]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins dc_balancer_1/C0] [get_bd_pins dc_balancer_1/C1] [get_bd_pins dc_balancer_2/C0] [get_bd_pins dc_balancer_2/C1] [get_bd_pins xlconstant_0/dout]
-  connect_bd_net -net xlconstant_1_dout [get_bd_pins clock_divider_0/reset] [get_bd_pins clock_divider_for_debug/reset] [get_bd_pins vga_generator_0/reset] [get_bd_pins xlconstant_1/dout]
+  connect_bd_net -net xlconstant_1_dout [get_bd_pins clk_wiz_0/reset] [get_bd_pins clock_divider_0/reset] [get_bd_pins vga_generator_0/reset] [get_bd_pins xlconstant_1/dout]
 
   # Create address segments
 

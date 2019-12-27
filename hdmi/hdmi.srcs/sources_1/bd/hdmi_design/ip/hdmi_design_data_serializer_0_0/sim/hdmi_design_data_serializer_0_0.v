@@ -57,6 +57,8 @@ module hdmi_design_data_serializer_0_0 (
   clk,
   tmds_in,
   tmds_out,
+  tmds_p,
+  tmds_n,
   done
 );
 
@@ -65,12 +67,16 @@ module hdmi_design_data_serializer_0_0 (
 input wire clk;
 input wire [9 : 0] tmds_in;
 output wire tmds_out;
+output wire tmds_p;
+output wire tmds_n;
 output wire done;
 
   data_serializer inst (
     .clk(clk),
     .tmds_in(tmds_in),
     .tmds_out(tmds_out),
+    .tmds_p(tmds_p),
+    .tmds_n(tmds_n),
     .done(done)
   );
 endmodule

@@ -1,7 +1,7 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-// Date        : Fri Dec 27 16:22:53 2019
+// Date        : Fri Dec 27 19:20:10 2019
 // Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Users/Gautam/Vivado/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_clock_divider_0_0/hdmi_design_clock_divider_0_0_sim_netlist.v
@@ -17,37 +17,69 @@
 module hdmi_design_clock_divider_0_0
    (clk_in,
     reset,
-    clk_out);
+    clk_out,
+    clk_p,
+    clk_n);
   input clk_in;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW" *) input reset;
   output clk_out;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk_p CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk_p, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN hdmi_design_clock_divider_0_0_clk_p" *) output clk_p;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk_n CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk_n, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN hdmi_design_clock_divider_0_0_clk_n" *) output clk_n;
 
   wire clk_in;
-  wire clk_out;
+  (* SLEW = "SLOW" *) wire clk_n;
+  (* SLEW = "SLOW" *) wire clk_out;
+  (* SLEW = "SLOW" *) wire clk_p;
   wire reset;
 
   hdmi_design_clock_divider_0_0_clock_divider inst
        (.clk_in(clk_in),
+        .clk_n(clk_n),
         .clk_out(clk_out),
+        .clk_p(clk_p),
         .reset(reset));
 endmodule
 
 (* ORIG_REF_NAME = "clock_divider" *) 
 module hdmi_design_clock_divider_0_0_clock_divider
-   (clk_out,
+   (clk_p,
+    clk_n,
+    clk_out,
     clk_in,
     reset);
+  output clk_p;
+  output clk_n;
   output clk_out;
   input clk_in;
   input reset;
 
   wire clk_in;
+  wire clk_n;
   wire clk_out;
+  wire clk_p;
   wire \counter[3]_i_1_n_0 ;
   wire [3:0]counter_reg__0;
   wire [3:0]p_0_in;
   wire reset;
 
+  (* BOX_TYPE = "PRIMITIVE" *) 
+  (* CAPACITANCE = "DONT_CARE" *) 
+  (* XILINX_LEGACY_PRIM = "OBUFDS" *) 
+  OBUFDS #(
+    .IOSTANDARD("DEFAULT")) 
+    OBUFDS_inst
+       (.I(clk_out),
+        .O(clk_p),
+        .OB(clk_n));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT4 #(
+    .INIT(16'h001F)) 
+    clk_out__0
+       (.I0(counter_reg__0[1]),
+        .I1(counter_reg__0[0]),
+        .I2(counter_reg__0[2]),
+        .I3(counter_reg__0[3]),
+        .O(clk_out));
   LUT1 #(
     .INIT(2'h1)) 
     \counter[0]_i_1 
@@ -118,15 +150,6 @@ module hdmi_design_clock_divider_0_0_clock_divider
         .D(p_0_in[3]),
         .Q(counter_reg__0[3]),
         .R(\counter[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT4 #(
-    .INIT(16'h001F)) 
-    \inst/ 
-       (.I0(counter_reg__0[1]),
-        .I1(counter_reg__0[0]),
-        .I2(counter_reg__0[2]),
-        .I3(counter_reg__0[3]),
-        .O(clk_out));
 endmodule
 `ifndef GLBL
 `define GLBL

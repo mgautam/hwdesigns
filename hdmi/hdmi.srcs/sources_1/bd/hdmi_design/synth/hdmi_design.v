@@ -1,7 +1,7 @@
 //Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-//Date        : Fri Dec 27 18:09:59 2019
+//Date        : Sat Dec 28 02:21:00 2019
 //Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 //Command     : generate_target hdmi_design.bd
 //Design      : hdmi_design
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "hdmi_design,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=hdmi_design,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=16,numReposBlks=16,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=12,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=1,da_board_cnt=3,da_clkrst_cnt=1,da_ps7_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "hdmi_design.hwdef" *) 
+(* CORE_GENERATION_INFO = "hdmi_design,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=hdmi_design,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=17,numReposBlks=17,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=12,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=1,da_board_cnt=3,da_clkrst_cnt=2,da_ps7_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "hdmi_design.hwdef" *) 
 module hdmi_design
    (DDR_addr,
     DDR_ba,
@@ -31,7 +31,24 @@ module hdmi_design
     FIXED_IO_mio,
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
-    FIXED_IO_ps_srstb);
+    FIXED_IO_ps_srstb,
+    HDMI_DDC_scl_i,
+    HDMI_DDC_scl_o,
+    HDMI_DDC_scl_t,
+    HDMI_DDC_sda_i,
+    HDMI_DDC_sda_o,
+    HDMI_DDC_sda_t,
+    HPD_IN,
+    HPD_STATUS,
+    clk_n_0,
+    clk_p_0,
+    done_0,
+    tmds_n_0,
+    tmds_n_1,
+    tmds_n_2,
+    tmds_p_0,
+    tmds_p_1,
+    tmds_p_2);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_addr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR BA" *) inout [2:0]DDR_ba;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CAS_N" *) inout DDR_cas_n;
@@ -53,14 +70,42 @@ module hdmi_design
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK" *) inout FIXED_IO_ps_clk;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 HDMI_DDC SCL_I" *) input HDMI_DDC_scl_i;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 HDMI_DDC SCL_O" *) output HDMI_DDC_scl_o;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 HDMI_DDC SCL_T" *) output HDMI_DDC_scl_t;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 HDMI_DDC SDA_I" *) input HDMI_DDC_sda_i;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 HDMI_DDC SDA_O" *) output HDMI_DDC_sda_o;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 HDMI_DDC SDA_T" *) output HDMI_DDC_sda_t;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HPD_IN DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HPD_IN, LAYERED_METADATA undef" *) input HPD_IN;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.HPD_STATUS DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.HPD_STATUS, LAYERED_METADATA undef" *) output HPD_STATUS;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_N_0 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_N_0, CLK_DOMAIN hdmi_design_clock_divider_0_0_clk_n, FREQ_HZ 100000000, PHASE 0.000" *) output clk_n_0;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_P_0 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_P_0, CLK_DOMAIN hdmi_design_clock_divider_0_0_clk_p, FREQ_HZ 100000000, PHASE 0.000" *) output clk_p_0;
+  output done_0;
+  output tmds_n_0;
+  output tmds_n_1;
+  output tmds_n_2;
+  output tmds_p_0;
+  output tmds_p_1;
+  output tmds_p_2;
 
+  wire HPD_IN_1;
   (* DEBUG = "true" *) (* MARK_DEBUG *) wire clk_wiz_0_clk_out1;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire clock_divider_1_clk_out;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire data_serializer_0_done;
+  wire clk_wiz_0_clk_out2;
+  wire clock_divider_0_clk_n;
+  wire clock_divider_0_clk_p;
+  wire data_serializer_0_done;
+  wire data_serializer_0_tmds_n;
   (* DEBUG = "true" *) (* MARK_DEBUG *) wire data_serializer_0_tmds_out;
+  wire data_serializer_0_tmds_p;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire data_serializer_1_done;
+  wire data_serializer_1_tmds_n;
+  wire data_serializer_1_tmds_p;
+  wire data_serializer_2_tmds_n;
+  wire data_serializer_2_tmds_p;
   (* DEBUG = "true" *) (* MARK_DEBUG *) wire [9:0]dc_balancer_0_tmds_out;
   wire [9:0]dc_balancer_1_tmds_out;
   wire [9:0]dc_balancer_2_tmds_out;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [9:0]hcounter;
   wire [14:0]processing_system7_0_DDR_ADDR;
   wire [2:0]processing_system7_0_DDR_BA;
   wire processing_system7_0_DDR_CAS_N;
@@ -76,50 +121,78 @@ module hdmi_design
   wire processing_system7_0_DDR_RAS_N;
   wire processing_system7_0_DDR_RESET_N;
   wire processing_system7_0_DDR_WE_N;
-  wire processing_system7_0_FCLK_CLK1;
+  wire processing_system7_0_FCLK_CLK0;
   wire processing_system7_0_FIXED_IO_DDR_VRN;
   wire processing_system7_0_FIXED_IO_DDR_VRP;
   wire [53:0]processing_system7_0_FIXED_IO_MIO;
   wire processing_system7_0_FIXED_IO_PS_CLK;
   wire processing_system7_0_FIXED_IO_PS_PORB;
   wire processing_system7_0_FIXED_IO_PS_SRSTB;
+  wire processing_system7_0_IIC_0_SCL_I;
+  wire processing_system7_0_IIC_0_SCL_O;
+  wire processing_system7_0_IIC_0_SCL_T;
+  wire processing_system7_0_IIC_0_SDA_I;
+  wire processing_system7_0_IIC_0_SDA_O;
+  wire processing_system7_0_IIC_0_SDA_T;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire signal_delay_0_sig_out;
   (* DEBUG = "true" *) (* MARK_DEBUG *) wire [8:0]tmds_encoder_0_tmds_out;
   wire [8:0]tmds_encoder_1_tmds_out;
   wire [8:0]tmds_encoder_2_tmds_out;
-  wire tmds_out_1;
-  wire tmds_out_2;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [9:0]vcounter;
   (* DEBUG = "true" *) (* MARK_DEBUG *) wire [7:0]vga_generator_0_blue;
   wire [7:0]vga_generator_0_green;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [9:0]vga_generator_0_hcounter;
   (* DEBUG = "true" *) (* MARK_DEBUG *) wire vga_generator_0_hsync;
   wire [7:0]vga_generator_0_red;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [9:0]vga_generator_0_vcounter;
   (* DEBUG = "true" *) (* MARK_DEBUG *) wire vga_generator_0_video_on;
   (* DEBUG = "true" *) (* MARK_DEBUG *) wire vga_generator_0_vsync;
   wire [0:0]xlconstant_0_dout;
   wire [0:0]xlconstant_1_dout;
 
-  hdmi_design_clock_divider_0_0 clock_divider_0
-       (.clk_in(clock_divider_1_clk_out),
-        .clk_out(clk_wiz_0_clk_out1),
+  assign HDMI_DDC_scl_o = processing_system7_0_IIC_0_SCL_O;
+  assign HDMI_DDC_scl_t = processing_system7_0_IIC_0_SCL_T;
+  assign HDMI_DDC_sda_o = processing_system7_0_IIC_0_SDA_O;
+  assign HDMI_DDC_sda_t = processing_system7_0_IIC_0_SDA_T;
+  assign HPD_IN_1 = HPD_IN;
+  assign HPD_STATUS = HPD_IN_1;
+  assign clk_n_0 = clock_divider_0_clk_n;
+  assign clk_p_0 = clock_divider_0_clk_p;
+  assign done_0 = data_serializer_0_done;
+  assign processing_system7_0_IIC_0_SCL_I = HDMI_DDC_scl_i;
+  assign processing_system7_0_IIC_0_SDA_I = HDMI_DDC_sda_i;
+  assign tmds_n_0 = data_serializer_0_tmds_n;
+  assign tmds_n_1 = data_serializer_1_tmds_n;
+  assign tmds_n_2 = data_serializer_2_tmds_n;
+  assign tmds_p_0 = data_serializer_0_tmds_p;
+  assign tmds_p_1 = data_serializer_1_tmds_p;
+  assign tmds_p_2 = data_serializer_2_tmds_p;
+  hdmi_design_clk_wiz_0_0 clk_wiz_0
+       (.clk_in1(processing_system7_0_FCLK_CLK0),
+        .clk_out1(clk_wiz_0_clk_out2),
         .reset(xlconstant_1_dout));
-  hdmi_design_clock_divider_1_0 clock_divider_for_debug
-       (.clk_in(processing_system7_0_FCLK_CLK1),
-        .clk_out(clock_divider_1_clk_out),
+  hdmi_design_clock_divider_0_0 clock_divider_0
+       (.clk_in(clk_wiz_0_clk_out2),
+        .clk_n(clock_divider_0_clk_n),
+        .clk_out(clk_wiz_0_clk_out1),
+        .clk_p(clock_divider_0_clk_p),
         .reset(xlconstant_1_dout));
   hdmi_design_data_serializer_0_0 data_serializer_0
-       (.clk(clock_divider_1_clk_out),
+       (.clk(clk_wiz_0_clk_out2),
         .done(data_serializer_0_done),
         .tmds_in(dc_balancer_0_tmds_out),
-        .tmds_out(data_serializer_0_tmds_out));
+        .tmds_n(data_serializer_0_tmds_n),
+        .tmds_out(data_serializer_0_tmds_out),
+        .tmds_p(data_serializer_0_tmds_p));
   hdmi_design_data_serializer_1_0 data_serializer_1
-       (.clk(clock_divider_1_clk_out),
+       (.clk(clk_wiz_0_clk_out2),
+        .done(data_serializer_1_done),
         .tmds_in(dc_balancer_1_tmds_out),
-        .tmds_out(tmds_out_1));
+        .tmds_n(data_serializer_1_tmds_n),
+        .tmds_p(data_serializer_1_tmds_p));
   hdmi_design_data_serializer_2_0 data_serializer_2
-       (.clk(clock_divider_1_clk_out),
+       (.clk(clk_wiz_0_clk_out2),
         .tmds_in(dc_balancer_2_tmds_out),
-        .tmds_out(tmds_out_2));
+        .tmds_n(data_serializer_2_tmds_n),
+        .tmds_p(data_serializer_2_tmds_p));
   hdmi_design_dc_balancer_0_0 dc_balancer_0
        (.C0(vga_generator_0_hsync),
         .C1(vga_generator_0_vsync),
@@ -160,39 +233,36 @@ module hdmi_design
         .DDR_VRP(FIXED_IO_ddr_vrp),
         .DDR_WEB(DDR_we_n),
         .ENET0_MDIO_I(1'b0),
-        .FCLK_CLK0(processing_system7_0_FCLK_CLK1),
-        .IRQ_F2P(1'b0),
+        .FCLK_CLK0(processing_system7_0_FCLK_CLK0),
+        .I2C0_SCL_I(processing_system7_0_IIC_0_SCL_I),
+        .I2C0_SCL_O(processing_system7_0_IIC_0_SCL_O),
+        .I2C0_SCL_T(processing_system7_0_IIC_0_SCL_T),
+        .I2C0_SDA_I(processing_system7_0_IIC_0_SDA_I),
+        .I2C0_SDA_O(processing_system7_0_IIC_0_SDA_O),
+        .I2C0_SDA_T(processing_system7_0_IIC_0_SDA_T),
         .MIO(FIXED_IO_mio[53:0]),
-        .M_AXI_GP0_ACLK(processing_system7_0_FCLK_CLK1),
-        .M_AXI_GP0_ARREADY(1'b0),
-        .M_AXI_GP0_AWREADY(1'b0),
-        .M_AXI_GP0_BID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .M_AXI_GP0_BRESP({1'b0,1'b0}),
-        .M_AXI_GP0_BVALID(1'b0),
-        .M_AXI_GP0_RDATA({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .M_AXI_GP0_RID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .M_AXI_GP0_RLAST(1'b0),
-        .M_AXI_GP0_RRESP({1'b0,1'b0}),
-        .M_AXI_GP0_RVALID(1'b0),
-        .M_AXI_GP0_WREADY(1'b0),
         .PS_CLK(FIXED_IO_ps_clk),
         .PS_PORB(FIXED_IO_ps_porb),
         .PS_SRSTB(FIXED_IO_ps_srstb),
         .USB0_VBUS_PWRFAULT(1'b0));
-  hdmi_design_system_ila_1_0 system_ila_1
-       (.clk(processing_system7_0_FCLK_CLK1),
+  hdmi_design_signal_delay_0_0 signal_delay_0
+       (.clk(clk_wiz_0_clk_out2),
+        .sig_in(clk_wiz_0_clk_out1),
+        .sig_out(signal_delay_0_sig_out));
+  hdmi_design_system_ila_0_0 system_ila_0
+       (.clk(clk_wiz_0_clk_out2),
         .probe0(clk_wiz_0_clk_out1),
-        .probe1(vga_generator_0_hsync),
-        .probe10(data_serializer_0_done),
-        .probe11(clock_divider_1_clk_out),
-        .probe2(vga_generator_0_vsync),
-        .probe3(vga_generator_0_video_on),
-        .probe4(vga_generator_0_blue),
-        .probe5(vga_generator_0_hcounter),
-        .probe6(vga_generator_0_vcounter),
-        .probe7(tmds_encoder_0_tmds_out),
-        .probe8(dc_balancer_0_tmds_out),
-        .probe9(data_serializer_0_tmds_out));
+        .probe1(data_serializer_0_tmds_out),
+        .probe10(hcounter),
+        .probe11(vcounter),
+        .probe2(data_serializer_1_done),
+        .probe3(signal_delay_0_sig_out),
+        .probe4(dc_balancer_0_tmds_out),
+        .probe5(vga_generator_0_hsync),
+        .probe6(vga_generator_0_vsync),
+        .probe7(vga_generator_0_video_on),
+        .probe8(vga_generator_0_blue),
+        .probe9(tmds_encoder_0_tmds_out));
   hdmi_design_tmds_encoder_0_0 tmds_encoder_0
        (.clk(clk_wiz_0_clk_out1),
         .data_in(vga_generator_0_blue),
@@ -209,11 +279,11 @@ module hdmi_design
        (.blue(vga_generator_0_blue),
         .clk(clk_wiz_0_clk_out1),
         .green(vga_generator_0_green),
-        .hcounter(vga_generator_0_hcounter),
+        .hcounter(hcounter),
         .hsync(vga_generator_0_hsync),
         .red(vga_generator_0_red),
         .reset(xlconstant_1_dout),
-        .vcounter(vga_generator_0_vcounter),
+        .vcounter(vcounter),
         .video_on(vga_generator_0_video_on),
         .vsync(vga_generator_0_vsync));
   hdmi_design_xlconstant_0_0 xlconstant_0

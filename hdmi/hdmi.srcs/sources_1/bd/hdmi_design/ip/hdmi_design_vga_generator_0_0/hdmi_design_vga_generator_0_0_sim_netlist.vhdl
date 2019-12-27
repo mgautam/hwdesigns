@@ -1,7 +1,7 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
--- Date        : Fri Dec 27 15:06:04 2019
+-- Date        : Sat Dec 28 02:22:36 2019
 -- Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 -- Command     : write_vhdl -force -mode funcsim
 --               C:/Users/Gautam/Vivado/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_vga_generator_0_0/hdmi_design_vga_generator_0_0_sim_netlist.vhdl
@@ -19,7 +19,7 @@ entity hdmi_design_vga_generator_0_0_vga_generator is
     hcounter : out STD_LOGIC_VECTOR ( 9 downto 0 );
     vcounter : out STD_LOGIC_VECTOR ( 9 downto 0 );
     hsync : out STD_LOGIC;
-    blue : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    video_on : out STD_LOGIC;
     vsync : out STD_LOGIC;
     clk : in STD_LOGIC
   );
@@ -28,7 +28,7 @@ entity hdmi_design_vga_generator_0_0_vga_generator is
 end hdmi_design_vga_generator_0_0_vga_generator;
 
 architecture STRUCTURE of hdmi_design_vga_generator_0_0_vga_generator is
-  signal \blue[1]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \blue[0]_INST_0_i_1_n_0\ : STD_LOGIC;
   signal clear : STD_LOGIC;
   signal \^hcounter\ : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal \hcounter[9]_i_3_n_0\ : STD_LOGIC;
@@ -43,15 +43,15 @@ architecture STRUCTURE of hdmi_design_vga_generator_0_0_vga_generator is
   signal vsync_i_1_n_0 : STD_LOGIC;
   signal vsync_i_2_n_0 : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \blue[1]_INST_0_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \blue[0]_INST_0_i_1\ : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of \hcounter[1]_i_1\ : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \hcounter[2]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \hcounter[3]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \hcounter[4]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \hcounter[3]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \hcounter[4]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \hcounter[6]_i_1\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \hcounter[7]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \hcounter[8]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \hcounter[9]_i_2\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \hcounter[8]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \hcounter[9]_i_2\ : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of \vcounter[0]_i_1\ : label is "soft_lutpair8";
   attribute SOFT_HLUTNM of \vcounter[1]_i_1\ : label is "soft_lutpair8";
   attribute SOFT_HLUTNM of \vcounter[2]_i_1\ : label is "soft_lutpair5";
@@ -60,25 +60,12 @@ architecture STRUCTURE of hdmi_design_vga_generator_0_0_vga_generator is
   attribute SOFT_HLUTNM of \vcounter[7]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \vcounter[8]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \vcounter[9]_i_3\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of vsync_i_2 : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of vsync_i_2 : label is "soft_lutpair0";
 begin
   hcounter(9 downto 0) <= \^hcounter\(9 downto 0);
   hsync <= \^hsync\;
   vcounter(9 downto 0) <= \^vcounter\(9 downto 0);
-\blue[0]_INST_0\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00001F0000000000"
-    )
-        port map (
-      I0 => \^hcounter\(8),
-      I1 => \^hcounter\(7),
-      I2 => \^hcounter\(9),
-      I3 => \^hcounter\(0),
-      I4 => \^vcounter\(9),
-      I5 => \blue[1]_INST_0_i_1_n_0\,
-      O => blue(0)
-    );
-\blue[1]_INST_0\: unisim.vcomponents.LUT5
+\blue[0]_INST_0\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"01550000"
     )
@@ -87,10 +74,10 @@ begin
       I1 => \^hcounter\(8),
       I2 => \^hcounter\(7),
       I3 => \^hcounter\(9),
-      I4 => \blue[1]_INST_0_i_1_n_0\,
-      O => blue(1)
+      I4 => \blue[0]_INST_0_i_1_n_0\,
+      O => video_on
     );
-\blue[1]_INST_0_i_1\: unisim.vcomponents.LUT4
+\blue[0]_INST_0_i_1\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"7FFF"
     )
@@ -99,7 +86,7 @@ begin
       I1 => \^vcounter\(5),
       I2 => \^vcounter\(6),
       I3 => \^vcounter\(8),
-      O => \blue[1]_INST_0_i_1_n_0\
+      O => \blue[0]_INST_0_i_1_n_0\
     );
 \hcounter[0]_i_1\: unisim.vcomponents.LUT1
     generic map(
@@ -675,7 +662,6 @@ end hdmi_design_vga_generator_0_0;
 
 architecture STRUCTURE of hdmi_design_vga_generator_0_0 is
   signal \<const0>\ : STD_LOGIC;
-  signal \^blue\ : STD_LOGIC_VECTOR ( 6 to 6 );
   signal \^video_on\ : STD_LOGIC;
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
@@ -685,13 +671,13 @@ architecture STRUCTURE of hdmi_design_vga_generator_0_0 is
   attribute X_INTERFACE_PARAMETER of reset : signal is "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW";
 begin
   blue(7) <= \^video_on\;
-  blue(6) <= \^blue\(6);
+  blue(6) <= \^video_on\;
   blue(5) <= \^video_on\;
-  blue(4) <= \^blue\(6);
+  blue(4) <= \^video_on\;
   blue(3) <= \^video_on\;
-  blue(2) <= \^blue\(6);
+  blue(2) <= \^video_on\;
   blue(1) <= \^video_on\;
-  blue(0) <= \^blue\(6);
+  blue(0) <= \^video_on\;
   green(7) <= \<const0>\;
   green(6) <= \<const0>\;
   green(5) <= \<const0>\;
@@ -715,12 +701,11 @@ GND: unisim.vcomponents.GND
     );
 inst: entity work.hdmi_design_vga_generator_0_0_vga_generator
      port map (
-      blue(1) => \^video_on\,
-      blue(0) => \^blue\(6),
       clk => clk,
       hcounter(9 downto 0) => hcounter(9 downto 0),
       hsync => hsync,
       vcounter(9 downto 0) => vcounter(9 downto 0),
+      video_on => \^video_on\,
       vsync => vsync
     );
 end STRUCTURE;

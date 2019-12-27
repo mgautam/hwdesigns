@@ -1,7 +1,7 @@
 //Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-//Date        : Fri Dec 27 18:09:59 2019
+//Date        : Sat Dec 28 02:21:00 2019
 //Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 //Command     : generate_target hdmi_design_wrapper.bd
 //Design      : hdmi_design_wrapper
@@ -30,7 +30,20 @@ module hdmi_design_wrapper
     FIXED_IO_mio,
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
-    FIXED_IO_ps_srstb);
+    FIXED_IO_ps_srstb,
+    HDMI_DDC_scl_io,
+    HDMI_DDC_sda_io,
+    HPD_IN,
+    HPD_STATUS,
+    clk_n_0,
+    clk_p_0,
+    done_0,
+    tmds_n_0,
+    tmds_n_1,
+    tmds_n_2,
+    tmds_p_0,
+    tmds_p_1,
+    tmds_p_2);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -52,6 +65,19 @@ module hdmi_design_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
+  inout HDMI_DDC_scl_io;
+  inout HDMI_DDC_sda_io;
+  input HPD_IN;
+  output HPD_STATUS;
+  output clk_n_0;
+  output clk_p_0;
+  output done_0;
+  output tmds_n_0;
+  output tmds_n_1;
+  output tmds_n_2;
+  output tmds_p_0;
+  output tmds_p_1;
+  output tmds_p_2;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -74,7 +100,36 @@ module hdmi_design_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
+  wire HDMI_DDC_scl_i;
+  wire HDMI_DDC_scl_io;
+  wire HDMI_DDC_scl_o;
+  wire HDMI_DDC_scl_t;
+  wire HDMI_DDC_sda_i;
+  wire HDMI_DDC_sda_io;
+  wire HDMI_DDC_sda_o;
+  wire HDMI_DDC_sda_t;
+  wire HPD_IN;
+  wire HPD_STATUS;
+  wire clk_n_0;
+  wire clk_p_0;
+  wire done_0;
+  wire tmds_n_0;
+  wire tmds_n_1;
+  wire tmds_n_2;
+  wire tmds_p_0;
+  wire tmds_p_1;
+  wire tmds_p_2;
 
+  IOBUF HDMI_DDC_scl_iobuf
+       (.I(HDMI_DDC_scl_o),
+        .IO(HDMI_DDC_scl_io),
+        .O(HDMI_DDC_scl_i),
+        .T(HDMI_DDC_scl_t));
+  IOBUF HDMI_DDC_sda_iobuf
+       (.I(HDMI_DDC_sda_o),
+        .IO(HDMI_DDC_sda_io),
+        .O(HDMI_DDC_sda_i),
+        .T(HDMI_DDC_sda_t));
   hdmi_design hdmi_design_i
        (.DDR_addr(DDR_addr),
         .DDR_ba(DDR_ba),
@@ -96,5 +151,22 @@ module hdmi_design_wrapper
         .FIXED_IO_mio(FIXED_IO_mio),
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
-        .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb));
+        .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
+        .HDMI_DDC_scl_i(HDMI_DDC_scl_i),
+        .HDMI_DDC_scl_o(HDMI_DDC_scl_o),
+        .HDMI_DDC_scl_t(HDMI_DDC_scl_t),
+        .HDMI_DDC_sda_i(HDMI_DDC_sda_i),
+        .HDMI_DDC_sda_o(HDMI_DDC_sda_o),
+        .HDMI_DDC_sda_t(HDMI_DDC_sda_t),
+        .HPD_IN(HPD_IN),
+        .HPD_STATUS(HPD_STATUS),
+        .clk_n_0(clk_n_0),
+        .clk_p_0(clk_p_0),
+        .done_0(done_0),
+        .tmds_n_0(tmds_n_0),
+        .tmds_n_1(tmds_n_1),
+        .tmds_n_2(tmds_n_2),
+        .tmds_p_0(tmds_p_0),
+        .tmds_p_1(tmds_p_1),
+        .tmds_p_2(tmds_p_2));
 endmodule

@@ -56,7 +56,9 @@
 module hdmi_design_clock_divider_0_0 (
   clk_in,
   reset,
-  clk_out
+  clk_out,
+  clk_p,
+  clk_n
 );
 
 input wire clk_in;
@@ -64,12 +66,20 @@ input wire clk_in;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 reset RST" *)
 input wire reset;
 output wire clk_out;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk_p, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN hdmi_design_clock_divider_0_0_clk_p" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk_p CLK" *)
+output wire clk_p;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk_n, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN hdmi_design_clock_divider_0_0_clk_n" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk_n CLK" *)
+output wire clk_n;
 
   clock_divider #(
     .DIVISOR(10)
   ) inst (
     .clk_in(clk_in),
     .reset(reset),
-    .clk_out(clk_out)
+    .clk_out(clk_out),
+    .clk_p(clk_p),
+    .clk_n(clk_n)
   );
 endmodule

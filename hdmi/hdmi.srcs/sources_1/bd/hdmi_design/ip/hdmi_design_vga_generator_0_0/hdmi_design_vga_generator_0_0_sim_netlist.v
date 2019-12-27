@@ -1,7 +1,7 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-// Date        : Fri Dec 27 15:06:04 2019
+// Date        : Sat Dec 28 02:22:36 2019
 // Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Users/Gautam/Vivado/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_vga_generator_0_0/hdmi_design_vga_generator_0_0_sim_netlist.v
@@ -37,7 +37,6 @@ module hdmi_design_vga_generator_0_0
   output [9:0]vcounter;
 
   wire \<const0> ;
-  wire [6:6]\^blue ;
   wire clk;
   wire [9:0]hcounter;
   wire hsync;
@@ -46,13 +45,13 @@ module hdmi_design_vga_generator_0_0
   wire vsync;
 
   assign blue[7] = video_on;
-  assign blue[6] = \^blue [6];
+  assign blue[6] = video_on;
   assign blue[5] = video_on;
-  assign blue[4] = \^blue [6];
+  assign blue[4] = video_on;
   assign blue[3] = video_on;
-  assign blue[2] = \^blue [6];
+  assign blue[2] = video_on;
   assign blue[1] = video_on;
-  assign blue[0] = \^blue [6];
+  assign blue[0] = video_on;
   assign green[7] = \<const0> ;
   assign green[6] = \<const0> ;
   assign green[5] = \<const0> ;
@@ -72,11 +71,11 @@ module hdmi_design_vga_generator_0_0
   GND GND
        (.G(\<const0> ));
   hdmi_design_vga_generator_0_0_vga_generator inst
-       (.blue({video_on,\^blue }),
-        .clk(clk),
+       (.clk(clk),
         .hcounter(hcounter),
         .hsync(hsync),
         .vcounter(vcounter),
+        .video_on(video_on),
         .vsync(vsync));
 endmodule
 
@@ -85,18 +84,17 @@ module hdmi_design_vga_generator_0_0_vga_generator
    (hcounter,
     vcounter,
     hsync,
-    blue,
+    video_on,
     vsync,
     clk);
   output [9:0]hcounter;
   output [9:0]vcounter;
   output hsync;
-  output [1:0]blue;
+  output video_on;
   output vsync;
   input clk;
 
-  wire [1:0]blue;
-  wire \blue[1]_INST_0_i_1_n_0 ;
+  wire \blue[0]_INST_0_i_1_n_0 ;
   wire clear;
   wire clk;
   wire [9:0]hcounter;
@@ -109,38 +107,29 @@ module hdmi_design_vga_generator_0_0_vga_generator
   wire \vcounter[1]_i_1_n_0 ;
   wire \vcounter[9]_i_1_n_0 ;
   wire \vcounter[9]_i_3_n_0 ;
+  wire video_on;
   wire vsync;
   wire vsync_i_1_n_0;
   wire vsync_i_2_n_0;
 
-  LUT6 #(
-    .INIT(64'h00001F0000000000)) 
-    \blue[0]_INST_0 
-       (.I0(hcounter[8]),
-        .I1(hcounter[7]),
-        .I2(hcounter[9]),
-        .I3(hcounter[0]),
-        .I4(vcounter[9]),
-        .I5(\blue[1]_INST_0_i_1_n_0 ),
-        .O(blue[0]));
   LUT5 #(
     .INIT(32'h01550000)) 
-    \blue[1]_INST_0 
+    \blue[0]_INST_0 
        (.I0(vcounter[9]),
         .I1(hcounter[8]),
         .I2(hcounter[7]),
         .I3(hcounter[9]),
-        .I4(\blue[1]_INST_0_i_1_n_0 ),
-        .O(blue[1]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+        .I4(\blue[0]_INST_0_i_1_n_0 ),
+        .O(video_on));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
-    \blue[1]_INST_0_i_1 
+    \blue[0]_INST_0_i_1 
        (.I0(vcounter[7]),
         .I1(vcounter[5]),
         .I2(vcounter[6]),
         .I3(vcounter[8]),
-        .O(\blue[1]_INST_0_i_1_n_0 ));
+        .O(\blue[0]_INST_0_i_1_n_0 ));
   LUT1 #(
     .INIT(2'h1)) 
     \hcounter[0]_i_1 
@@ -161,7 +150,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .I1(hcounter[0]),
         .I2(hcounter[2]),
         .O(p_0_in[2]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \hcounter[3]_i_1 
@@ -170,7 +159,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .I2(hcounter[1]),
         .I3(hcounter[3]),
         .O(p_0_in[3]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \hcounter[4]_i_1 
@@ -205,7 +194,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .I1(\hcounter[9]_i_3_n_0 ),
         .I2(hcounter[7]),
         .O(p_0_in[7]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
     .INIT(16'hDF20)) 
     \hcounter[8]_i_1 
@@ -223,7 +212,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .I3(hcounter[5]),
         .I4(hcounter[6]),
         .O(clear));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'hF7FF0800)) 
     \hcounter[9]_i_2 
@@ -537,7 +526,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .I4(vsync_i_2_n_0),
         .I5(vcounter[2]),
         .O(vsync_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
     vsync_i_2

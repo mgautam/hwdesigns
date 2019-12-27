@@ -24,7 +24,7 @@ module clock_divider(
     input clk_in,
     input reset,
     //output reg clk_out
-    output clk_out
+    output clk_out, clk_p, clk_n
     );
     parameter DIVISOR = 10;
     
@@ -40,4 +40,12 @@ module clock_divider(
         //clk_out <= (counter >= (DIVISOR>>1)-1)? ~clk_out : clk_out;
     end
     assign clk_out = (counter > (DIVISOR/2)-1)? 1'b0 : 1'b1;
+        
+    OBUFDS #(    
+        .IOSTANDARD("DEFAULT")    
+    ) OBUFDS_inst (    
+        .O(clk_p),    
+        .OB(clk_n),    
+        .I(clk_out)    
+    );
 endmodule

@@ -37,8 +37,8 @@ module vga_generator(
 	localparam END_H_RETRACE   = H_DISPLAY + H_R_BORDER + H_RETRACE;// - 1;
 	
 	localparam V_DISPLAY       = 480; // vertical display area
-	localparam V_T_BORDER      =  10; // vertical top border - Front Porch
-	localparam V_B_BORDER      =  33; // vertical bottom border - Back Porch
+	localparam V_T_BORDER      =  10; // vertical top border - Back Porch
+	localparam V_B_BORDER      =  33; // vertical bottom border - Front Porch
 	localparam V_RETRACE       =   2; // vertical retrace - Sync Pulse
 	localparam V_MAX           = V_DISPLAY + V_T_BORDER + V_B_BORDER + V_RETRACE;// - 1;
     localparam START_V_RETRACE = V_DISPLAY + V_B_BORDER;
@@ -66,5 +66,6 @@ module vga_generator(
     
     assign red = 8'h0;
     assign green = 8'h0;
-    assign blue = video_on? (hcounter[0]?8'hff:8'hAA) : 8'h0;
+    //assign blue = video_on? (hcounter[0]?8'hff:8'hAA) : 8'h0;
+    assign blue = video_on? 8'hff : 8'h0;
 endmodule

@@ -23,7 +23,7 @@
 module data_serializer(
         input clk,
         input [9:0] tmds_in,
-        output tmds_out,
+        output tmds_out,tmds_p,tmds_n,
         output done
     );
     //wire tmds_p, tmds_n;
@@ -34,11 +34,11 @@ module data_serializer(
     assign tmds_out = tmds_in[bitcounter];
     assign done = (bitcounter >= 9);
     
-    /*OBUFDS #(    
+    OBUFDS #(    
         .IOSTANDARD("DEFAULT")    
     ) OBUFDS_inst (    
         .O(tmds_p),    
         .OB(tmds_n),    
         .I(tmds_out)    
-    );*/
+    );
 endmodule
