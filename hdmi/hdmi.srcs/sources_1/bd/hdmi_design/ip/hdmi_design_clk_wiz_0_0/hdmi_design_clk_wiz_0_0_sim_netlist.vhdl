@@ -1,7 +1,7 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
--- Date        : Sat Dec 28 18:45:21 2019
+-- Date        : Sat Dec 28 22:13:18 2019
 -- Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 -- Command     : write_vhdl -force -mode funcsim -rename_top hdmi_design_clk_wiz_0_0 -prefix
 --               hdmi_design_clk_wiz_0_0_ hdmi_design_clk_wiz_0_0_sim_netlist.vhdl
@@ -77,12 +77,12 @@ clkout1_buf: unisim.vcomponents.BUFG
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT_F => 36.000000,
+      CLKFBOUT_MULT_F => 4.000000,
       CLKFBOUT_PHASE => 0.000000,
       CLKFBOUT_USE_FINE_PS => false,
       CLKIN1_PERIOD => 4.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 3.250000,
+      CLKOUT0_DIVIDE_F => 2.500000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,
@@ -112,7 +112,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKOUT6_PHASE => 0.000000,
       CLKOUT6_USE_FINE_PS => false,
       COMPENSATION => "ZHOLD",
-      DIVCLK_DIVIDE => 11,
+      DIVCLK_DIVIDE => 1,
       IS_CLKINSEL_INVERTED => '0',
       IS_PSEN_INVERTED => '0',
       IS_PSINCDEC_INVERTED => '0',

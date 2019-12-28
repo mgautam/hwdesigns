@@ -408,7 +408,7 @@
           <spirit:configurableElementValue spirit:referenceId="PRIMITIVE">MMCM</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PRIM_IN_FREQ">250</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CLKIN1_JITTER_PS">40.0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="CLKOUT1_REQUESTED_OUT_FREQ">251.750</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CLKOUT1_REQUESTED_OUT_FREQ">400</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CLKOUT1_DRIVES">BUFG</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CLKOUT2_DRIVES">BUFG</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CLKOUT3_DRIVES">BUFG</spirit:configurableElementValue>
@@ -417,14 +417,14 @@
           <spirit:configurableElementValue spirit:referenceId="CLKOUT6_DRIVES">BUFG</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CLKOUT7_DRIVES">BUFG</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="FEEDBACK_SOURCE">FDBK_AUTO</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="MMCM_DIVCLK_DIVIDE">11</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="MMCM_CLKFBOUT_MULT_F">36.000</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="MMCM_DIVCLK_DIVIDE">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="MMCM_CLKFBOUT_MULT_F">4.000</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="MMCM_CLKIN1_PERIOD">4.000</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="MMCM_CLKIN2_PERIOD">10.0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="MMCM_COMPENSATION">ZHOLD</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="MMCM_CLKOUT0_DIVIDE_F">3.250</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="CLKOUT1_JITTER">232.016</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="CLKOUT1_PHASE_ERROR">280.643</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="MMCM_CLKOUT0_DIVIDE_F">2.500</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CLKOUT1_JITTER">81.677</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CLKOUT1_PHASE_ERROR">85.928</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -963,6 +963,14 @@
         <spirit:componentRef spirit:library="module_ref" spirit:name="vga_generator" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">hdmi_design_vga_generator_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="H_ACTIVE_VIDEO">800</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="H_BACK_PORCH">88</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="H_FRONT_PORCH">40</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="H_SYNC_PULSE">128</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="V_ACTIVE_VIDEO">600</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="V_BACK_PORCH">23</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="V_FRONT_PORCH">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="V_SYNC_PULSE">4</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceName">vga_generator</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
@@ -970,11 +978,11 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>Combinator_4x4_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="Combinator_4x4" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:instanceName>rgbCombinator_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="rgbCombinator" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">hdmi_design_Combinator_4x4_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">Combinator_4x4</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">hdmi_design_rgbCombinator_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">rgbCombinator</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
@@ -1153,7 +1161,7 @@
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>vga_generator_0_blue</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="Combinator_4x4_0" spirit:portRef="obus3"/>
+        <spirit:internalPortReference spirit:componentRef="rgbCombinator_0" spirit:portRef="obusB"/>
         <spirit:internalPortReference spirit:componentRef="tmds_encoder_0" spirit:portRef="data_in"/>
         <spirit:internalPortReference spirit:componentRef="system_ila_0" spirit:portRef="probe7"/>
         <bd:hdl_attributes>
@@ -1209,23 +1217,8 @@
         <spirit:internalPortReference spirit:componentRef="vga_generator_0" spirit:portRef="reset"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>vga_generator_0_red</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="vga_generator_0" spirit:portRef="red"/>
-        <spirit:internalPortReference spirit:componentRef="Combinator_4x4_0" spirit:portRef="ibus1"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>vga_generator_0_green</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="vga_generator_0" spirit:portRef="green"/>
-        <spirit:internalPortReference spirit:componentRef="Combinator_4x4_0" spirit:portRef="ibus2"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>vga_generator_0_blue1</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="vga_generator_0" spirit:portRef="blue"/>
-        <spirit:internalPortReference spirit:componentRef="Combinator_4x4_0" spirit:portRef="ibus3"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
         <spirit:name>Combinator_4x4_0_obus1</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="Combinator_4x4_0" spirit:portRef="obus1"/>
+        <spirit:internalPortReference spirit:componentRef="rgbCombinator_0" spirit:portRef="obusR"/>
         <spirit:internalPortReference spirit:componentRef="tmds_encoder_2" spirit:portRef="data_in"/>
         <spirit:internalPortReference spirit:componentRef="system_ila_0" spirit:portRef="probe12"/>
         <bd:hdl_attributes>
@@ -1235,18 +1228,13 @@
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>Combinator_4x4_0_obus2</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="Combinator_4x4_0" spirit:portRef="obus2"/>
+        <spirit:internalPortReference spirit:componentRef="rgbCombinator_0" spirit:portRef="obusG"/>
         <spirit:internalPortReference spirit:componentRef="tmds_encoder_1" spirit:portRef="data_in"/>
         <spirit:internalPortReference spirit:componentRef="system_ila_0" spirit:portRef="probe11"/>
         <bd:hdl_attributes>
           <bd:hdl_attribute bd:name="DEBUG" bd:value="true"/>
           <bd:hdl_attribute bd:name="MARK_DEBUG" bd:value="true"/>
         </bd:hdl_attributes>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>mux_in_0_1</spirit:name>
-        <spirit:externalPortReference spirit:portRef="mux_in_0"/>
-        <spirit:internalPortReference spirit:componentRef="Combinator_4x4_0" spirit:portRef="mux_in"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>data_serializer_1_tmds_out</spirit:name>
@@ -1265,6 +1253,26 @@
           <bd:hdl_attribute bd:name="DEBUG" bd:value="true"/>
           <bd:hdl_attribute bd:name="MARK_DEBUG" bd:value="true"/>
         </bd:hdl_attributes>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>vga_generator_0_red</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="vga_generator_0" spirit:portRef="red"/>
+        <spirit:internalPortReference spirit:componentRef="rgbCombinator_0" spirit:portRef="ibusR"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>vga_generator_0_green</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="vga_generator_0" spirit:portRef="green"/>
+        <spirit:internalPortReference spirit:componentRef="rgbCombinator_0" spirit:portRef="ibusG"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>vga_generator_0_blue1</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="vga_generator_0" spirit:portRef="blue"/>
+        <spirit:internalPortReference spirit:componentRef="rgbCombinator_0" spirit:portRef="ibusB"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>mux_in_0_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="mux_in_0"/>
+        <spirit:internalPortReference spirit:componentRef="rgbCombinator_0" spirit:portRef="mux_in"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
     <spirit:hierConnections>

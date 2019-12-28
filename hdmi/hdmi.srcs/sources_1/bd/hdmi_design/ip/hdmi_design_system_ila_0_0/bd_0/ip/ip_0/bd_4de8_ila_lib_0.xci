@@ -11,7 +11,7 @@
       <spirit:configurableElementValues>
         <spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.SIGNAL_CLOCK.ASSOCIATED_RESET"/>
         <spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.SIGNAL_CLOCK.CLK_DOMAIN">/clk_wiz_0_clk_out1</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.SIGNAL_CLOCK.FREQ_HZ">251748251</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.SIGNAL_CLOCK.FREQ_HZ">400000000</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.SIGNAL_CLOCK.PHASE">0.0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.SLOT_0_AXI.ADDR_WIDTH">32</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.SLOT_0_AXI.ARUSER_WIDTH">1</spirit:configurableElementValue>
@@ -98,7 +98,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.C_EN_DDR_ILA">FALSE</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.C_EN_STRG_QUAL">1</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.C_EN_TIME_TAG">0</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.C_ILA_CLK_FREQ">251748251</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.C_ILA_CLK_FREQ">400000000</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.C_INPUT_PIPE_STAGES">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.C_MONITOR_TYPE">Native</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.C_NUM_MONITOR_SLOTS">1</spirit:configurableElementValue>

@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-// Date        : Sat Dec 28 19:50:05 2019
+// Date        : Sun Dec 29 01:25:58 2019
 // Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 // Command     : write_verilog -force -mode funcsim
-//               c:/Users/Gautam/Vivado/hdmi/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_vga_generator_0_0/hdmi_design_vga_generator_0_0_sim_netlist.v
+//               C:/Users/Gautam/Vivado/hdmi/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_vga_generator_0_0/hdmi_design_vga_generator_0_0_sim_netlist.v
 // Design      : hdmi_design_vga_generator_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -81,156 +81,165 @@ endmodule
 
 (* ORIG_REF_NAME = "vga_generator" *) 
 module hdmi_design_vga_generator_0_0_vga_generator
-   (hcounter,
-    vcounter,
+   (vcounter,
+    hcounter,
     hsync,
     video_on,
     vsync,
     clk);
-  output [9:0]hcounter;
   output [9:0]vcounter;
+  output [9:0]hcounter;
   output hsync;
   output video_on;
   output vsync;
   input clk;
 
   wire \blue[0]_INST_0_i_1_n_0 ;
+  wire \blue[0]_INST_0_i_2_n_0 ;
+  wire \blue[0]_INST_0_i_3_n_0 ;
   wire clear;
   wire clk;
   wire [9:0]hcounter;
-  wire \hcounter[9]_i_3_n_0 ;
+  wire \hcounter[9]_i_2_n_0 ;
   wire hsync;
   wire hsync_i_1_n_0;
+  wire hsync_i_2_n_0;
   wire [9:0]p_0_in;
   wire [9:0]p_0_in__0;
   wire [9:0]vcounter;
-  wire \vcounter[9]_i_1_n_0 ;
   wire \vcounter[9]_i_3_n_0 ;
   wire \vcounter[9]_i_4_n_0 ;
   wire video_on;
   wire vsync;
   wire vsync_i_1_n_0;
+  wire vsync_i_2_n_0;
 
-  LUT5 #(
-    .INIT(32'h01550000)) 
+  LUT6 #(
+    .INIT(64'h000F003F001F003F)) 
     \blue[0]_INST_0 
-       (.I0(vcounter[9]),
-        .I1(hcounter[8]),
-        .I2(hcounter[7]),
-        .I3(hcounter[9]),
-        .I4(\blue[0]_INST_0_i_1_n_0 ),
+       (.I0(vcounter[5]),
+        .I1(\blue[0]_INST_0_i_1_n_0 ),
+        .I2(vcounter[9]),
+        .I3(\blue[0]_INST_0_i_2_n_0 ),
+        .I4(vcounter[6]),
+        .I5(\blue[0]_INST_0_i_3_n_0 ),
         .O(video_on));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT4 #(
-    .INIT(16'h7FFF)) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
     \blue[0]_INST_0_i_1 
-       (.I0(vcounter[7]),
-        .I1(vcounter[5]),
-        .I2(vcounter[6]),
-        .I3(vcounter[8]),
+       (.I0(vcounter[8]),
+        .I1(vcounter[7]),
         .O(\blue[0]_INST_0_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT5 #(
+    .INIT(32'hC0C0C080)) 
+    \blue[0]_INST_0_i_2 
+       (.I0(hcounter[6]),
+        .I1(hcounter[9]),
+        .I2(hcounter[8]),
+        .I3(hcounter[7]),
+        .I4(hcounter[5]),
+        .O(\blue[0]_INST_0_i_2_n_0 ));
+  LUT2 #(
+    .INIT(4'h8)) 
+    \blue[0]_INST_0_i_3 
+       (.I0(vcounter[3]),
+        .I1(vcounter[4]),
+        .O(\blue[0]_INST_0_i_3_n_0 ));
   LUT1 #(
     .INIT(2'h1)) 
     \hcounter[0]_i_1 
        (.I0(hcounter[0]),
         .O(p_0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \hcounter[1]_i_1 
        (.I0(hcounter[0]),
         .I1(hcounter[1]),
         .O(p_0_in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \hcounter[2]_i_1 
-       (.I0(hcounter[1]),
-        .I1(hcounter[0]),
+       (.I0(hcounter[0]),
+        .I1(hcounter[1]),
         .I2(hcounter[2]),
         .O(p_0_in[2]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \hcounter[3]_i_1 
-       (.I0(hcounter[2]),
+       (.I0(hcounter[1]),
         .I1(hcounter[0]),
-        .I2(hcounter[1]),
+        .I2(hcounter[2]),
         .I3(hcounter[3]),
         .O(p_0_in[3]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \hcounter[4]_i_1 
-       (.I0(hcounter[3]),
-        .I1(hcounter[1]),
-        .I2(hcounter[0]),
-        .I3(hcounter[2]),
+       (.I0(hcounter[2]),
+        .I1(hcounter[0]),
+        .I2(hcounter[1]),
+        .I3(hcounter[3]),
         .I4(hcounter[4]),
         .O(p_0_in[4]));
   LUT6 #(
     .INIT(64'h7FFFFFFF80000000)) 
     \hcounter[5]_i_1 
-       (.I0(hcounter[4]),
-        .I1(hcounter[2]),
+       (.I0(hcounter[3]),
+        .I1(hcounter[1]),
         .I2(hcounter[0]),
-        .I3(hcounter[1]),
-        .I4(hcounter[3]),
+        .I3(hcounter[2]),
+        .I4(hcounter[4]),
         .I5(hcounter[5]),
         .O(p_0_in[5]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h9)) 
     \hcounter[6]_i_1 
-       (.I0(\hcounter[9]_i_3_n_0 ),
+       (.I0(\hcounter[9]_i_2_n_0 ),
         .I1(hcounter[6]),
         .O(p_0_in[6]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
-    .INIT(8'hD2)) 
+    .INIT(8'hB4)) 
     \hcounter[7]_i_1 
-       (.I0(hcounter[6]),
-        .I1(\hcounter[9]_i_3_n_0 ),
+       (.I0(\hcounter[9]_i_2_n_0 ),
+        .I1(hcounter[6]),
         .I2(hcounter[7]),
         .O(p_0_in[7]));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
     .INIT(16'hDF20)) 
     \hcounter[8]_i_1 
-       (.I0(hcounter[7]),
-        .I1(\hcounter[9]_i_3_n_0 ),
-        .I2(hcounter[6]),
+       (.I0(hcounter[6]),
+        .I1(\hcounter[9]_i_2_n_0 ),
+        .I2(hcounter[7]),
         .I3(hcounter[8]),
         .O(p_0_in[8]));
-  LUT5 #(
-    .INIT(32'h88888880)) 
-    \hcounter[9]_i_1 
-       (.I0(hcounter[9]),
-        .I1(hcounter[8]),
-        .I2(hcounter[7]),
-        .I3(hcounter[5]),
-        .I4(hcounter[6]),
-        .O(clear));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'hF7FF0800)) 
-    \hcounter[9]_i_2 
+    \hcounter[9]_i_1 
        (.I0(hcounter[8]),
-        .I1(hcounter[6]),
-        .I2(\hcounter[9]_i_3_n_0 ),
-        .I3(hcounter[7]),
+        .I1(hcounter[7]),
+        .I2(\hcounter[9]_i_2_n_0 ),
+        .I3(hcounter[6]),
         .I4(hcounter[9]),
         .O(p_0_in[9]));
   LUT6 #(
     .INIT(64'h7FFFFFFFFFFFFFFF)) 
-    \hcounter[9]_i_3 
-       (.I0(hcounter[4]),
-        .I1(hcounter[2]),
-        .I2(hcounter[0]),
-        .I3(hcounter[1]),
-        .I4(hcounter[3]),
-        .I5(hcounter[5]),
-        .O(\hcounter[9]_i_3_n_0 ));
+    \hcounter[9]_i_2 
+       (.I0(hcounter[5]),
+        .I1(hcounter[3]),
+        .I2(hcounter[1]),
+        .I3(hcounter[0]),
+        .I4(hcounter[2]),
+        .I5(hcounter[4]),
+        .O(\hcounter[9]_i_2_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \hcounter_reg[0] 
@@ -238,7 +247,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in[0]),
         .Q(hcounter[0]),
-        .R(clear));
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \hcounter_reg[1] 
@@ -246,7 +255,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in[1]),
         .Q(hcounter[1]),
-        .R(clear));
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \hcounter_reg[2] 
@@ -254,7 +263,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in[2]),
         .Q(hcounter[2]),
-        .R(clear));
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \hcounter_reg[3] 
@@ -262,7 +271,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in[3]),
         .Q(hcounter[3]),
-        .R(clear));
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \hcounter_reg[4] 
@@ -270,7 +279,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in[4]),
         .Q(hcounter[4]),
-        .R(clear));
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \hcounter_reg[5] 
@@ -278,7 +287,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in[5]),
         .Q(hcounter[5]),
-        .R(clear));
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \hcounter_reg[6] 
@@ -286,7 +295,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in[6]),
         .Q(hcounter[6]),
-        .R(clear));
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \hcounter_reg[7] 
@@ -294,7 +303,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in[7]),
         .Q(hcounter[7]),
-        .R(clear));
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \hcounter_reg[8] 
@@ -302,7 +311,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in[8]),
         .Q(hcounter[8]),
-        .R(clear));
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \hcounter_reg[9] 
@@ -310,17 +319,24 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in[9]),
         .Q(hcounter[9]),
-        .R(clear));
+        .R(1'b0));
   LUT6 #(
-    .INIT(64'hFBBBBBBFFFFFFFFF)) 
+    .INIT(64'hFFFEAAAAAAABFFFF)) 
     hsync_i_1
-       (.I0(hcounter[8]),
-        .I1(hcounter[9]),
+       (.I0(hsync_i_2_n_0),
+        .I1(hcounter[3]),
         .I2(hcounter[4]),
         .I3(hcounter[5]),
         .I4(hcounter[6]),
         .I5(hcounter[7]),
         .O(hsync_i_1_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT2 #(
+    .INIT(4'h7)) 
+    hsync_i_2
+       (.I0(hcounter[9]),
+        .I1(hcounter[8]),
+        .O(hsync_i_2_n_0));
   FDRE #(
     .INIT(1'b0)) 
     hsync_reg
@@ -329,122 +345,120 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .D(hsync_i_1_n_0),
         .Q(hsync),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \vcounter[0]_i_1 
        (.I0(vcounter[0]),
         .O(p_0_in__0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \vcounter[1]_i_1 
        (.I0(vcounter[0]),
         .I1(vcounter[1]),
         .O(p_0_in__0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \vcounter[2]_i_1 
-       (.I0(vcounter[1]),
-        .I1(vcounter[0]),
+       (.I0(vcounter[0]),
+        .I1(vcounter[1]),
         .I2(vcounter[2]),
         .O(p_0_in__0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \vcounter[3]_i_1 
+       (.I0(vcounter[1]),
+        .I1(vcounter[0]),
+        .I2(vcounter[2]),
+        .I3(vcounter[3]),
+        .O(p_0_in__0[3]));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT5 #(
+    .INIT(32'h7FFF8000)) 
+    \vcounter[4]_i_1 
        (.I0(vcounter[2]),
         .I1(vcounter[0]),
         .I2(vcounter[1]),
         .I3(vcounter[3]),
-        .O(p_0_in__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT5 #(
-    .INIT(32'h7FFF8000)) 
-    \vcounter[4]_i_1 
-       (.I0(vcounter[3]),
-        .I1(vcounter[1]),
-        .I2(vcounter[0]),
-        .I3(vcounter[2]),
         .I4(vcounter[4]),
         .O(p_0_in__0[4]));
   LUT6 #(
     .INIT(64'h7FFFFFFF80000000)) 
     \vcounter[5]_i_1 
-       (.I0(vcounter[4]),
-        .I1(vcounter[2]),
-        .I2(vcounter[0]),
-        .I3(vcounter[1]),
-        .I4(vcounter[3]),
-        .I5(vcounter[5]),
-        .O(p_0_in__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT3 #(
-    .INIT(8'hD2)) 
-    \vcounter[6]_i_1 
-       (.I0(vcounter[5]),
-        .I1(\vcounter[9]_i_4_n_0 ),
-        .I2(vcounter[6]),
-        .O(p_0_in__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT4 #(
-    .INIT(16'hF708)) 
-    \vcounter[7]_i_1 
-       (.I0(vcounter[5]),
-        .I1(vcounter[6]),
-        .I2(\vcounter[9]_i_4_n_0 ),
-        .I3(vcounter[7]),
-        .O(p_0_in__0[7]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT5 #(
-    .INIT(32'hBFFF4000)) 
-    \vcounter[8]_i_1 
-       (.I0(\vcounter[9]_i_4_n_0 ),
-        .I1(vcounter[6]),
-        .I2(vcounter[5]),
-        .I3(vcounter[7]),
-        .I4(vcounter[8]),
-        .O(p_0_in__0[8]));
-  LUT6 #(
-    .INIT(64'hFFF0FFF0FFF0FEF0)) 
-    \vcounter[9]_i_1 
-       (.I0(vcounter[5]),
-        .I1(vcounter[4]),
-        .I2(\vcounter[9]_i_3_n_0 ),
-        .I3(vcounter[9]),
-        .I4(vcounter[7]),
-        .I5(vcounter[6]),
-        .O(\vcounter[9]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hBFFFFFFF40000000)) 
-    \vcounter[9]_i_2 
-       (.I0(\vcounter[9]_i_4_n_0 ),
-        .I1(vcounter[7]),
-        .I2(vcounter[5]),
-        .I3(vcounter[6]),
-        .I4(vcounter[8]),
-        .I5(vcounter[9]),
-        .O(p_0_in__0[9]));
-  LUT6 #(
-    .INIT(64'hFEAAAAAA00000000)) 
-    \vcounter[9]_i_3 
-       (.I0(vcounter[8]),
-        .I1(vcounter[0]),
-        .I2(vcounter[1]),
-        .I3(vcounter[3]),
-        .I4(vcounter[2]),
-        .I5(vcounter[9]),
-        .O(\vcounter[9]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT5 #(
-    .INIT(32'h7FFFFFFF)) 
-    \vcounter[9]_i_4 
        (.I0(vcounter[3]),
         .I1(vcounter[1]),
         .I2(vcounter[0]),
         .I3(vcounter[2]),
         .I4(vcounter[4]),
+        .I5(vcounter[5]),
+        .O(p_0_in__0[5]));
+  LUT3 #(
+    .INIT(8'h78)) 
+    \vcounter[6]_i_1 
+       (.I0(\vcounter[9]_i_4_n_0 ),
+        .I1(vcounter[5]),
+        .I2(vcounter[6]),
+        .O(p_0_in__0[6]));
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  LUT4 #(
+    .INIT(16'h7F80)) 
+    \vcounter[7]_i_1 
+       (.I0(vcounter[6]),
+        .I1(vcounter[5]),
+        .I2(\vcounter[9]_i_4_n_0 ),
+        .I3(vcounter[7]),
+        .O(p_0_in__0[7]));
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  LUT5 #(
+    .INIT(32'h7FFF8000)) 
+    \vcounter[8]_i_1 
+       (.I0(\vcounter[9]_i_4_n_0 ),
+        .I1(vcounter[5]),
+        .I2(vcounter[6]),
+        .I3(vcounter[7]),
+        .I4(vcounter[8]),
+        .O(p_0_in__0[8]));
+  LUT6 #(
+    .INIT(64'h00FF00FF00FF0080)) 
+    \vcounter[9]_i_1 
+       (.I0(vcounter[4]),
+        .I1(vcounter[5]),
+        .I2(vcounter[6]),
+        .I3(\vcounter[9]_i_3_n_0 ),
+        .I4(vcounter[8]),
+        .I5(vcounter[7]),
+        .O(clear));
+  LUT6 #(
+    .INIT(64'h7FFFFFFF80000000)) 
+    \vcounter[9]_i_2 
+       (.I0(vcounter[8]),
+        .I1(vcounter[7]),
+        .I2(vcounter[6]),
+        .I3(vcounter[5]),
+        .I4(\vcounter[9]_i_4_n_0 ),
+        .I5(vcounter[9]),
+        .O(p_0_in__0[9]));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'h0001FFFF)) 
+    \vcounter[9]_i_3 
+       (.I0(vcounter[8]),
+        .I1(vcounter[7]),
+        .I2(vcounter[2]),
+        .I3(vcounter[3]),
+        .I4(vcounter[9]),
+        .O(\vcounter[9]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT5 #(
+    .INIT(32'h80000000)) 
+    \vcounter[9]_i_4 
+       (.I0(vcounter[4]),
+        .I1(vcounter[2]),
+        .I2(vcounter[0]),
+        .I3(vcounter[1]),
+        .I4(vcounter[3]),
         .O(\vcounter[9]_i_4_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
@@ -453,7 +467,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in__0[0]),
         .Q(vcounter[0]),
-        .R(\vcounter[9]_i_1_n_0 ));
+        .R(clear));
   FDRE #(
     .INIT(1'b0)) 
     \vcounter_reg[1] 
@@ -461,7 +475,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in__0[1]),
         .Q(vcounter[1]),
-        .R(\vcounter[9]_i_1_n_0 ));
+        .R(clear));
   FDRE #(
     .INIT(1'b0)) 
     \vcounter_reg[2] 
@@ -469,7 +483,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in__0[2]),
         .Q(vcounter[2]),
-        .R(\vcounter[9]_i_1_n_0 ));
+        .R(clear));
   FDRE #(
     .INIT(1'b0)) 
     \vcounter_reg[3] 
@@ -477,7 +491,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in__0[3]),
         .Q(vcounter[3]),
-        .R(\vcounter[9]_i_1_n_0 ));
+        .R(clear));
   FDRE #(
     .INIT(1'b0)) 
     \vcounter_reg[4] 
@@ -485,7 +499,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in__0[4]),
         .Q(vcounter[4]),
-        .R(\vcounter[9]_i_1_n_0 ));
+        .R(clear));
   FDRE #(
     .INIT(1'b0)) 
     \vcounter_reg[5] 
@@ -493,7 +507,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in__0[5]),
         .Q(vcounter[5]),
-        .R(\vcounter[9]_i_1_n_0 ));
+        .R(clear));
   FDRE #(
     .INIT(1'b0)) 
     \vcounter_reg[6] 
@@ -501,7 +515,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in__0[6]),
         .Q(vcounter[6]),
-        .R(\vcounter[9]_i_1_n_0 ));
+        .R(clear));
   FDRE #(
     .INIT(1'b0)) 
     \vcounter_reg[7] 
@@ -509,7 +523,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in__0[7]),
         .Q(vcounter[7]),
-        .R(\vcounter[9]_i_1_n_0 ));
+        .R(clear));
   FDRE #(
     .INIT(1'b0)) 
     \vcounter_reg[8] 
@@ -517,7 +531,7 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in__0[8]),
         .Q(vcounter[8]),
-        .R(\vcounter[9]_i_1_n_0 ));
+        .R(clear));
   FDRE #(
     .INIT(1'b0)) 
     \vcounter_reg[9] 
@@ -525,17 +539,27 @@ module hdmi_design_vga_generator_0_0_vga_generator
         .CE(1'b1),
         .D(p_0_in__0[9]),
         .Q(vcounter[9]),
-        .R(\vcounter[9]_i_1_n_0 ));
+        .R(clear));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFEFFFFFF)) 
+    .INIT(64'hFFFFFFFFFFFFFFF7)) 
     vsync_i_1
-       (.I0(vcounter[4]),
-        .I1(vcounter[9]),
-        .I2(vcounter[2]),
-        .I3(vcounter[1]),
-        .I4(vcounter[3]),
-        .I5(\blue[0]_INST_0_i_1_n_0 ),
+       (.I0(vcounter[3]),
+        .I1(vcounter[4]),
+        .I2(vcounter[5]),
+        .I3(vcounter[7]),
+        .I4(vcounter[8]),
+        .I5(vsync_i_2_n_0),
         .O(vsync_i_1_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT5 #(
+    .INIT(32'hA9FFFFFF)) 
+    vsync_i_2
+       (.I0(vcounter[2]),
+        .I1(vcounter[1]),
+        .I2(vcounter[0]),
+        .I3(vcounter[9]),
+        .I4(vcounter[6]),
+        .O(vsync_i_2_n_0));
   FDRE #(
     .INIT(1'b0)) 
     vsync_reg

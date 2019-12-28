@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# Combinator_4x4, clock_divider, data_serializer, data_serializer, data_serializer, dc_balancer, dc_balancer, dc_balancer, signal_delay, tmds_encoder, tmds_encoder, tmds_encoder, vga_generator
+# clock_divider, data_serializer, data_serializer, data_serializer, dc_balancer, dc_balancer, dc_balancer, rgbCombinator, signal_delay, tmds_encoder, tmds_encoder, tmds_encoder, vga_generator
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -181,25 +181,14 @@ proc create_root_design { parentCell } {
   set tmds_p_1 [ create_bd_port -dir O tmds_p_1 ]
   set tmds_p_2 [ create_bd_port -dir O tmds_p_2 ]
 
-  # Create instance: Combinator_4x4_0, and set properties
-  set block_name Combinator_4x4
-  set block_cell_name Combinator_4x4_0
-  if { [catch {set Combinator_4x4_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $Combinator_4x4_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
   # Create instance: clk_wiz_0, and set properties
   set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:5.4 clk_wiz_0 ]
   set_property -dict [ list \
    CONFIG.CLKIN1_JITTER_PS {40.0} \
    CONFIG.CLKOUT1_DRIVES {BUFG} \
-   CONFIG.CLKOUT1_JITTER {232.016} \
-   CONFIG.CLKOUT1_PHASE_ERROR {280.643} \
-   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {251.750} \
+   CONFIG.CLKOUT1_JITTER {81.677} \
+   CONFIG.CLKOUT1_PHASE_ERROR {85.928} \
+   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {400} \
    CONFIG.CLKOUT2_DRIVES {BUFG} \
    CONFIG.CLKOUT3_DRIVES {BUFG} \
    CONFIG.CLKOUT4_DRIVES {BUFG} \
@@ -207,12 +196,12 @@ proc create_root_design { parentCell } {
    CONFIG.CLKOUT6_DRIVES {BUFG} \
    CONFIG.CLKOUT7_DRIVES {BUFG} \
    CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} \
-   CONFIG.MMCM_CLKFBOUT_MULT_F {36.000} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {4.000} \
    CONFIG.MMCM_CLKIN1_PERIOD {4.000} \
    CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
-   CONFIG.MMCM_CLKOUT0_DIVIDE_F {3.250} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {2.500} \
    CONFIG.MMCM_COMPENSATION {ZHOLD} \
-   CONFIG.MMCM_DIVCLK_DIVIDE {11} \
+   CONFIG.MMCM_DIVCLK_DIVIDE {1} \
    CONFIG.PRIMITIVE {MMCM} \
    CONFIG.PRIM_IN_FREQ {250} \
  ] $clk_wiz_0
@@ -777,6 +766,17 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_USE_M_AXI_GP0 {0} \
  ] $processing_system7_0
 
+  # Create instance: rgbCombinator_0, and set properties
+  set block_name rgbCombinator
+  set block_cell_name rgbCombinator_0
+  if { [catch {set rgbCombinator_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $rgbCombinator_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: signal_delay_0, and set properties
   set block_name signal_delay
   set block_cell_name signal_delay_0
@@ -885,7 +885,17 @@ proc create_root_design { parentCell } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
-  
+    set_property -dict [ list \
+   CONFIG.H_ACTIVE_VIDEO {800} \
+   CONFIG.H_BACK_PORCH {88} \
+   CONFIG.H_FRONT_PORCH {40} \
+   CONFIG.H_SYNC_PULSE {128} \
+   CONFIG.V_ACTIVE_VIDEO {600} \
+   CONFIG.V_BACK_PORCH {23} \
+   CONFIG.V_FRONT_PORCH {1} \
+   CONFIG.V_SYNC_PULSE {4} \
+ ] $vga_generator_0
+
   # Create instance: xlconstant_0, and set properties
   set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
   set_property -dict [ list \
@@ -904,11 +914,11 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net processing_system7_0_IIC_0 [get_bd_intf_ports HDMI_DDC] [get_bd_intf_pins processing_system7_0/IIC_0]
 
   # Create port connections
-  connect_bd_net -net Combinator_4x4_0_obus1 [get_bd_pins Combinator_4x4_0/obus1] [get_bd_pins system_ila_0/probe12] [get_bd_pins tmds_encoder_2/data_in]
+  connect_bd_net -net Combinator_4x4_0_obus1 [get_bd_pins rgbCombinator_0/obusR] [get_bd_pins system_ila_0/probe12] [get_bd_pins tmds_encoder_2/data_in]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets Combinator_4x4_0_obus1]
-  connect_bd_net -net Combinator_4x4_0_obus2 [get_bd_pins Combinator_4x4_0/obus2] [get_bd_pins system_ila_0/probe11] [get_bd_pins tmds_encoder_1/data_in]
+  connect_bd_net -net Combinator_4x4_0_obus2 [get_bd_pins rgbCombinator_0/obusG] [get_bd_pins system_ila_0/probe11] [get_bd_pins tmds_encoder_1/data_in]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets Combinator_4x4_0_obus2]
@@ -959,7 +969,7 @@ HDL_ATTRIBUTE.DEBUG {true} \
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets hcounter]
-  connect_bd_net -net mux_in_0_1 [get_bd_ports mux_in_0] [get_bd_pins Combinator_4x4_0/mux_in]
+  connect_bd_net -net mux_in_0_1 [get_bd_ports mux_in_0] [get_bd_pins rgbCombinator_0/mux_in]
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins processing_system7_0/FCLK_CLK0]
   connect_bd_net -net tmds_encoder_0_tmds_out [get_bd_pins dc_balancer_0/tmds_in] [get_bd_pins system_ila_0/probe8] [get_bd_pins tmds_encoder_0/tmds_out]
   set_property -dict [ list \
@@ -971,17 +981,17 @@ HDL_ATTRIBUTE.DEBUG {true} \
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vcounter]
-  connect_bd_net -net vga_generator_0_blue [get_bd_pins Combinator_4x4_0/obus3] [get_bd_pins system_ila_0/probe7] [get_bd_pins tmds_encoder_0/data_in]
+  connect_bd_net -net vga_generator_0_blue [get_bd_pins rgbCombinator_0/obusB] [get_bd_pins system_ila_0/probe7] [get_bd_pins tmds_encoder_0/data_in]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vga_generator_0_blue]
-  connect_bd_net -net vga_generator_0_blue1 [get_bd_pins Combinator_4x4_0/ibus3] [get_bd_pins vga_generator_0/blue]
-  connect_bd_net -net vga_generator_0_green [get_bd_pins Combinator_4x4_0/ibus2] [get_bd_pins vga_generator_0/green]
+  connect_bd_net -net vga_generator_0_blue1 [get_bd_pins rgbCombinator_0/ibusB] [get_bd_pins vga_generator_0/blue]
+  connect_bd_net -net vga_generator_0_green [get_bd_pins rgbCombinator_0/ibusG] [get_bd_pins vga_generator_0/green]
   connect_bd_net -net vga_generator_0_hsync [get_bd_pins dc_balancer_0/C0] [get_bd_pins system_ila_0/probe4] [get_bd_pins vga_generator_0/hsync]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vga_generator_0_hsync]
-  connect_bd_net -net vga_generator_0_red [get_bd_pins Combinator_4x4_0/ibus1] [get_bd_pins vga_generator_0/red]
+  connect_bd_net -net vga_generator_0_red [get_bd_pins rgbCombinator_0/ibusR] [get_bd_pins vga_generator_0/red]
   connect_bd_net -net vga_generator_0_video_on [get_bd_pins dc_balancer_0/data_enable] [get_bd_pins dc_balancer_1/data_enable] [get_bd_pins dc_balancer_2/data_enable] [get_bd_pins system_ila_0/probe6] [get_bd_pins vga_generator_0/video_on]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \

@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="33">
   <CompositeFile CompositeFileTopName="hdmi_design" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1577524279"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1577524279"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1577524279"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1577524279"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1577543056"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1577543056"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1577543056"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1577543056"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\hdmi_design_clk_wiz_0_0\hdmi_design_clk_wiz_0_0.xci" Type="IP">
         <Instance HierarchyPath="clk_wiz_0"/>
@@ -143,8 +143,8 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\hdmi_design_Combinator_4x4_0_0\hdmi_design_Combinator_4x4_0_0.xci" Type="IP">
-        <Instance HierarchyPath="Combinator_4x4_0"/>
+      <File Name="ip\hdmi_design_rgbCombinator_0_0\hdmi_design_rgbCombinator_0_0.xci" Type="IP">
+        <Instance HierarchyPath="rgbCombinator_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

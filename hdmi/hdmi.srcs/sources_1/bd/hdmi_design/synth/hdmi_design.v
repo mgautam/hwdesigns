@@ -1,7 +1,7 @@
 //Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-//Date        : Sat Dec 28 20:11:16 2019
+//Date        : Sun Dec 29 01:24:14 2019
 //Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 //Command     : generate_target hdmi_design.bd
 //Design      : hdmi_design
@@ -173,15 +173,6 @@ module hdmi_design
   assign tmds_p_0 = data_serializer_0_tmds_p;
   assign tmds_p_1 = data_serializer_1_tmds_p;
   assign tmds_p_2 = data_serializer_2_tmds_p;
-  hdmi_design_Combinator_4x4_0_0 Combinator_4x4_0
-       (.ibus1(vga_generator_0_red),
-        .ibus2(vga_generator_0_green),
-        .ibus3(vga_generator_0_blue1),
-        .ibus4({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .mux_in(mux_in_0_1),
-        .obus1(Combinator_4x4_0_obus1),
-        .obus2(Combinator_4x4_0_obus2),
-        .obus3(vga_generator_0_blue));
   hdmi_design_clk_wiz_0_0 clk_wiz_0
        (.clk_in1(processing_system7_0_FCLK_CLK0),
         .clk_out1(clk_wiz_0_clk_out2),
@@ -264,6 +255,14 @@ module hdmi_design
         .PS_PORB(FIXED_IO_ps_porb),
         .PS_SRSTB(FIXED_IO_ps_srstb),
         .USB0_VBUS_PWRFAULT(1'b0));
+  hdmi_design_rgbCombinator_0_0 rgbCombinator_0
+       (.ibusB(vga_generator_0_blue1),
+        .ibusG(vga_generator_0_green),
+        .ibusR(vga_generator_0_red),
+        .mux_in(mux_in_0_1),
+        .obusB(vga_generator_0_blue),
+        .obusG(Combinator_4x4_0_obus2),
+        .obusR(Combinator_4x4_0_obus1));
   hdmi_design_signal_delay_0_0 signal_delay_0
        (.clk(clk_wiz_0_clk_out2),
         .sig_in(clk_wiz_0_clk_out1));

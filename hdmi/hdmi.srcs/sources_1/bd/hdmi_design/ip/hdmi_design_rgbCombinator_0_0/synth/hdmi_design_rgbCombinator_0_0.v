@@ -47,43 +47,38 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:module_ref:Combinator_4x4:1.0
+// IP VLNV: xilinx.com:module_ref:rgbCombinator:1.0
 // IP Revision: 1
 
-`timescale 1ns/1ps
-
+(* X_CORE_INFO = "rgbCombinator,Vivado 2017.3" *)
+(* CHECK_LICENSE_TYPE = "hdmi_design_rgbCombinator_0_0,rgbCombinator,{}" *)
+(* CORE_GENERATION_INFO = "hdmi_design_rgbCombinator_0_0,rgbCombinator,{x_ipProduct=Vivado 2017.3,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=rgbCombinator,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
-module hdmi_design_Combinator_4x4_0_0 (
-  ibus1,
-  ibus2,
-  ibus3,
-  ibus4,
-  obus1,
-  obus2,
-  obus3,
-  obus4,
+module hdmi_design_rgbCombinator_0_0 (
+  ibusR,
+  ibusG,
+  ibusB,
+  obusR,
+  obusG,
+  obusB,
   mux_in
 );
 
-input wire [7 : 0] ibus1;
-input wire [7 : 0] ibus2;
-input wire [7 : 0] ibus3;
-input wire [7 : 0] ibus4;
-output wire [7 : 0] obus1;
-output wire [7 : 0] obus2;
-output wire [7 : 0] obus3;
-output wire [7 : 0] obus4;
+input wire [7 : 0] ibusR;
+input wire [7 : 0] ibusG;
+input wire [7 : 0] ibusB;
+output wire [7 : 0] obusR;
+output wire [7 : 0] obusG;
+output wire [7 : 0] obusB;
 input wire [1 : 0] mux_in;
 
-  Combinator_4x4 inst (
-    .ibus1(ibus1),
-    .ibus2(ibus2),
-    .ibus3(ibus3),
-    .ibus4(ibus4),
-    .obus1(obus1),
-    .obus2(obus2),
-    .obus3(obus3),
-    .obus4(obus4),
+  rgbCombinator inst (
+    .ibusR(ibusR),
+    .ibusG(ibusG),
+    .ibusB(ibusB),
+    .obusR(obusR),
+    .obusG(obusG),
+    .obusB(obusB),
     .mux_in(mux_in)
   );
 endmodule

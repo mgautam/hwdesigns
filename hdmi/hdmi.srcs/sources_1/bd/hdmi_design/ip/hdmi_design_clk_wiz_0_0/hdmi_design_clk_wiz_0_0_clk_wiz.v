@@ -56,7 +56,7 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_out1___251.748______0.000______50.0______232.016____280.643
+// clk_out1___400.000______0.000______50.0_______81.677_____85.928
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -127,11 +127,11 @@ wire clk_in2_hdmi_design_clk_wiz_0_0;
     .CLKOUT4_CASCADE      ("FALSE"),
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
-    .DIVCLK_DIVIDE        (11),
-    .CLKFBOUT_MULT_F      (36.000),
+    .DIVCLK_DIVIDE        (1),
+    .CLKFBOUT_MULT_F      (4.000),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (3.250),
+    .CLKOUT0_DIVIDE_F     (2.500),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),

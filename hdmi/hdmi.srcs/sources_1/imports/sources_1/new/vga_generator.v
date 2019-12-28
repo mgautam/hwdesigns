@@ -28,21 +28,21 @@ module vga_generator(
         output reg [9:0] hcounter, vcounter
 	);
 	// constant declarations for VGA sync parameters
-	localparam H_DISPLAY       = 640; // horizontal display area
-	localparam H_L_BORDER      =  48; // horizontal left border - Back Porch
-	localparam H_R_BORDER      =  16; // horizontal right border - Front Porch
-	localparam H_RETRACE       =  96; // horizontal retrace - Sync Pulse
-	localparam H_MAX           = H_DISPLAY + H_L_BORDER + H_R_BORDER + H_RETRACE;// - 1;
-	localparam START_H_RETRACE = H_DISPLAY + H_R_BORDER;
-	localparam END_H_RETRACE   = H_DISPLAY + H_R_BORDER + H_RETRACE;// - 1;
+	parameter H_ACTIVE_VIDEO       = 800; // horizontal display area
+	parameter H_BACK_PORCH      =  88; // horizontal left border - Back Porch
+	parameter H_FRONT_PORCH      =  40; // horizontal right border - Front Porch
+	parameter H_SYNC_PULSE       =  128; // horizontal retrace - Sync Pulse
+	localparam H_MAX           = H_ACTIVE_VIDEO + H_BACK_PORCH + H_FRONT_PORCH + H_SYNC_PULSE;// - 1;
+	localparam START_H_RETRACE = H_ACTIVE_VIDEO + H_FRONT_PORCH;
+	localparam END_H_RETRACE   = H_ACTIVE_VIDEO + H_FRONT_PORCH + H_SYNC_PULSE;// - 1;
 	
-	localparam V_DISPLAY       = 480; // vertical display area
-	localparam V_T_BORDER      =  33; // vertical top border - Back Porch //10
-	localparam V_B_BORDER      =  10; // vertical bottom border - Front Porch //33
-	localparam V_RETRACE       =   2; // vertical retrace - Sync Pulse
-	localparam V_MAX           = V_DISPLAY + V_T_BORDER + V_B_BORDER + V_RETRACE;// - 1;
-    localparam START_V_RETRACE = V_DISPLAY + V_B_BORDER;
-	localparam END_V_RETRACE   = V_DISPLAY + V_B_BORDER + V_RETRACE;// - 1;
+	parameter V_ACTIVE_VIDEO       = 600; // vertical display area
+	parameter V_BACK_PORCH      =  23; // vertical top border - Back Porch //10
+	parameter V_FRONT_PORCH      =   1; // vertical bottom border - Front Porch //33
+	parameter V_SYNC_PULSE       =   4; // vertical retrace - Sync Pulse
+	localparam V_MAX           = V_ACTIVE_VIDEO + V_BACK_PORCH + V_FRONT_PORCH + V_SYNC_PULSE;// - 1;
+    localparam START_V_RETRACE = V_ACTIVE_VIDEO + V_FRONT_PORCH;
+	localparam END_V_RETRACE   = V_ACTIVE_VIDEO + V_FRONT_PORCH + V_SYNC_PULSE;// - 1;
 	
     //reg [9:0] hcounter, vcounter;
 	initial begin
@@ -62,7 +62,7 @@ module vga_generator(
       else vsync <= 1;       
     end
     
-    assign video_on = (hcounter < H_DISPLAY) && (vcounter < V_DISPLAY);
+    assign video_on = (hcounter < H_ACTIVE_VIDEO) && (vcounter < V_ACTIVE_VIDEO);
     
     assign red = 8'h0;
     assign green = 8'h0; //video_on? 8'hff : 8'h0; //

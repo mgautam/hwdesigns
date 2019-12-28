@@ -62,7 +62,7 @@ module hdmi_design_data_serializer_2_0 (
   done
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 251748251, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 495098039, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 input wire [9 : 0] tmds_in;

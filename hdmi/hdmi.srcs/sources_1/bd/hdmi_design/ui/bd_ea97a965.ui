@@ -24,13 +24,13 @@ preplace inst tmds_encoder_0 -pg 1 -lvl 4 -y 180 -defaultsOSRD
 preplace inst clock_divider_0 -pg 1 -lvl 7 -y 970 -defaultsOSRD
 preplace inst xlconstant_1 -pg 1 -lvl 1 -y 600 -defaultsOSRD
 preplace inst tmds_encoder_1 -pg 1 -lvl 4 -y 320 -defaultsOSRD
+preplace inst rgbCombinator_0 -pg 1 -lvl 3 -y 310 -defaultsOSRD
 preplace inst tmds_encoder_2 -pg 1 -lvl 4 -y 560 -defaultsOSRD
 preplace inst dc_balancer_0 -pg 1 -lvl 5 -y 160 -defaultsOSRD
 preplace inst dc_balancer_1 -pg 1 -lvl 5 -y 360 -defaultsOSRD
 preplace inst dc_balancer_2 -pg 1 -lvl 5 -y 530 -defaultsOSRD
 preplace inst system_ila_0 -pg 1 -lvl 7 -y 480 -defaultsOSRD
 preplace inst clk_wiz_0 -pg 1 -lvl 5 -y 770 -defaultsOSRD
-preplace inst Combinator_4x4_0 -pg 1 -lvl 3 -y 420 -defaultsOSRD
 preplace inst vga_generator_0 -pg 1 -lvl 2 -y 590 -defaultsOSRD
 preplace inst data_serializer_0 -pg 1 -lvl 6 -y 330 -defaultsOSRD
 preplace inst processing_system7_0 -pg 1 -lvl 7 -y 130 -defaultsOSRD
@@ -38,8 +38,8 @@ preplace inst data_serializer_1 -pg 1 -lvl 6 -y 510 -defaultsOSRD
 preplace netloc processing_system7_0_DDR 1 7 1 NJ
 preplace netloc xlconstant_1_dout 1 1 6 160 720 NJ 720 NJ 720 1210 660 NJ 660 1940J
 preplace netloc vcounter 1 2 5 530J 640 NJ 640 1230J 620 1630J 610 2030
-preplace netloc data_serializer_2_tmds_out 1 6 1 1930
 preplace netloc vga_generator_0_green 1 2 1 500
+preplace netloc data_serializer_2_tmds_out 1 6 1 1930
 preplace netloc data_serializer_1_tmds_out 1 6 1 1970
 preplace netloc data_serializer_0_tmds_out 1 6 1 2010
 preplace netloc vga_generator_0_blue1 1 2 1 510
@@ -57,13 +57,13 @@ preplace netloc tmds_encoder_2_tmds_out 1 4 1 1230
 preplace netloc data_serializer_2_tmds_p 1 6 2 NJ 730 NJ
 preplace netloc clock_divider_0_clk_p 1 7 1 NJ
 preplace netloc clk_wiz_0_clk_out1 1 1 7 170 710 520J 550 870 250 1240 70 NJ 70 2000 900 2420
-preplace netloc Combinator_4x4_0_obus1 1 3 4 850 630 NJ 630 NJ 630 2090J
+preplace netloc Combinator_4x4_0_obus1 1 3 4 860 630 NJ 630 NJ 630 2090J
 preplace netloc data_serializer_1_tmds_p 1 6 2 1940J 250 2440J
 preplace netloc data_serializer_0_tmds_p 1 6 2 1990J 740 2460J
 preplace netloc data_serializer_0_done 1 6 2 1970J 20 2450J
 preplace netloc clk_wiz_0_clk_out2 1 5 2 1610 420 2050
-preplace netloc mux_in_0_1 1 0 3 NJ 460 NJ 460 NJ
-preplace netloc Combinator_4x4_0_obus2 1 3 4 860 390 1220J 270 1620J 410 2020J
+preplace netloc mux_in_0_1 1 0 3 20J 340 NJ 340 N
+preplace netloc Combinator_4x4_0_obus2 1 3 4 850 390 1220J 270 1620J 410 2020J
 preplace netloc processing_system7_0_FCLK_CLK0 1 4 4 1240 650 NJ 650 1950J 720 2420
 preplace netloc hcounter 1 2 5 480J 20 NJ 20 NJ 20 NJ 20 1960
 preplace netloc HPD_IN_1 1 0 8 20J 10 NJ 10 NJ 10 NJ 10 NJ 10 NJ 10 NJ 10 2460J

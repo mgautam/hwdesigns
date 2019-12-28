@@ -81,7 +81,16 @@ output wire [7 : 0] blue;
 output wire [9 : 0] hcounter;
 output wire [9 : 0] vcounter;
 
-  vga_generator inst (
+  vga_generator #(
+    .H_ACTIVE_VIDEO(800),
+    .H_BACK_PORCH(88),
+    .H_FRONT_PORCH(40),
+    .H_SYNC_PULSE(128),
+    .V_ACTIVE_VIDEO(600),
+    .V_BACK_PORCH(23),
+    .V_FRONT_PORCH(1),
+    .V_SYNC_PULSE(4)
+  ) inst (
     .clk(clk),
     .reset(reset),
     .hsync(hsync),

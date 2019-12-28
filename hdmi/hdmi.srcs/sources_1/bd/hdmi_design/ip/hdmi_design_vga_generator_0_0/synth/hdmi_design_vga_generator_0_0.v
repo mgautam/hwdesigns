@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "vga_generator,Vivado 2017.3" *)
 (* CHECK_LICENSE_TYPE = "hdmi_design_vga_generator_0_0,vga_generator,{}" *)
-(* CORE_GENERATION_INFO = "hdmi_design_vga_generator_0_0,vga_generator,{x_ipProduct=Vivado 2017.3,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=vga_generator,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "hdmi_design_vga_generator_0_0,vga_generator,{x_ipProduct=Vivado 2017.3,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=vga_generator,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,H_ACTIVE_VIDEO=800,H_BACK_PORCH=88,H_FRONT_PORCH=40,H_SYNC_PULSE=128,V_ACTIVE_VIDEO=600,V_BACK_PORCH=23,V_FRONT_PORCH=1,V_SYNC_PULSE=4}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module hdmi_design_vga_generator_0_0 (
   clk,
@@ -82,7 +82,16 @@ output wire [7 : 0] blue;
 output wire [9 : 0] hcounter;
 output wire [9 : 0] vcounter;
 
-  vga_generator inst (
+  vga_generator #(
+    .H_ACTIVE_VIDEO(800),
+    .H_BACK_PORCH(88),
+    .H_FRONT_PORCH(40),
+    .H_SYNC_PULSE(128),
+    .V_ACTIVE_VIDEO(600),
+    .V_BACK_PORCH(23),
+    .V_FRONT_PORCH(1),
+    .V_SYNC_PULSE(4)
+  ) inst (
     .clk(clk),
     .reset(reset),
     .hsync(hsync),
