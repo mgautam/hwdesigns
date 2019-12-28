@@ -29,31 +29,31 @@ module tmds_encoder(
     wire [3:0] ones_count;
     assign ones_count = data_in[0] + data_in[1] + data_in[2] + data_in[3] + data_in[4] + data_in[5] + data_in[6] + data_in[7];
     
-    wire [8:0] tmds_high_ones, tmds_high_zeros;
+    wire [8:0] tmds_high_zeros, tmds_high_ones;
     
-    assign tmds_high_ones[0] = data_in[0];
-    assign tmds_high_ones[1] = data_in[0] ^ data_in[1];
-    assign tmds_high_ones[2] = data_in[0] ^ data_in[1] ^ data_in[2];
-    assign tmds_high_ones[3] = data_in[0] ^ data_in[1] ^ data_in[2] ^ data_in[3];
-    assign tmds_high_ones[4] = data_in[0] ^ data_in[1] ^ data_in[2] ^ data_in[3] ^ data_in[4];
-    assign tmds_high_ones[5] = data_in[0] ^ data_in[1] ^ data_in[2] ^ data_in[3] ^ data_in[4] ^ data_in[5];
-    assign tmds_high_ones[6] = data_in[0] ^ data_in[1] ^ data_in[2] ^ data_in[3] ^ data_in[4] ^ data_in[5] ^ data_in[6];
-    assign tmds_high_ones[7] = data_in[0] ^ data_in[1] ^ data_in[2] ^ data_in[3] ^ data_in[4] ^ data_in[5] ^ data_in[6] ^ data_in[7];
-    assign tmds_high_ones[8] = 1;
-        
     assign tmds_high_zeros[0] = data_in[0];
-    assign tmds_high_zeros[1] = data_in[0] ~^ data_in[1];
-    assign tmds_high_zeros[2] = data_in[0] ~^ data_in[1] ~^ data_in[2];
-    assign tmds_high_zeros[3] = data_in[0] ~^ data_in[1] ~^ data_in[2] ~^ data_in[3];
-    assign tmds_high_zeros[4] = data_in[0] ~^ data_in[1] ~^ data_in[2] ~^ data_in[3] ~^ data_in[4];
-    assign tmds_high_zeros[5] = data_in[0] ~^ data_in[1] ~^ data_in[2] ~^ data_in[3] ~^ data_in[4] ~^ data_in[5];
-    assign tmds_high_zeros[6] = data_in[0] ~^ data_in[1] ~^ data_in[2] ~^ data_in[3] ~^ data_in[4] ~^ data_in[5] ~^ data_in[6];
-    assign tmds_high_zeros[7] = data_in[0] ~^ data_in[1] ~^ data_in[2] ~^ data_in[3] ~^ data_in[4] ~^ data_in[5] ~^ data_in[6] ~^ data_in[7];
-    assign tmds_high_zeros[8] = 0;    
+    assign tmds_high_zeros[1] = data_in[0] ^ data_in[1];
+    assign tmds_high_zeros[2] = data_in[0] ^ data_in[1] ^ data_in[2];
+    assign tmds_high_zeros[3] = data_in[0] ^ data_in[1] ^ data_in[2] ^ data_in[3];
+    assign tmds_high_zeros[4] = data_in[0] ^ data_in[1] ^ data_in[2] ^ data_in[3] ^ data_in[4];
+    assign tmds_high_zeros[5] = data_in[0] ^ data_in[1] ^ data_in[2] ^ data_in[3] ^ data_in[4] ^ data_in[5];
+    assign tmds_high_zeros[6] = data_in[0] ^ data_in[1] ^ data_in[2] ^ data_in[3] ^ data_in[4] ^ data_in[5] ^ data_in[6];
+    assign tmds_high_zeros[7] = data_in[0] ^ data_in[1] ^ data_in[2] ^ data_in[3] ^ data_in[4] ^ data_in[5] ^ data_in[6] ^ data_in[7];
+    assign tmds_high_zeros[8] = 1;
+        
+    assign tmds_high_ones[0] = data_in[0];
+    assign tmds_high_ones[1] = data_in[0] ~^ data_in[1];
+    assign tmds_high_ones[2] = data_in[0] ~^ data_in[1] ~^ data_in[2];
+    assign tmds_high_ones[3] = data_in[0] ~^ data_in[1] ~^ data_in[2] ~^ data_in[3];
+    assign tmds_high_ones[4] = data_in[0] ~^ data_in[1] ~^ data_in[2] ~^ data_in[3] ~^ data_in[4];
+    assign tmds_high_ones[5] = data_in[0] ~^ data_in[1] ~^ data_in[2] ~^ data_in[3] ~^ data_in[4] ~^ data_in[5];
+    assign tmds_high_ones[6] = data_in[0] ~^ data_in[1] ~^ data_in[2] ~^ data_in[3] ~^ data_in[4] ~^ data_in[5] ~^ data_in[6];
+    assign tmds_high_ones[7] = data_in[0] ~^ data_in[1] ~^ data_in[2] ~^ data_in[3] ~^ data_in[4] ~^ data_in[5] ~^ data_in[6] ~^ data_in[7];
+    assign tmds_high_ones[8] = 0;    
     
     always@(posedge clk) begin    
         //ones_count <= data_in[0] + data_in[1] + data_in[2] + data_in[3] + data_in[4] + data_in[5] + data_in[6] + data_in[7];
-        if ((ones_count > 4) || ((ones_count == 4) && (data_in[0] == 1))) tmds_out <= tmds_high_ones;
+        if ((ones_count > 4) || ((ones_count == 4) && (data_in[0] == 0))) tmds_out <= tmds_high_ones;
         else tmds_out <= tmds_high_zeros;
     end
     

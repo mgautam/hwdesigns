@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
--- Date        : Thu Dec 26 19:04:09 2019
+-- Date        : Sat Dec 28 16:59:50 2019
 -- Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 -- Command     : write_vhdl -force -mode funcsim
---               c:/Users/Gautam/Vivado/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_tmds_encoder_1_0/hdmi_design_tmds_encoder_1_0_sim_netlist.vhdl
+--               C:/Users/Gautam/Vivado/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_tmds_encoder_1_0/hdmi_design_tmds_encoder_1_0_sim_netlist.vhdl
 -- Design      : hdmi_design_tmds_encoder_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -17,45 +17,40 @@ use UNISIM.VCOMPONENTS.ALL;
 entity hdmi_design_tmds_encoder_1_0_tmds_encoder is
   port (
     tmds_out : out STD_LOGIC_VECTOR ( 8 downto 0 );
-    data_in : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    clk : in STD_LOGIC
+    clk : in STD_LOGIC;
+    data_in : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of hdmi_design_tmds_encoder_1_0_tmds_encoder : entity is "tmds_encoder";
 end hdmi_design_tmds_encoder_1_0_tmds_encoder;
 
 architecture STRUCTURE of hdmi_design_tmds_encoder_1_0_tmds_encoder is
-  signal p_0_in : STD_LOGIC_VECTOR ( 6 downto 2 );
-  signal \tmds_out[1]_i_1_n_0\ : STD_LOGIC;
-  signal \tmds_out[3]_i_1_n_0\ : STD_LOGIC;
-  signal \tmds_out[5]_i_1_n_0\ : STD_LOGIC;
-  signal \tmds_out[5]_i_2_n_0\ : STD_LOGIC;
-  signal \tmds_out[7]_i_1_n_0\ : STD_LOGIC;
-  signal \tmds_out[7]_i_2_n_0\ : STD_LOGIC;
-  signal \tmds_out[8]_i_1_n_0\ : STD_LOGIC;
+  signal p_0_in : STD_LOGIC_VECTOR ( 8 downto 1 );
+  signal tmds_high_zeros : STD_LOGIC_VECTOR ( 3 downto 1 );
   signal \tmds_out[8]_i_2_n_0\ : STD_LOGIC;
   signal \tmds_out[8]_i_3_n_0\ : STD_LOGIC;
   signal \tmds_out[8]_i_4_n_0\ : STD_LOGIC;
   signal \tmds_out[8]_i_5_n_0\ : STD_LOGIC;
+  signal \tmds_out[8]_i_6_n_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
   attribute SOFT_HLUTNM of \tmds_out[1]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \tmds_out[2]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \tmds_out[2]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \tmds_out[3]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \tmds_out[4]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \tmds_out[6]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \tmds_out[4]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \tmds_out[6]_i_1\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \tmds_out[7]_i_2\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \tmds_out[8]_i_3\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \tmds_out[8]_i_4\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \tmds_out[8]_i_4\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \tmds_out[8]_i_5\ : label is "soft_lutpair2";
 begin
 \tmds_out[1]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"69"
+      INIT => X"96"
     )
         port map (
-      I0 => \tmds_out[8]_i_1_n_0\,
+      I0 => \tmds_out[8]_i_2_n_0\,
       I1 => data_in(1),
       I2 => data_in(0),
-      O => \tmds_out[1]_i_1_n_0\
+      O => p_0_in(1)
     );
 \tmds_out[2]_i_1\: unisim.vcomponents.LUT3
     generic map(
@@ -69,15 +64,15 @@ begin
     );
 \tmds_out[3]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"69969669"
+      INIT => X"96696996"
     )
         port map (
-      I0 => \tmds_out[8]_i_1_n_0\,
+      I0 => \tmds_out[8]_i_2_n_0\,
       I1 => data_in(2),
       I2 => data_in(3),
       I3 => data_in(0),
       I4 => data_in(1),
-      O => \tmds_out[3]_i_1_n_0\
+      O => p_0_in(3)
     );
 \tmds_out[4]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -93,16 +88,16 @@ begin
     );
 \tmds_out[5]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"9669699669969669"
+      INIT => X"6996966996696996"
     )
         port map (
-      I0 => \tmds_out[8]_i_1_n_0\,
+      I0 => \tmds_out[8]_i_2_n_0\,
       I1 => data_in(3),
       I2 => data_in(2),
       I3 => data_in(5),
       I4 => data_in(4),
-      I5 => \tmds_out[5]_i_2_n_0\,
-      O => \tmds_out[5]_i_1_n_0\
+      I5 => tmds_high_zeros(1),
+      O => p_0_in(5)
     );
 \tmds_out[5]_i_2\: unisim.vcomponents.LUT2
     generic map(
@@ -111,7 +106,7 @@ begin
         port map (
       I0 => data_in(0),
       I1 => data_in(1),
-      O => \tmds_out[5]_i_2_n_0\
+      O => tmds_high_zeros(1)
     );
 \tmds_out[6]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -127,16 +122,16 @@ begin
     );
 \tmds_out[7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"9669699669969669"
+      INIT => X"6996966996696996"
     )
         port map (
-      I0 => \tmds_out[8]_i_1_n_0\,
+      I0 => \tmds_out[8]_i_2_n_0\,
       I1 => data_in(5),
       I2 => data_in(4),
       I3 => data_in(7),
       I4 => data_in(6),
-      I5 => \tmds_out[7]_i_2_n_0\,
-      O => \tmds_out[7]_i_1_n_0\
+      I5 => tmds_high_zeros(3),
+      O => p_0_in(7)
     );
 \tmds_out[7]_i_2\: unisim.vcomponents.LUT4
     generic map(
@@ -147,22 +142,29 @@ begin
       I1 => data_in(0),
       I2 => data_in(3),
       I3 => data_in(2),
-      O => \tmds_out[7]_i_2_n_0\
+      O => tmds_high_zeros(3)
     );
-\tmds_out[8]_i_1\: unisim.vcomponents.LUT6
+\tmds_out[8]_i_1\: unisim.vcomponents.LUT1
     generic map(
-      INIT => X"FFFFFFFEEAA88000"
+      INIT => X"1"
     )
         port map (
       I0 => \tmds_out[8]_i_2_n_0\,
-      I1 => \tmds_out[8]_i_3_n_0\,
-      I2 => \tmds_out[8]_i_4_n_0\,
-      I3 => data_in(7),
-      I4 => data_in(0),
-      I5 => \tmds_out[8]_i_5_n_0\,
-      O => \tmds_out[8]_i_1_n_0\
+      O => p_0_in(8)
     );
-\tmds_out[8]_i_2\: unisim.vcomponents.LUT6
+\tmds_out[8]_i_2\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFFA880"
+    )
+        port map (
+      I0 => \tmds_out[8]_i_3_n_0\,
+      I1 => \tmds_out[8]_i_4_n_0\,
+      I2 => \tmds_out[8]_i_5_n_0\,
+      I3 => data_in(7),
+      I4 => \tmds_out[8]_i_6_n_0\,
+      O => \tmds_out[8]_i_2_n_0\
+    );
+\tmds_out[8]_i_3\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"171717E817E8E8E8"
     )
@@ -173,16 +175,6 @@ begin
       I3 => data_in(6),
       I4 => data_in(5),
       I5 => data_in(4),
-      O => \tmds_out[8]_i_2_n_0\
-    );
-\tmds_out[8]_i_3\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"96"
-    )
-        port map (
-      I0 => data_in(3),
-      I1 => data_in(1),
-      I2 => data_in(2),
       O => \tmds_out[8]_i_3_n_0\
     );
 \tmds_out[8]_i_4\: unisim.vcomponents.LUT3
@@ -190,12 +182,22 @@ begin
       INIT => X"96"
     )
         port map (
+      I0 => data_in(3),
+      I1 => data_in(1),
+      I2 => data_in(2),
+      O => \tmds_out[8]_i_4_n_0\
+    );
+\tmds_out[8]_i_5\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"96"
+    )
+        port map (
       I0 => data_in(6),
       I1 => data_in(4),
       I2 => data_in(5),
-      O => \tmds_out[8]_i_4_n_0\
+      O => \tmds_out[8]_i_5_n_0\
     );
-\tmds_out[8]_i_5\: unisim.vcomponents.LUT6
+\tmds_out[8]_i_6\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"E8E8E800E8000000"
     )
@@ -206,7 +208,7 @@ begin
       I3 => data_in(3),
       I4 => data_in(2),
       I5 => data_in(1),
-      O => \tmds_out[8]_i_5_n_0\
+      O => \tmds_out[8]_i_6_n_0\
     );
 \tmds_out_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -220,7 +222,7 @@ begin
      port map (
       C => clk,
       CE => '1',
-      D => \tmds_out[1]_i_1_n_0\,
+      D => p_0_in(1),
       Q => tmds_out(1),
       R => '0'
     );
@@ -236,7 +238,7 @@ begin
      port map (
       C => clk,
       CE => '1',
-      D => \tmds_out[3]_i_1_n_0\,
+      D => p_0_in(3),
       Q => tmds_out(3),
       R => '0'
     );
@@ -252,7 +254,7 @@ begin
      port map (
       C => clk,
       CE => '1',
-      D => \tmds_out[5]_i_1_n_0\,
+      D => p_0_in(5),
       Q => tmds_out(5),
       R => '0'
     );
@@ -268,7 +270,7 @@ begin
      port map (
       C => clk,
       CE => '1',
-      D => \tmds_out[7]_i_1_n_0\,
+      D => p_0_in(7),
       Q => tmds_out(7),
       R => '0'
     );
@@ -276,7 +278,7 @@ begin
      port map (
       C => clk,
       CE => '1',
-      D => \tmds_out[8]_i_1_n_0\,
+      D => p_0_in(8),
       Q => tmds_out(8),
       R => '0'
     );
@@ -305,7 +307,7 @@ architecture STRUCTURE of hdmi_design_tmds_encoder_1_0 is
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, FREQ_HZ 25000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1";
+  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000";
 begin
 inst: entity work.hdmi_design_tmds_encoder_1_0_tmds_encoder
      port map (

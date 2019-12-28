@@ -1,7 +1,7 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-// Date        : Fri Dec 27 19:20:11 2019
+// Date        : Sat Dec 28 16:59:52 2019
 // Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Users/Gautam/Vivado/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_dc_balancer_1_0/hdmi_design_dc_balancer_1_0_sim_netlist.v
@@ -48,16 +48,16 @@ endmodule
 module hdmi_design_dc_balancer_1_0_dc_balancer
    (tmds_out,
     tmds_in,
+    clk,
     data_enable,
-    C1,
     C0,
-    clk);
+    C1);
   output [9:0]tmds_out;
   input [8:0]tmds_in;
-  input data_enable;
-  input C1;
-  input C0;
   input clk;
+  input data_enable;
+  input C0;
+  input C1;
 
   wire C0;
   wire C1;
@@ -149,13 +149,7 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   wire dc_count0__0_carry_i_15_n_0;
   wire dc_count0__0_carry_i_16_n_0;
   wire dc_count0__0_carry_i_17_n_0;
-  wire dc_count0__0_carry_i_18_n_0;
-  wire dc_count0__0_carry_i_19_n_0;
   wire dc_count0__0_carry_i_1_n_0;
-  wire dc_count0__0_carry_i_20_n_0;
-  wire dc_count0__0_carry_i_21_n_0;
-  wire dc_count0__0_carry_i_22_n_0;
-  wire dc_count0__0_carry_i_23_n_0;
   wire dc_count0__0_carry_i_2_n_0;
   wire dc_count0__0_carry_i_3_n_0;
   wire dc_count0__0_carry_i_4_n_0;
@@ -251,23 +245,17 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   wire dc_count0__89_carry__6_i_5_n_0;
   wire dc_count0__89_carry__6_n_2;
   wire dc_count0__89_carry__6_n_3;
-  wire dc_count0__89_carry_i_10_n_0;
   wire dc_count0__89_carry_i_1_n_0;
   wire dc_count0__89_carry_i_2_n_0;
   wire dc_count0__89_carry_i_3_n_0;
   wire dc_count0__89_carry_i_4_n_0;
   wire dc_count0__89_carry_i_5_n_0;
   wire dc_count0__89_carry_i_6_n_0;
-  wire dc_count0__89_carry_i_7_n_0;
   wire dc_count0__89_carry_i_8_n_0;
-  wire dc_count0__89_carry_i_9_n_0;
   wire dc_count0__89_carry_n_0;
   wire dc_count0__89_carry_n_1;
   wire dc_count0__89_carry_n_2;
   wire dc_count0__89_carry_n_3;
-  wire dc_count13_out;
-  wire dc_count1__11;
-  wire dc_count21_in;
   wire dc_count22_in;
   wire dc_count2_carry__0_i_1_n_0;
   wire dc_count2_carry__0_i_2_n_0;
@@ -347,6 +335,7 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   wire \dc_count[16]_i_5_n_0 ;
   wire \dc_count[1]_i_1_n_0 ;
   wire \dc_count[1]_i_2_n_0 ;
+  wire \dc_count[1]_i_3_n_0 ;
   wire \dc_count[20]_i_2_n_0 ;
   wire \dc_count[20]_i_3_n_0 ;
   wire \dc_count[20]_i_4_n_0 ;
@@ -470,7 +459,6 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   wire [8:0]tmds_in;
   wire [9:0]tmds_out;
   wire \tmds_out[0]_i_1_n_0 ;
-  wire \tmds_out[0]_i_2_n_0 ;
   wire \tmds_out[1]_i_1_n_0 ;
   wire \tmds_out[2]_i_1_n_0 ;
   wire \tmds_out[3]_i_1_n_0 ;
@@ -480,7 +468,8 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   wire \tmds_out[7]_i_1_n_0 ;
   wire \tmds_out[8]_i_1_n_0 ;
   wire \tmds_out[9]_i_1_n_0 ;
-  wire \tmds_out[9]_i_4_n_0 ;
+  wire \tmds_out[9]_i_2_n_0 ;
+  wire \tmds_out[9]_i_3_n_0 ;
   wire [3:1]NLW_dc_count0__0_carry__6_CO_UNCONNECTED;
   wire [3:2]NLW_dc_count0__0_carry__6_O_UNCONNECTED;
   wire [0:0]NLW_dc_count0__89_carry_O_UNCONNECTED;
@@ -710,212 +699,158 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
        (.I0(prev_dc_count[29]),
         .I1(prev_dc_count[30]),
         .O(dc_count0__0_carry__6_i_2_n_0));
-  LUT4 #(
-    .INIT(16'h6996)) 
+  LUT3 #(
+    .INIT(8'h96)) 
     dc_count0__0_carry_i_1
-       (.I0(dc_count0__0_carry_i_10_n_0),
+       (.I0(\dc_count[1]_i_2_n_0 ),
         .I1(tmds_in[8]),
-        .I2(dc_count0__0_carry_i_11_n_0),
-        .I3(prev_dc_count[1]),
+        .I2(prev_dc_count[1]),
         .O(dc_count0__0_carry_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT5 #(
-    .INIT(32'hE817817E)) 
+  LUT6 #(
+    .INIT(64'h81C0C0E8C0E8E8FC)) 
     dc_count0__0_carry_i_10
-       (.I0(dc_count0__0_carry_i_18_n_0),
-        .I1(tmds_in[0]),
-        .I2(tmds_in[7]),
-        .I3(dc_count0__0_carry_i_19_n_0),
-        .I4(dc_count0__0_carry_i_20_n_0),
-        .O(dc_count0__0_carry_i_10_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT5 #(
-    .INIT(32'h9336366C)) 
-    dc_count0__0_carry_i_11
-       (.I0(dc_count0__0_carry_i_20_n_0),
-        .I1(dc_count0__0_carry_i_19_n_0),
-        .I2(tmds_in[7]),
-        .I3(tmds_in[0]),
-        .I4(dc_count0__0_carry_i_18_n_0),
-        .O(dc_count0__0_carry_i_11_n_0));
-  LUT6 #(
-    .INIT(64'h8000000000000000)) 
-    dc_count0__0_carry_i_12
-       (.I0(dc_count0__0_carry_i_21_n_0),
-        .I1(dc_count0__0_carry_i_22_n_0),
-        .I2(tmds_in[3]),
-        .I3(tmds_in[2]),
-        .I4(tmds_in[1]),
-        .I5(dc_count0__0_carry_i_23_n_0),
-        .O(dc_count0__0_carry_i_12_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    dc_count0__0_carry_i_13
-       (.I0(dc_count0__0_carry_i_23_n_0),
-        .I1(tmds_in[1]),
-        .I2(tmds_in[2]),
-        .I3(tmds_in[3]),
-        .I4(dc_count0__0_carry_i_22_n_0),
-        .I5(dc_count0__0_carry_i_21_n_0),
-        .O(dc_count0__0_carry_i_13_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    dc_count0__0_carry_i_14
-       (.I0(dc_count0__0_carry_i_12_n_0),
-        .I1(dc_count0__0_carry_i_13_n_0),
-        .O(dc_count0__0_carry_i_14_n_0));
-  LUT6 #(
-    .INIT(64'h0115577F15577FFE)) 
-    dc_count0__0_carry_i_15
-       (.I0(dc_count0__0_carry_i_23_n_0),
-        .I1(tmds_in[3]),
-        .I2(tmds_in[2]),
+       (.I0(\dc_count[1]_i_3_n_0 ),
+        .I1(dc_count0__0_carry_i_15_n_0),
+        .I2(dc_count0__0_carry_i_16_n_0),
         .I3(tmds_in[1]),
-        .I4(dc_count0__0_carry_i_22_n_0),
-        .I5(dc_count0__0_carry_i_21_n_0),
-        .O(dc_count0__0_carry_i_15_n_0));
+        .I4(tmds_in[3]),
+        .I5(tmds_in[2]),
+        .O(dc_count0__0_carry_i_10_n_0));
   LUT6 #(
-    .INIT(64'h7FFEFEECECC8C880)) 
-    dc_count0__0_carry_i_16
-       (.I0(dc_count0__0_carry_i_21_n_0),
-        .I1(dc_count0__0_carry_i_22_n_0),
+    .INIT(64'hF66F6FF69FF9F99F)) 
+    dc_count0__0_carry_i_11
+       (.I0(dc_count0__0_carry_i_17_n_0),
+        .I1(dc_count0__0_carry_i_15_n_0),
         .I2(tmds_in[1]),
         .I3(tmds_in[2]),
         .I4(tmds_in[3]),
-        .I5(dc_count0__0_carry_i_23_n_0),
-        .O(dc_count0__0_carry_i_16_n_0));
-  LUT3 #(
-    .INIT(8'hB2)) 
-    dc_count0__0_carry_i_17
-       (.I0(dc_count0__0_carry_i_16_n_0),
-        .I1(dc_count0__0_carry_i_15_n_0),
-        .I2(prev_dc_count[2]),
-        .O(dc_count0__0_carry_i_17_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT3 #(
-    .INIT(8'h96)) 
-    dc_count0__0_carry_i_18
-       (.I0(tmds_in[6]),
-        .I1(tmds_in[4]),
-        .I2(tmds_in[5]),
-        .O(dc_count0__0_carry_i_18_n_0));
+        .I5(\dc_count[1]_i_3_n_0 ),
+        .O(dc_count0__0_carry_i_11_n_0));
   LUT6 #(
-    .INIT(64'h171717E817E8E8E8)) 
-    dc_count0__0_carry_i_19
-       (.I0(tmds_in[3]),
-        .I1(tmds_in[2]),
-        .I2(tmds_in[1]),
-        .I3(tmds_in[6]),
-        .I4(tmds_in[5]),
-        .I5(tmds_in[4]),
-        .O(dc_count0__0_carry_i_19_n_0));
-  LUT4 #(
-    .INIT(16'hFFE8)) 
-    dc_count0__0_carry_i_2
-       (.I0(prev_dc_count[3]),
-        .I1(dc_count0__0_carry_i_12_n_0),
-        .I2(dc_count0__0_carry_i_13_n_0),
-        .I3(prev_dc_count[4]),
-        .O(dc_count0__0_carry_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT3 #(
-    .INIT(8'h96)) 
-    dc_count0__0_carry_i_20
-       (.I0(tmds_in[3]),
-        .I1(tmds_in[1]),
+    .INIT(64'h4114BEEBBEEB4114)) 
+    dc_count0__0_carry_i_12
+       (.I0(\dc_count[1]_i_3_n_0 ),
+        .I1(tmds_in[3]),
         .I2(tmds_in[2]),
-        .O(dc_count0__0_carry_i_20_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'h96696996)) 
-    dc_count0__0_carry_i_21
-       (.I0(tmds_in[5]),
-        .I1(tmds_in[4]),
-        .I2(tmds_in[6]),
-        .I3(tmds_in[7]),
-        .I4(tmds_in[0]),
-        .O(dc_count0__0_carry_i_21_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'hE88E8EE8)) 
-    dc_count0__0_carry_i_22
-       (.I0(tmds_in[7]),
-        .I1(tmds_in[0]),
-        .I2(tmds_in[5]),
+        .I3(tmds_in[1]),
+        .I4(dc_count0__0_carry_i_15_n_0),
+        .I5(dc_count0__0_carry_i_17_n_0),
+        .O(dc_count0__0_carry_i_12_n_0));
+  LUT6 #(
+    .INIT(64'hEEEEEEEE8EE8E88E)) 
+    dc_count0__0_carry_i_13
+       (.I0(dc_count0__0_carry_i_17_n_0),
+        .I1(dc_count0__0_carry_i_15_n_0),
+        .I2(tmds_in[1]),
+        .I3(tmds_in[2]),
+        .I4(tmds_in[3]),
+        .I5(\dc_count[1]_i_3_n_0 ),
+        .O(dc_count0__0_carry_i_13_n_0));
+  LUT6 #(
+    .INIT(64'hE8E8E800E8000000)) 
+    dc_count0__0_carry_i_14
+       (.I0(tmds_in[1]),
+        .I1(tmds_in[3]),
+        .I2(tmds_in[2]),
         .I3(tmds_in[4]),
         .I4(tmds_in[6]),
-        .O(dc_count0__0_carry_i_22_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT3 #(
-    .INIT(8'hE8)) 
-    dc_count0__0_carry_i_23
+        .I5(tmds_in[5]),
+        .O(dc_count0__0_carry_i_14_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT5 #(
+    .INIT(32'h006969FF)) 
+    dc_count0__0_carry_i_15
        (.I0(tmds_in[4]),
-        .I1(tmds_in[5]),
-        .I2(tmds_in[6]),
-        .O(dc_count0__0_carry_i_23_n_0));
-  LUT5 #(
-    .INIT(32'h60660060)) 
+        .I1(tmds_in[6]),
+        .I2(tmds_in[5]),
+        .I3(tmds_in[0]),
+        .I4(tmds_in[7]),
+        .O(dc_count0__0_carry_i_15_n_0));
+  LUT3 #(
+    .INIT(8'h17)) 
+    dc_count0__0_carry_i_16
+       (.I0(tmds_in[5]),
+        .I1(tmds_in[6]),
+        .I2(tmds_in[4]),
+        .O(dc_count0__0_carry_i_16_n_0));
+  LUT6 #(
+    .INIT(64'hE8E8E817E8171717)) 
+    dc_count0__0_carry_i_17
+       (.I0(tmds_in[4]),
+        .I1(tmds_in[6]),
+        .I2(tmds_in[5]),
+        .I3(tmds_in[1]),
+        .I4(tmds_in[3]),
+        .I5(tmds_in[2]),
+        .O(dc_count0__0_carry_i_17_n_0));
+  LUT1 #(
+    .INIT(2'h1)) 
+    dc_count0__0_carry_i_2
+       (.I0(prev_dc_count[5]),
+        .O(dc_count0__0_carry_i_2_n_0));
+  LUT4 #(
+    .INIT(16'h0832)) 
     dc_count0__0_carry_i_3
-       (.I0(dc_count0__0_carry_i_14_n_0),
-        .I1(prev_dc_count[3]),
-        .I2(prev_dc_count[2]),
-        .I3(dc_count0__0_carry_i_15_n_0),
-        .I4(dc_count0__0_carry_i_16_n_0),
+       (.I0(prev_dc_count[2]),
+        .I1(dc_count0__0_carry_i_10_n_0),
+        .I2(dc_count0__0_carry_i_11_n_0),
+        .I3(prev_dc_count[3]),
         .O(dc_count0__0_carry_i_3_n_0));
-  LUT5 #(
-    .INIT(32'h69690069)) 
+  (* HLUTNM = "lutpair0" *) 
+  LUT4 #(
+    .INIT(16'hE803)) 
     dc_count0__0_carry_i_4
-       (.I0(dc_count0__0_carry_i_16_n_0),
-        .I1(dc_count0__0_carry_i_15_n_0),
-        .I2(prev_dc_count[2]),
-        .I3(dc_count0__0_carry_i_10_n_0),
-        .I4(tmds_in[8]),
+       (.I0(tmds_in[8]),
+        .I1(\dc_count[1]_i_2_n_0 ),
+        .I2(dc_count0__0_carry_i_12_n_0),
+        .I3(prev_dc_count[2]),
         .O(dc_count0__0_carry_i_4_n_0));
   LUT4 #(
-    .INIT(16'h8EE8)) 
+    .INIT(16'hCAAC)) 
     dc_count0__0_carry_i_5
-       (.I0(dc_count0__0_carry_i_11_n_0),
-        .I1(prev_dc_count[1]),
-        .I2(dc_count0__0_carry_i_10_n_0),
-        .I3(tmds_in[8]),
+       (.I0(prev_dc_count[1]),
+        .I1(dc_count0__0_carry_i_12_n_0),
+        .I2(tmds_in[8]),
+        .I3(\dc_count[1]_i_2_n_0 ),
         .O(dc_count0__0_carry_i_5_n_0));
-  LUT5 #(
-    .INIT(32'hFEEA0115)) 
-    dc_count0__0_carry_i_6
-       (.I0(prev_dc_count[4]),
-        .I1(dc_count0__0_carry_i_13_n_0),
-        .I2(dc_count0__0_carry_i_12_n_0),
-        .I3(prev_dc_count[3]),
-        .I4(prev_dc_count[5]),
-        .O(dc_count0__0_carry_i_6_n_0));
-  LUT5 #(
-    .INIT(32'h6CC9C993)) 
-    dc_count0__0_carry_i_7
-       (.I0(dc_count0__0_carry_i_17_n_0),
-        .I1(prev_dc_count[4]),
-        .I2(dc_count0__0_carry_i_13_n_0),
-        .I3(dc_count0__0_carry_i_12_n_0),
-        .I4(prev_dc_count[3]),
-        .O(dc_count0__0_carry_i_7_n_0));
   LUT6 #(
-    .INIT(64'h6996696996966996)) 
+    .INIT(64'hFFFFFD44000002BB)) 
+    dc_count0__0_carry_i_6
+       (.I0(dc_count0__0_carry_i_13_n_0),
+        .I1(dc_count0__0_carry_i_14_n_0),
+        .I2(dc_count0__0_carry_i_11_n_0),
+        .I3(prev_dc_count[3]),
+        .I4(prev_dc_count[4]),
+        .I5(prev_dc_count[5]),
+        .O(dc_count0__0_carry_i_6_n_0));
+  LUT6 #(
+    .INIT(64'hFFDBF3B200240C4D)) 
+    dc_count0__0_carry_i_7
+       (.I0(prev_dc_count[2]),
+        .I1(dc_count0__0_carry_i_13_n_0),
+        .I2(dc_count0__0_carry_i_14_n_0),
+        .I3(dc_count0__0_carry_i_11_n_0),
+        .I4(prev_dc_count[3]),
+        .I5(prev_dc_count[4]),
+        .O(dc_count0__0_carry_i_7_n_0));
+  LUT5 #(
+    .INIT(32'h99669669)) 
     dc_count0__0_carry_i_8
        (.I0(dc_count0__0_carry_i_4_n_0),
         .I1(prev_dc_count[3]),
-        .I2(dc_count0__0_carry_i_14_n_0),
-        .I3(dc_count0__0_carry_i_16_n_0),
-        .I4(dc_count0__0_carry_i_15_n_0),
-        .I5(prev_dc_count[2]),
+        .I2(dc_count0__0_carry_i_11_n_0),
+        .I3(dc_count0__0_carry_i_10_n_0),
+        .I4(prev_dc_count[2]),
         .O(dc_count0__0_carry_i_8_n_0));
-  LUT6 #(
-    .INIT(64'h6996966969966996)) 
+  (* HLUTNM = "lutpair0" *) 
+  LUT5 #(
+    .INIT(32'hE81717E8)) 
     dc_count0__0_carry_i_9
-       (.I0(dc_count0__0_carry_i_16_n_0),
-        .I1(dc_count0__0_carry_i_15_n_0),
-        .I2(dc_count0__0_carry_i_5_n_0),
+       (.I0(tmds_in[8]),
+        .I1(\dc_count[1]_i_2_n_0 ),
+        .I2(dc_count0__0_carry_i_12_n_0),
         .I3(prev_dc_count[2]),
-        .I4(tmds_in[8]),
-        .I5(dc_count0__0_carry_i_10_n_0),
+        .I4(dc_count0__0_carry_i_5_n_0),
         .O(dc_count0__0_carry_i_9_n_0));
   CARRY4 dc_count0__89_carry
        (.CI(1'b0),
@@ -923,7 +858,7 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
         .CYINIT(1'b0),
         .DI({dc_count0__89_carry_i_1_n_0,dc_count0__89_carry_i_2_n_0,dc_count0__89_carry_i_3_n_0,prev_dc_count[1]}),
         .O({dc_count0[4:2],NLW_dc_count0__89_carry_O_UNCONNECTED[0]}),
-        .S({dc_count0__89_carry_i_4_n_0,dc_count0__89_carry_i_5_n_0,dc_count0__89_carry_i_6_n_0,dc_count0__89_carry_i_7_n_0}));
+        .S({dc_count0__89_carry_i_4_n_0,dc_count0__89_carry_i_5_n_0,dc_count0__89_carry_i_6_n_0,dc_count0[1]}));
   CARRY4 dc_count0__89_carry__0
        (.CI(dc_count0__89_carry_n_0),
         .CO({dc_count0__89_carry__0_n_0,dc_count0__89_carry__0_n_1,dc_count0__89_carry__0_n_2,dc_count0__89_carry__0_n_3}),
@@ -935,52 +870,52 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
     .INIT(4'h2)) 
     dc_count0__89_carry__0_i_1
        (.I0(prev_dc_count[7]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__0_i_1_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__0_i_2
        (.I0(prev_dc_count[6]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__0_i_2_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__0_i_3
        (.I0(prev_dc_count[5]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__0_i_3_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__0_i_4
        (.I0(prev_dc_count[4]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__0_i_4_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__0_i_5
        (.I0(prev_dc_count[7]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[8]),
         .O(dc_count0__89_carry__0_i_5_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__0_i_6
        (.I0(prev_dc_count[6]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[7]),
         .O(dc_count0__89_carry__0_i_6_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__0_i_7
        (.I0(prev_dc_count[5]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[6]),
         .O(dc_count0__89_carry__0_i_7_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__0_i_8
        (.I0(prev_dc_count[4]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[5]),
         .O(dc_count0__89_carry__0_i_8_n_0));
   CARRY4 dc_count0__89_carry__1
@@ -994,52 +929,52 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
     .INIT(4'h2)) 
     dc_count0__89_carry__1_i_1
        (.I0(prev_dc_count[11]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__1_i_1_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__1_i_2
        (.I0(prev_dc_count[10]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__1_i_2_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__1_i_3
        (.I0(prev_dc_count[9]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__1_i_3_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__1_i_4
        (.I0(prev_dc_count[8]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__1_i_4_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__1_i_5
        (.I0(prev_dc_count[11]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[12]),
         .O(dc_count0__89_carry__1_i_5_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__1_i_6
        (.I0(prev_dc_count[10]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[11]),
         .O(dc_count0__89_carry__1_i_6_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__1_i_7
        (.I0(prev_dc_count[9]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[10]),
         .O(dc_count0__89_carry__1_i_7_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__1_i_8
        (.I0(prev_dc_count[8]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[9]),
         .O(dc_count0__89_carry__1_i_8_n_0));
   CARRY4 dc_count0__89_carry__2
@@ -1053,52 +988,52 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
     .INIT(4'h2)) 
     dc_count0__89_carry__2_i_1
        (.I0(prev_dc_count[15]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__2_i_1_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__2_i_2
        (.I0(prev_dc_count[14]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__2_i_2_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__2_i_3
        (.I0(prev_dc_count[13]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__2_i_3_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__2_i_4
        (.I0(prev_dc_count[12]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__2_i_4_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__2_i_5
        (.I0(prev_dc_count[15]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[16]),
         .O(dc_count0__89_carry__2_i_5_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__2_i_6
        (.I0(prev_dc_count[14]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[15]),
         .O(dc_count0__89_carry__2_i_6_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__2_i_7
        (.I0(prev_dc_count[13]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[14]),
         .O(dc_count0__89_carry__2_i_7_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__2_i_8
        (.I0(prev_dc_count[12]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[13]),
         .O(dc_count0__89_carry__2_i_8_n_0));
   CARRY4 dc_count0__89_carry__3
@@ -1112,52 +1047,52 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
     .INIT(4'h2)) 
     dc_count0__89_carry__3_i_1
        (.I0(prev_dc_count[19]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__3_i_1_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__3_i_2
        (.I0(prev_dc_count[18]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__3_i_2_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__3_i_3
        (.I0(prev_dc_count[17]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__3_i_3_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__3_i_4
        (.I0(prev_dc_count[16]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__3_i_4_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__3_i_5
        (.I0(prev_dc_count[19]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[20]),
         .O(dc_count0__89_carry__3_i_5_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__3_i_6
        (.I0(prev_dc_count[18]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[19]),
         .O(dc_count0__89_carry__3_i_6_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__3_i_7
        (.I0(prev_dc_count[17]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[18]),
         .O(dc_count0__89_carry__3_i_7_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__3_i_8
        (.I0(prev_dc_count[16]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[17]),
         .O(dc_count0__89_carry__3_i_8_n_0));
   CARRY4 dc_count0__89_carry__4
@@ -1171,52 +1106,52 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
     .INIT(4'h2)) 
     dc_count0__89_carry__4_i_1
        (.I0(prev_dc_count[23]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__4_i_1_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__4_i_2
        (.I0(prev_dc_count[22]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__4_i_2_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__4_i_3
        (.I0(prev_dc_count[21]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__4_i_3_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__4_i_4
        (.I0(prev_dc_count[20]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__4_i_4_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__4_i_5
        (.I0(prev_dc_count[23]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[24]),
         .O(dc_count0__89_carry__4_i_5_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__4_i_6
        (.I0(prev_dc_count[22]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[23]),
         .O(dc_count0__89_carry__4_i_6_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__4_i_7
        (.I0(prev_dc_count[21]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[22]),
         .O(dc_count0__89_carry__4_i_7_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__4_i_8
        (.I0(prev_dc_count[20]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[21]),
         .O(dc_count0__89_carry__4_i_8_n_0));
   CARRY4 dc_count0__89_carry__5
@@ -1230,52 +1165,52 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
     .INIT(4'h2)) 
     dc_count0__89_carry__5_i_1
        (.I0(prev_dc_count[27]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__5_i_1_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__5_i_2
        (.I0(prev_dc_count[26]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__5_i_2_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__5_i_3
        (.I0(prev_dc_count[25]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__5_i_3_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__5_i_4
        (.I0(prev_dc_count[24]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__5_i_4_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__5_i_5
        (.I0(prev_dc_count[27]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[28]),
         .O(dc_count0__89_carry__5_i_5_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__5_i_6
        (.I0(prev_dc_count[26]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[27]),
         .O(dc_count0__89_carry__5_i_6_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__5_i_7
        (.I0(prev_dc_count[25]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[26]),
         .O(dc_count0__89_carry__5_i_7_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__5_i_8
        (.I0(prev_dc_count[24]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[25]),
         .O(dc_count0__89_carry__5_i_8_n_0));
   CARRY4 dc_count0__89_carry__6
@@ -1289,116 +1224,101 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
     .INIT(4'h2)) 
     dc_count0__89_carry__6_i_1
        (.I0(prev_dc_count[29]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__6_i_1_n_0));
   LUT2 #(
     .INIT(4'h2)) 
     dc_count0__89_carry__6_i_2
        (.I0(prev_dc_count[28]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .O(dc_count0__89_carry__6_i_2_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__6_i_3
-       (.I0(prev_dc_count[30]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+       (.I0(dc_count0__89_carry_i_8_n_0),
+        .I1(prev_dc_count[30]),
         .I2(prev_dc_count[31]),
         .O(dc_count0__89_carry__6_i_3_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__6_i_4
        (.I0(prev_dc_count[29]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[30]),
         .O(dc_count0__89_carry__6_i_4_n_0));
   LUT3 #(
     .INIT(8'hE1)) 
     dc_count0__89_carry__6_i_5
        (.I0(prev_dc_count[28]),
-        .I1(dc_count0__89_carry_i_10_n_0),
+        .I1(dc_count0__89_carry_i_8_n_0),
         .I2(prev_dc_count[29]),
         .O(dc_count0__89_carry__6_i_5_n_0));
-  LUT2 #(
-    .INIT(4'h8)) 
+  LUT3 #(
+    .INIT(8'h60)) 
     dc_count0__89_carry_i_1
-       (.I0(dc_count0__89_carry_i_8_n_0),
-        .I1(prev_dc_count[3]),
+       (.I0(dc_count0__0_carry_i_11_n_0),
+        .I1(dc_count0__0_carry_i_10_n_0),
+        .I2(prev_dc_count[3]),
         .O(dc_count0__89_carry_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h01131337377F7FFF)) 
-    dc_count0__89_carry_i_10
-       (.I0(dc_count0__0_carry_i_21_n_0),
-        .I1(dc_count0__0_carry_i_22_n_0),
-        .I2(tmds_in[3]),
-        .I3(tmds_in[2]),
-        .I4(tmds_in[1]),
-        .I5(dc_count0__0_carry_i_23_n_0),
-        .O(dc_count0__89_carry_i_10_n_0));
+  (* HLUTNM = "lutpair2" *) 
+  LUT3 #(
+    .INIT(8'h60)) 
+    dc_count0__89_carry_i_2
+       (.I0(\dc_count[1]_i_2_n_0 ),
+        .I1(dc_count0__0_carry_i_12_n_0),
+        .I2(prev_dc_count[2]),
+        .O(dc_count0__89_carry_i_2_n_0));
+  (* HLUTNM = "lutpair1" *) 
   LUT2 #(
     .INIT(4'h8)) 
-    dc_count0__89_carry_i_2
-       (.I0(dc_count0__89_carry_i_9_n_0),
-        .I1(prev_dc_count[2]),
-        .O(dc_count0__89_carry_i_2_n_0));
-  (* HLUTNM = "lutpair0" *) 
-  LUT3 #(
-    .INIT(8'h28)) 
     dc_count0__89_carry_i_3
-       (.I0(tmds_in[8]),
-        .I1(dc_count0__0_carry_i_11_n_0),
-        .I2(dc_count0__0_carry_i_10_n_0),
+       (.I0(\dc_count[1]_i_2_n_0 ),
+        .I1(tmds_in[8]),
         .O(dc_count0__89_carry_i_3_n_0));
-  LUT4 #(
-    .INIT(16'h7887)) 
+  LUT5 #(
+    .INIT(32'h9F60609F)) 
     dc_count0__89_carry_i_4
-       (.I0(prev_dc_count[3]),
-        .I1(dc_count0__89_carry_i_8_n_0),
-        .I2(dc_count0__89_carry_i_10_n_0),
-        .I3(prev_dc_count[4]),
-        .O(dc_count0__89_carry_i_4_n_0));
-  LUT3 #(
-    .INIT(8'h96)) 
-    dc_count0__89_carry_i_5
-       (.I0(dc_count0__89_carry_i_2_n_0),
-        .I1(dc_count0__89_carry_i_8_n_0),
+       (.I0(dc_count0__0_carry_i_11_n_0),
+        .I1(dc_count0__0_carry_i_10_n_0),
         .I2(prev_dc_count[3]),
-        .O(dc_count0__89_carry_i_5_n_0));
-  LUT3 #(
-    .INIT(8'h96)) 
-    dc_count0__89_carry_i_6
-       (.I0(dc_count0__89_carry_i_9_n_0),
-        .I1(prev_dc_count[2]),
-        .I2(dc_count0__89_carry_i_3_n_0),
-        .O(dc_count0__89_carry_i_6_n_0));
-  (* HLUTNM = "lutpair0" *) 
+        .I3(dc_count0__89_carry_i_8_n_0),
+        .I4(prev_dc_count[4]),
+        .O(dc_count0__89_carry_i_4_n_0));
   LUT4 #(
     .INIT(16'h6996)) 
+    dc_count0__89_carry_i_5
+       (.I0(dc_count0__0_carry_i_11_n_0),
+        .I1(dc_count0__0_carry_i_10_n_0),
+        .I2(dc_count0__89_carry_i_2_n_0),
+        .I3(prev_dc_count[3]),
+        .O(dc_count0__89_carry_i_5_n_0));
+  (* HLUTNM = "lutpair2" *) 
+  LUT4 #(
+    .INIT(16'h6996)) 
+    dc_count0__89_carry_i_6
+       (.I0(\dc_count[1]_i_2_n_0 ),
+        .I1(dc_count0__0_carry_i_12_n_0),
+        .I2(prev_dc_count[2]),
+        .I3(dc_count0__89_carry_i_3_n_0),
+        .O(dc_count0__89_carry_i_6_n_0));
+  (* HLUTNM = "lutpair1" *) 
+  LUT3 #(
+    .INIT(8'h96)) 
     dc_count0__89_carry_i_7
-       (.I0(tmds_in[8]),
-        .I1(dc_count0__0_carry_i_11_n_0),
-        .I2(dc_count0__0_carry_i_10_n_0),
-        .I3(prev_dc_count[1]),
-        .O(dc_count0__89_carry_i_7_n_0));
+       (.I0(\dc_count[1]_i_2_n_0 ),
+        .I1(tmds_in[8]),
+        .I2(prev_dc_count[1]),
+        .O(dc_count0[1]));
   LUT6 #(
-    .INIT(64'hFEECECC8C8808001)) 
+    .INIT(64'hC0E8E8FCE8FCFCFE)) 
     dc_count0__89_carry_i_8
-       (.I0(dc_count0__0_carry_i_21_n_0),
-        .I1(dc_count0__0_carry_i_22_n_0),
-        .I2(tmds_in[3]),
-        .I3(tmds_in[2]),
-        .I4(tmds_in[1]),
-        .I5(dc_count0__0_carry_i_23_n_0),
+       (.I0(\dc_count[1]_i_3_n_0 ),
+        .I1(dc_count0__0_carry_i_15_n_0),
+        .I2(dc_count0__0_carry_i_16_n_0),
+        .I3(tmds_in[1]),
+        .I4(tmds_in[3]),
+        .I5(tmds_in[2]),
         .O(dc_count0__89_carry_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT5 #(
-    .INIT(32'h96696996)) 
-    dc_count0__89_carry_i_9
-       (.I0(dc_count0__0_carry_i_21_n_0),
-        .I1(tmds_in[2]),
-        .I2(tmds_in[1]),
-        .I3(tmds_in[3]),
-        .I4(dc_count0__0_carry_i_11_n_0),
-        .O(dc_count0__89_carry_i_9_n_0));
   CARRY4 dc_count2_carry
        (.CI(1'b0),
         .CO({dc_count2_carry_n_0,dc_count2_carry_n_1,dc_count2_carry_n_2,dc_count2_carry_n_3}),
@@ -1423,9 +1343,9 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   LUT3 #(
     .INIT(8'h01)) 
     dc_count2_carry__0_i_2
-       (.I0(prev_dc_count[20]),
-        .I1(prev_dc_count[19]),
-        .I2(prev_dc_count[18]),
+       (.I0(prev_dc_count[19]),
+        .I1(prev_dc_count[18]),
+        .I2(prev_dc_count[20]),
         .O(dc_count2_carry__0_i_2_n_0));
   LUT3 #(
     .INIT(8'h01)) 
@@ -1437,9 +1357,9 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   LUT3 #(
     .INIT(8'h01)) 
     dc_count2_carry__0_i_4
-       (.I0(prev_dc_count[14]),
-        .I1(prev_dc_count[13]),
-        .I2(prev_dc_count[12]),
+       (.I0(prev_dc_count[13]),
+        .I1(prev_dc_count[12]),
+        .I2(prev_dc_count[14]),
         .O(dc_count2_carry__0_i_4_n_0));
   CARRY4 dc_count2_carry__1
        (.CI(dc_count2_carry__0_n_0),
@@ -1464,9 +1384,9 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   LUT3 #(
     .INIT(8'h01)) 
     dc_count2_carry__1_i_3
-       (.I0(prev_dc_count[26]),
-        .I1(prev_dc_count[25]),
-        .I2(prev_dc_count[24]),
+       (.I0(prev_dc_count[25]),
+        .I1(prev_dc_count[24]),
+        .I2(prev_dc_count[26]),
         .O(dc_count2_carry__1_i_3_n_0));
   LUT3 #(
     .INIT(8'h01)) 
@@ -1478,9 +1398,9 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   LUT3 #(
     .INIT(8'h01)) 
     dc_count2_carry_i_2
-       (.I0(prev_dc_count[8]),
-        .I1(prev_dc_count[7]),
-        .I2(prev_dc_count[6]),
+       (.I0(prev_dc_count[7]),
+        .I1(prev_dc_count[6]),
+        .I2(prev_dc_count[8]),
         .O(dc_count2_carry_i_2_n_0));
   LUT3 #(
     .INIT(8'h01)) 
@@ -1512,26 +1432,26 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry__0_i_1
-       (.I0(prev_dc_count[14]),
-        .I1(prev_dc_count[15]),
+       (.I0(prev_dc_count[15]),
+        .I1(prev_dc_count[14]),
         .O(dc_count3_carry__0_i_1_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry__0_i_2
-       (.I0(prev_dc_count[12]),
-        .I1(prev_dc_count[13]),
+       (.I0(prev_dc_count[13]),
+        .I1(prev_dc_count[12]),
         .O(dc_count3_carry__0_i_2_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry__0_i_3
-       (.I0(prev_dc_count[10]),
-        .I1(prev_dc_count[11]),
+       (.I0(prev_dc_count[11]),
+        .I1(prev_dc_count[10]),
         .O(dc_count3_carry__0_i_3_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry__0_i_4
-       (.I0(prev_dc_count[8]),
-        .I1(prev_dc_count[9]),
+       (.I0(prev_dc_count[9]),
+        .I1(prev_dc_count[8]),
         .O(dc_count3_carry__0_i_4_n_0));
   LUT2 #(
     .INIT(4'h1)) 
@@ -1567,26 +1487,26 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry__1_i_1
-       (.I0(prev_dc_count[22]),
-        .I1(prev_dc_count[23]),
+       (.I0(prev_dc_count[23]),
+        .I1(prev_dc_count[22]),
         .O(dc_count3_carry__1_i_1_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry__1_i_2
-       (.I0(prev_dc_count[20]),
-        .I1(prev_dc_count[21]),
+       (.I0(prev_dc_count[21]),
+        .I1(prev_dc_count[20]),
         .O(dc_count3_carry__1_i_2_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry__1_i_3
-       (.I0(prev_dc_count[18]),
-        .I1(prev_dc_count[19]),
+       (.I0(prev_dc_count[19]),
+        .I1(prev_dc_count[18]),
         .O(dc_count3_carry__1_i_3_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry__1_i_4
-       (.I0(prev_dc_count[16]),
-        .I1(prev_dc_count[17]),
+       (.I0(prev_dc_count[17]),
+        .I1(prev_dc_count[16]),
         .O(dc_count3_carry__1_i_4_n_0));
   LUT2 #(
     .INIT(4'h1)) 
@@ -1628,20 +1548,20 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry__2_i_2
-       (.I0(prev_dc_count[28]),
-        .I1(prev_dc_count[29]),
+       (.I0(prev_dc_count[29]),
+        .I1(prev_dc_count[28]),
         .O(dc_count3_carry__2_i_2_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry__2_i_3
-       (.I0(prev_dc_count[26]),
-        .I1(prev_dc_count[27]),
+       (.I0(prev_dc_count[27]),
+        .I1(prev_dc_count[26]),
         .O(dc_count3_carry__2_i_3_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry__2_i_4
-       (.I0(prev_dc_count[24]),
-        .I1(prev_dc_count[25]),
+       (.I0(prev_dc_count[25]),
+        .I1(prev_dc_count[24]),
         .O(dc_count3_carry__2_i_4_n_0));
   LUT2 #(
     .INIT(4'h1)) 
@@ -1670,20 +1590,20 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry_i_1
-       (.I0(prev_dc_count[6]),
-        .I1(prev_dc_count[7]),
+       (.I0(prev_dc_count[7]),
+        .I1(prev_dc_count[6]),
         .O(dc_count3_carry_i_1_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry_i_2
-       (.I0(prev_dc_count[4]),
-        .I1(prev_dc_count[5]),
+       (.I0(prev_dc_count[5]),
+        .I1(prev_dc_count[4]),
         .O(dc_count3_carry_i_2_n_0));
   LUT2 #(
     .INIT(4'hE)) 
     dc_count3_carry_i_3
-       (.I0(prev_dc_count[2]),
-        .I1(prev_dc_count[3]),
+       (.I0(prev_dc_count[3]),
+        .I1(prev_dc_count[2]),
         .O(dc_count3_carry_i_3_n_0));
   LUT2 #(
     .INIT(4'h1)) 
@@ -1709,231 +1629,230 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
        (.I0(prev_dc_count[1]),
         .O(dc_count3_carry_i_7_n_0));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[12]_i_2 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__1_n_5),
+        .I1(dc_count0__0_carry__1_n_5),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[12]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[12]),
         .O(\dc_count[12]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[12]_i_3 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__1_n_6),
+        .I1(dc_count0__0_carry__1_n_6),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[11]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[11]),
         .O(\dc_count[12]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[12]_i_4 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__1_n_7),
+        .I1(dc_count0__0_carry__1_n_7),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[10]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[10]),
         .O(\dc_count[12]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[12]_i_5 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__0_n_4),
+        .I1(dc_count0__0_carry__0_n_4),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[9]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[9]),
         .O(\dc_count[12]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[16]_i_2 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__2_n_5),
+        .I1(dc_count0__0_carry__2_n_5),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[16]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[16]),
         .O(\dc_count[16]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[16]_i_3 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__2_n_6),
+        .I1(dc_count0__0_carry__2_n_6),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[15]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[15]),
         .O(\dc_count[16]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[16]_i_4 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__2_n_7),
+        .I1(dc_count0__0_carry__2_n_7),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[14]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[14]),
         .O(\dc_count[16]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[16]_i_5 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__1_n_4),
+        .I1(dc_count0__0_carry__1_n_4),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[13]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[13]),
         .O(\dc_count[16]_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h5555CF03AAAACF03)) 
+  LUT5 #(
+    .INIT(32'h5A5A9669)) 
     \dc_count[1]_i_1 
-       (.I0(\dc_count[1]_i_2_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry_i_1_n_0),
-        .I3(dc_count0[1]),
-        .I4(dc_count13_out),
-        .I5(prev_dc_count[1]),
+       (.I0(prev_dc_count[1]),
+        .I1(tmds_in[8]),
+        .I2(\dc_count[1]_i_2_n_0 ),
+        .I3(\tmds_out[9]_i_3_n_0 ),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .O(\dc_count[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT4 #(
-    .INIT(16'hAABE)) 
+    .INIT(16'h9669)) 
     \dc_count[1]_i_2 
-       (.I0(dc_count0__89_carry_i_3_n_0),
-        .I1(dc_count0__0_carry_i_11_n_0),
-        .I2(dc_count0__0_carry_i_10_n_0),
-        .I3(tmds_in[8]),
+       (.I0(tmds_in[1]),
+        .I1(tmds_in[2]),
+        .I2(tmds_in[3]),
+        .I3(\dc_count[1]_i_3_n_0 ),
         .O(\dc_count[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT4 #(
-    .INIT(16'h6996)) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT5 #(
+    .INIT(32'h69969669)) 
     \dc_count[1]_i_3 
-       (.I0(dc_count0__0_carry_i_10_n_0),
-        .I1(dc_count0__0_carry_i_11_n_0),
-        .I2(tmds_in[8]),
-        .I3(prev_dc_count[1]),
-        .O(dc_count0[1]));
+       (.I0(tmds_in[5]),
+        .I1(tmds_in[6]),
+        .I2(tmds_in[4]),
+        .I3(tmds_in[7]),
+        .I4(tmds_in[0]),
+        .O(\dc_count[1]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[20]_i_2 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__3_n_5),
+        .I1(dc_count0__0_carry__3_n_5),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[20]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[20]),
         .O(\dc_count[20]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[20]_i_3 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__3_n_6),
+        .I1(dc_count0__0_carry__3_n_6),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[19]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[19]),
         .O(\dc_count[20]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[20]_i_4 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__3_n_7),
+        .I1(dc_count0__0_carry__3_n_7),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[18]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[18]),
         .O(\dc_count[20]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[20]_i_5 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__2_n_4),
+        .I1(dc_count0__0_carry__2_n_4),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[17]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[17]),
         .O(\dc_count[20]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[24]_i_2 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__4_n_5),
+        .I1(dc_count0__0_carry__4_n_5),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[24]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[24]),
         .O(\dc_count[24]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[24]_i_3 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__4_n_6),
+        .I1(dc_count0__0_carry__4_n_6),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[23]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[23]),
         .O(\dc_count[24]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[24]_i_4 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__4_n_7),
+        .I1(dc_count0__0_carry__4_n_7),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[22]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[22]),
         .O(\dc_count[24]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[24]_i_5 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__3_n_4),
+        .I1(dc_count0__0_carry__3_n_4),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[21]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[21]),
         .O(\dc_count[24]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[28]_i_2 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__5_n_5),
+        .I1(dc_count0__0_carry__5_n_5),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[28]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[28]),
         .O(\dc_count[28]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[28]_i_3 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__5_n_6),
+        .I1(dc_count0__0_carry__5_n_6),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[27]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[27]),
         .O(\dc_count[28]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[28]_i_4 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__5_n_7),
+        .I1(dc_count0__0_carry__5_n_7),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[26]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[26]),
         .O(\dc_count[28]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[28]_i_5 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__4_n_4),
+        .I1(dc_count0__0_carry__4_n_4),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[25]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[25]),
         .O(\dc_count[28]_i_5_n_0 ));
   LUT1 #(
@@ -1941,161 +1860,144 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
     \dc_count[31]_i_1 
        (.I0(data_enable),
         .O(\dc_count[31]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA0555900000000)) 
+  LUT5 #(
+    .INIT(32'h45A40000)) 
     \dc_count[31]_i_3 
        (.I0(tmds_in[8]),
-        .I1(dc_count0__0_carry_i_12_n_0),
-        .I2(dc_count0__0_carry_i_11_n_0),
-        .I3(\tmds_out[9]_i_4_n_0 ),
-        .I4(dc_count0__0_carry_i_16_n_0),
-        .I5(dc_count22_in),
+        .I1(dc_count0__0_carry_i_11_n_0),
+        .I2(dc_count0__0_carry_i_13_n_0),
+        .I3(dc_count0__0_carry_i_14_n_0),
+        .I4(dc_count22_in),
         .O(\dc_count[31]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[31]_i_4 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__6_n_6),
+        .I1(dc_count0__0_carry__6_n_6),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[31]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[31]),
         .O(\dc_count[31]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[31]_i_5 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__6_n_7),
+        .I1(dc_count0__0_carry__6_n_7),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[30]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[30]),
         .O(\dc_count[31]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[31]_i_6 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__5_n_4),
+        .I1(dc_count0__0_carry__5_n_4),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[29]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[29]),
         .O(\dc_count[31]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'hA8570000)) 
+  LUT4 #(
+    .INIT(16'hB400)) 
     \dc_count[4]_i_2 
        (.I0(tmds_in[8]),
         .I1(dc_count0__0_carry_i_11_n_0),
-        .I2(\tmds_out[9]_i_4_n_0 ),
-        .I3(dc_count0__0_carry_i_16_n_0),
-        .I4(dc_count22_in),
+        .I2(dc_count0__0_carry_i_10_n_0),
+        .I3(dc_count22_in),
         .O(\dc_count[4]_i_2_n_0 ));
   LUT4 #(
-    .INIT(16'h6C00)) 
+    .INIT(16'h9C00)) 
     \dc_count[4]_i_3 
        (.I0(tmds_in[8]),
-        .I1(dc_count0__0_carry_i_11_n_0),
-        .I2(\tmds_out[9]_i_4_n_0 ),
+        .I1(dc_count0__0_carry_i_12_n_0),
+        .I2(\dc_count[1]_i_2_n_0 ),
         .I3(dc_count22_in),
         .O(\dc_count[4]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF14FF14FF140000)) 
+  LUT2 #(
+    .INIT(4'h8)) 
     \dc_count[4]_i_4 
-       (.I0(tmds_in[8]),
-        .I1(dc_count0__0_carry_i_10_n_0),
-        .I2(dc_count0__0_carry_i_11_n_0),
-        .I3(dc_count0__89_carry_i_3_n_0),
-        .I4(dc_count21_in),
-        .I5(dc_count22_in),
+       (.I0(\dc_count[1]_i_2_n_0 ),
+        .I1(\tmds_out[9]_i_2_n_0 ),
         .O(\dc_count[4]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[4]_i_5 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry_n_5),
+        .I1(dc_count0__0_carry_n_5),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[4]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[4]),
         .O(\dc_count[4]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[4]_i_6 
        (.I0(\dc_count[4]_i_2_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry_n_6),
+        .I1(dc_count0__0_carry_n_6),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[3]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[3]),
         .O(\dc_count[4]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[4]_i_7 
        (.I0(\dc_count[4]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry_n_7),
+        .I1(dc_count0__0_carry_n_7),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[2]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[2]),
         .O(\dc_count[4]_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'h5555CF03AAAACF03)) 
+  LUT5 #(
+    .INIT(32'h5A5A9669)) 
     \dc_count[4]_i_8 
-       (.I0(\dc_count[1]_i_2_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry_i_1_n_0),
-        .I3(dc_count0[1]),
-        .I4(dc_count13_out),
-        .I5(prev_dc_count[1]),
+       (.I0(prev_dc_count[1]),
+        .I1(tmds_in[8]),
+        .I2(\dc_count[1]_i_2_n_0 ),
+        .I3(\tmds_out[9]_i_3_n_0 ),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .O(\dc_count[4]_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'h0114422814422880)) 
-    \dc_count[4]_i_9 
-       (.I0(dc_count0__0_carry_i_23_n_0),
-        .I1(tmds_in[3]),
-        .I2(tmds_in[2]),
-        .I3(tmds_in[1]),
-        .I4(dc_count0__0_carry_i_22_n_0),
-        .I5(dc_count0__0_carry_i_21_n_0),
-        .O(dc_count21_in));
-  LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[8]_i_2 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__0_n_5),
+        .I1(dc_count0__0_carry__0_n_5),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[8]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[8]),
         .O(\dc_count[8]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[8]_i_3 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__0_n_6),
+        .I1(dc_count0__0_carry__0_n_6),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[7]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[7]),
         .O(\dc_count[8]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[8]_i_4 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry__0_n_7),
+        .I1(dc_count0__0_carry__0_n_7),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[6]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[6]),
         .O(\dc_count[8]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h5555569AAAAA569A)) 
+    .INIT(64'h555556A6AAAA56A6)) 
     \dc_count[8]_i_5 
        (.I0(\dc_count[31]_i_3_n_0 ),
-        .I1(dc_count1__11),
-        .I2(dc_count0__0_carry_n_4),
+        .I1(dc_count0__0_carry_n_4),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(dc_count0[5]),
-        .I4(dc_count13_out),
+        .I4(\tmds_out[9]_i_2_n_0 ),
         .I5(prev_dc_count[5]),
         .O(\dc_count[8]_i_5_n_0 ));
   FDRE \dc_count_reg[10] 
@@ -2589,138 +2491,118 @@ module hdmi_design_dc_balancer_1_0_dc_balancer
         .Q(prev_dc_count[9]),
         .R(1'b0));
   LUT6 #(
-    .INIT(64'hA222A2AA2AAA2A22)) 
+    .INIT(64'hA656FFFFA6560000)) 
     \tmds_out[0]_i_1 
-       (.I0(\tmds_out[0]_i_2_n_0 ),
-        .I1(data_enable),
-        .I2(tmds_in[8]),
-        .I3(dc_count13_out),
-        .I4(dc_count1__11),
-        .I5(tmds_in[0]),
+       (.I0(tmds_in[0]),
+        .I1(\tmds_out[9]_i_3_n_0 ),
+        .I2(\tmds_out[9]_i_2_n_0 ),
+        .I3(tmds_in[8]),
+        .I4(data_enable),
+        .I5(C0),
         .O(\tmds_out[0]_i_1_n_0 ));
-  LUT3 #(
-    .INIT(8'hEB)) 
-    \tmds_out[0]_i_2 
-       (.I0(data_enable),
-        .I1(C1),
-        .I2(C0),
-        .O(\tmds_out[0]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h8B7400008B74FFFF)) 
+    .INIT(64'hA656FFFFA6560000)) 
     \tmds_out[1]_i_1 
-       (.I0(tmds_in[8]),
-        .I1(dc_count13_out),
-        .I2(dc_count1__11),
-        .I3(tmds_in[1]),
+       (.I0(tmds_in[1]),
+        .I1(\tmds_out[9]_i_3_n_0 ),
+        .I2(\tmds_out[9]_i_2_n_0 ),
+        .I3(tmds_in[8]),
         .I4(data_enable),
         .I5(C0),
         .O(\tmds_out[1]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h8B74FFFF8B740000)) 
+    .INIT(64'hA202F75708A85DFD)) 
     \tmds_out[2]_i_1 
-       (.I0(tmds_in[8]),
-        .I1(dc_count13_out),
-        .I2(dc_count1__11),
-        .I3(tmds_in[2]),
-        .I4(data_enable),
-        .I5(C0),
+       (.I0(data_enable),
+        .I1(\tmds_out[9]_i_3_n_0 ),
+        .I2(\tmds_out[9]_i_2_n_0 ),
+        .I3(tmds_in[8]),
+        .I4(C0),
+        .I5(tmds_in[2]),
         .O(\tmds_out[2]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h8B7400008B74FFFF)) 
+    .INIT(64'hA656FFFFA6560000)) 
     \tmds_out[3]_i_1 
-       (.I0(tmds_in[8]),
-        .I1(dc_count13_out),
-        .I2(dc_count1__11),
-        .I3(tmds_in[3]),
+       (.I0(tmds_in[3]),
+        .I1(\tmds_out[9]_i_3_n_0 ),
+        .I2(\tmds_out[9]_i_2_n_0 ),
+        .I3(tmds_in[8]),
         .I4(data_enable),
         .I5(C0),
         .O(\tmds_out[3]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h8B74FFFF8B740000)) 
+    .INIT(64'hA202F75708A85DFD)) 
     \tmds_out[4]_i_1 
-       (.I0(tmds_in[8]),
-        .I1(dc_count13_out),
-        .I2(dc_count1__11),
-        .I3(tmds_in[4]),
-        .I4(data_enable),
-        .I5(C0),
+       (.I0(data_enable),
+        .I1(\tmds_out[9]_i_3_n_0 ),
+        .I2(\tmds_out[9]_i_2_n_0 ),
+        .I3(tmds_in[8]),
+        .I4(C0),
+        .I5(tmds_in[4]),
         .O(\tmds_out[4]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h8B7400008B74FFFF)) 
+    .INIT(64'hA656FFFFA6560000)) 
     \tmds_out[5]_i_1 
-       (.I0(tmds_in[8]),
-        .I1(dc_count13_out),
-        .I2(dc_count1__11),
-        .I3(tmds_in[5]),
+       (.I0(tmds_in[5]),
+        .I1(\tmds_out[9]_i_3_n_0 ),
+        .I2(\tmds_out[9]_i_2_n_0 ),
+        .I3(tmds_in[8]),
         .I4(data_enable),
         .I5(C0),
         .O(\tmds_out[5]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h8B74FFFF8B740000)) 
+    .INIT(64'hA202F75708A85DFD)) 
     \tmds_out[6]_i_1 
-       (.I0(tmds_in[8]),
-        .I1(dc_count13_out),
-        .I2(dc_count1__11),
-        .I3(tmds_in[6]),
-        .I4(data_enable),
-        .I5(C0),
+       (.I0(data_enable),
+        .I1(\tmds_out[9]_i_3_n_0 ),
+        .I2(\tmds_out[9]_i_2_n_0 ),
+        .I3(tmds_in[8]),
+        .I4(C0),
+        .I5(tmds_in[6]),
         .O(\tmds_out[6]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h8B7400008B74FFFF)) 
+    .INIT(64'hA656FFFFA6560000)) 
     \tmds_out[7]_i_1 
-       (.I0(tmds_in[8]),
-        .I1(dc_count13_out),
-        .I2(dc_count1__11),
-        .I3(tmds_in[7]),
+       (.I0(tmds_in[7]),
+        .I1(\tmds_out[9]_i_3_n_0 ),
+        .I2(\tmds_out[9]_i_2_n_0 ),
+        .I3(tmds_in[8]),
         .I4(data_enable),
         .I5(C0),
         .O(\tmds_out[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hC5)) 
     \tmds_out[8]_i_1 
-       (.I0(tmds_in[8]),
-        .I1(data_enable),
-        .I2(C0),
+       (.I0(C0),
+        .I1(tmds_in[8]),
+        .I2(data_enable),
         .O(\tmds_out[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT5 #(
-    .INIT(32'h74FF7400)) 
+  LUT6 #(
+    .INIT(64'h74FF7400740074FF)) 
     \tmds_out[9]_i_1 
        (.I0(tmds_in[8]),
-        .I1(dc_count13_out),
-        .I2(dc_count1__11),
+        .I1(\tmds_out[9]_i_2_n_0 ),
+        .I2(\tmds_out[9]_i_3_n_0 ),
         .I3(data_enable),
         .I4(C0),
+        .I5(C1),
         .O(\tmds_out[9]_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hAAAE)) 
+  LUT3 #(
+    .INIT(8'hAB)) 
     \tmds_out[9]_i_2 
        (.I0(dc_count22_in),
-        .I1(dc_count0__0_carry_i_16_n_0),
-        .I2(\tmds_out[9]_i_4_n_0 ),
-        .I3(dc_count0__0_carry_i_11_n_0),
-        .O(dc_count13_out));
-  LUT6 #(
-    .INIT(64'hCACACA0CCACACA0A)) 
+        .I1(dc_count0__0_carry_i_10_n_0),
+        .I2(dc_count0__0_carry_i_11_n_0),
+        .O(\tmds_out[9]_i_2_n_0 ));
+  LUT5 #(
+    .INIT(32'h4040FF40)) 
     \tmds_out[9]_i_3 
-       (.I0(prev_dc_count[31]),
-        .I1(dc_count32_in),
-        .I2(dc_count0__0_carry_i_16_n_0),
-        .I3(dc_count0__0_carry_i_11_n_0),
-        .I4(\tmds_out[9]_i_4_n_0 ),
-        .I5(dc_count0__0_carry_i_12_n_0),
-        .O(dc_count1__11));
-  LUT6 #(
-    .INIT(64'h6996966996696996)) 
-    \tmds_out[9]_i_4 
-       (.I0(tmds_in[0]),
-        .I1(tmds_in[7]),
-        .I2(dc_count0__0_carry_i_18_n_0),
-        .I3(tmds_in[2]),
-        .I4(tmds_in[1]),
-        .I5(tmds_in[3]),
-        .O(\tmds_out[9]_i_4_n_0 ));
+       (.I0(dc_count0__0_carry_i_14_n_0),
+        .I1(dc_count0__0_carry_i_13_n_0),
+        .I2(prev_dc_count[31]),
+        .I3(dc_count32_in),
+        .I4(dc_count0__89_carry_i_8_n_0),
+        .O(\tmds_out[9]_i_3_n_0 ));
   FDRE \tmds_out_reg[0] 
        (.C(clk),
         .CE(1'b1),

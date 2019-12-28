@@ -42,10 +42,10 @@ module dc_balancer(
         if (!data_enable) begin
             dc_count <= 0;
             case ({C1,C0}) 
-                2'b00: tmds_out <= 10'b0010101011;
-                2'b01: tmds_out <= 10'b1101010100;
-                2'b10: tmds_out <= 10'b0010101010;
-                2'b11: tmds_out <= 10'b1101010101;
+                2'b00: tmds_out <= 10'b1101010100;// 0010101011;
+                2'b01: tmds_out <= 10'b0010101011;// 1101010100;
+                2'b10: tmds_out <= 10'b0101010100;// 0010101010;
+                2'b11: tmds_out <= 10'b1010101011;// 1101010101;
             endcase
         end
         else begin
@@ -55,7 +55,7 @@ module dc_balancer(
                 tmds_out[9] <= ~tmds_in[8];
                 tmds_out[8] <= tmds_in[8];
                 tmds_out[7:0] <= tmds_in[8]? tmds_in[7:0]:~tmds_in[7:0];//[0:7]
-                dc_count <= prev_dc_count + (tmds_in[8]? (zero_count - ones_count) : (ones_count - zero_count));
+                dc_count <= prev_dc_count + ((tmds_in[8]==0)? (zero_count - ones_count) : (ones_count - zero_count));
             end
             else begin
                 if (((prev_dc_count > 0) && (ones_count > zero_count)) || ((prev_dc_count < 0) && (zero_count > ones_count))) begin

@@ -10,19 +10,19 @@ preplace port tmds_n_1 -pg 1 -y 190 -defaultsOSRD
 preplace port tmds_p_1 -pg 1 -y 170 -defaultsOSRD
 preplace port tmds_n_2 -pg 1 -y 1220 -defaultsOSRD
 preplace port tmds_p_2 -pg 1 -y 1200 -defaultsOSRD
-preplace port HPD_IN -pg 1 -y 970 -defaultsOSRD
 preplace port clk_p_0 -pg 1 -y 840 -defaultsOSRD
+preplace port HPD_IN -pg 1 -y 970 -defaultsOSRD
 preplace port HDMI_DDC -pg 1 -y 330 -defaultsOSRD
 preplace port FIXED_IO -pg 1 -y 310 -defaultsOSRD
-preplace port HPD_STATUS -pg 1 -y 970 -defaultsOSRD
 preplace port clk_n_0 -pg 1 -y 860 -defaultsOSRD
+preplace port HPD_STATUS -pg 1 -y 970 -defaultsOSRD
 preplace inst data_serializer_2 -pg 1 -lvl 6 -y 1210 -defaultsOSRD
 preplace inst signal_delay_0 -pg 1 -lvl 5 -y 330 -defaultsOSRD
+preplace inst tmds_encoder_0 -pg 1 -lvl 3 -y 630 -defaultsOSRD
 preplace inst clock_divider_0 -pg 1 -lvl 6 -y 840 -defaultsOSRD
 preplace inst xlconstant_0 -pg 1 -lvl 3 -y 80 -defaultsOSRD
-preplace inst tmds_encoder_0 -pg 1 -lvl 3 -y 630 -defaultsOSRD
-preplace inst xlconstant_1 -pg 1 -lvl 1 -y 660 -defaultsOSRD
 preplace inst tmds_encoder_1 -pg 1 -lvl 3 -y 190 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 1 -y 660 -defaultsOSRD
 preplace inst tmds_encoder_2 -pg 1 -lvl 4 -y 360 -defaultsOSRD
 preplace inst dc_balancer_0 -pg 1 -lvl 4 -y 510 -defaultsOSRD
 preplace inst dc_balancer_1 -pg 1 -lvl 4 -y 190 -defaultsOSRD

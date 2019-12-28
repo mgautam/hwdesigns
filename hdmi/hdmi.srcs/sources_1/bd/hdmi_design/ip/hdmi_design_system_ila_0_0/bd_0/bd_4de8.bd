@@ -210,7 +210,7 @@
         <spirit:instanceName>ila_lib</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="ila" spirit:vendor="xilinx.com" spirit:version="6.2"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_4de8_ila_lib_1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_4de8_ila_lib_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE11_TYPE">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE10_TYPE">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE9_TYPE">0</spirit:configurableElementValue>

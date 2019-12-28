@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "bd_4de8,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_4de8,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=1,numReposBlks=1,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "hdmi_design_system_ila_0_0.hwdef" *) 
+(* CORE_GENERATION_INFO = "bd_4de8,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_4de8,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=1,numReposBlks=1,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=Global}" *) (* HW_HANDOFF = "hdmi_design_system_ila_0_0.hwdef" *) 
 module bd_4de8
    (clk,
     probe0,
@@ -62,7 +62,7 @@ module bd_4de8
   assign probe7_1 = probe7[0];
   assign probe8_1 = probe8[7:0];
   assign probe9_1 = probe9[8:0];
-  bd_4de8_ila_lib_1 ila_lib
+  bd_4de8_ila_lib_0 ila_lib
        (.clk(clk_1),
         .probe0(probe0_1),
         .probe1(probe1_1),

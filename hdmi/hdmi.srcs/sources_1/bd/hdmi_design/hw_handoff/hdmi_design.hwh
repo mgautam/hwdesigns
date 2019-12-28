@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Dec 28 02:21:02 2019" VIVADOVERSION="2017.3">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Dec 28 16:58:05 2019" VIVADOVERSION="2017.3">
 
   <SYSTEMINFO ARCH="zynq" BOARD="digilentinc.com:zybo-z7-10:part0:1.0" DEVICE="7z010" NAME="hdmi_design" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -66,16 +66,6 @@
         <CONNECTION INSTANCE="data_serializer_0" PORT="done"/>
       </CONNECTIONS>
     </PORT>
-    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_p_0" SIGIS="clk" SIGNAME="clock_divider_0_clk_p">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="clock_divider_0" PORT="clk_p"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_n_0" SIGIS="clk" SIGNAME="clock_divider_0_clk_n">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="clock_divider_0" PORT="clk_n"/>
-      </CONNECTIONS>
-    </PORT>
     <PORT DIR="I" NAME="HPD_IN" SIGIS="data" SIGNAME="External_Ports_HPD_IN">
       <CONNECTIONS>
         <CONNECTION INSTANCE="External_Ports" PORT="HPD_STATUS"/>
@@ -84,6 +74,16 @@
     <PORT DIR="O" NAME="HPD_STATUS" SIGIS="data" SIGNAME="External_Ports_HPD_IN">
       <CONNECTIONS>
         <CONNECTION INSTANCE="External_Ports" PORT="HPD_IN"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_p_0" SIGIS="clk" SIGNAME="clock_divider_0_clk_p">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="clock_divider_0" PORT="clk_p"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_n_0" SIGIS="clk" SIGNAME="clock_divider_0_clk_n">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="clock_divider_0" PORT="clk_n"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -760,15 +760,15 @@
         </PORT>
         <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="clock_divider_0_clk_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="tmds_encoder_0" PORT="clk"/>
-            <CONNECTION INSTANCE="tmds_encoder_2" PORT="clk"/>
-            <CONNECTION INSTANCE="tmds_encoder_1" PORT="clk"/>
-            <CONNECTION INSTANCE="dc_balancer_0" PORT="clk"/>
-            <CONNECTION INSTANCE="dc_balancer_1" PORT="clk"/>
-            <CONNECTION INSTANCE="dc_balancer_2" PORT="clk"/>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe0"/>
             <CONNECTION INSTANCE="signal_delay_0" PORT="sig_in"/>
             <CONNECTION INSTANCE="vga_generator_0" PORT="clk"/>
+            <CONNECTION INSTANCE="tmds_encoder_0" PORT="clk"/>
+            <CONNECTION INSTANCE="tmds_encoder_1" PORT="clk"/>
+            <CONNECTION INSTANCE="tmds_encoder_2" PORT="clk"/>
+            <CONNECTION INSTANCE="dc_balancer_0" PORT="clk"/>
+            <CONNECTION INSTANCE="dc_balancer_1" PORT="clk"/>
+            <CONNECTION INSTANCE="dc_balancer_2" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_p" SIGIS="clk" SIGNAME="clock_divider_0_clk_p">
@@ -5866,7 +5866,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="25000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
           </CONNECTIONS>
@@ -5878,8 +5878,8 @@
         </PORT>
         <PORT DIR="O" LEFT="8" NAME="tmds_out" RIGHT="0" SIGIS="undef" SIGNAME="tmds_encoder_0_tmds_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="dc_balancer_0" PORT="tmds_in"/>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe9"/>
+            <CONNECTION INSTANCE="dc_balancer_0" PORT="tmds_in"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -5892,7 +5892,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="25000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
           </CONNECTIONS>
@@ -5917,7 +5917,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="25000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
           </CONNECTIONS>
@@ -5954,22 +5954,22 @@
         </PORT>
         <PORT DIR="O" NAME="hsync" SIGIS="undef" SIGNAME="vga_generator_0_hsync">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="dc_balancer_0" PORT="C0"/>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe5"/>
+            <CONNECTION INSTANCE="dc_balancer_0" PORT="C0"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="vsync" SIGIS="undef" SIGNAME="vga_generator_0_vsync">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="dc_balancer_0" PORT="C1"/>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe6"/>
+            <CONNECTION INSTANCE="dc_balancer_0" PORT="C1"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="video_on" SIGIS="undef" SIGNAME="vga_generator_0_video_on">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe7"/>
             <CONNECTION INSTANCE="dc_balancer_0" PORT="data_enable"/>
             <CONNECTION INSTANCE="dc_balancer_1" PORT="data_enable"/>
             <CONNECTION INSTANCE="dc_balancer_2" PORT="data_enable"/>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe7"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="red" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_red">
@@ -5984,8 +5984,8 @@
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="blue" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_blue">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="tmds_encoder_0" PORT="data_in"/>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe8"/>
+            <CONNECTION INSTANCE="tmds_encoder_0" PORT="data_in"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="9" NAME="hcounter" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_hcounter">
