@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-// Date        : Fri Dec 27 19:20:09 2019
+// Date        : Sat Dec 28 19:49:09 2019
 // Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 // Command     : write_verilog -force -mode funcsim
-//               C:/Users/Gautam/Vivado/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_data_serializer_2_0/hdmi_design_data_serializer_2_0_sim_netlist.v
+//               c:/Users/Gautam/Vivado/hdmi/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_data_serializer_2_0/hdmi_design_data_serializer_2_0_sim_netlist.v
 // Design      : hdmi_design_data_serializer_2_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -21,7 +21,7 @@ module hdmi_design_data_serializer_2_0
     tmds_p,
     tmds_n,
     done);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 250000000, PHASE 0.000, CLK_DOMAIN hdmi_design_processing_system7_0_0_FCLK_CLK0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 251748251, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1" *) input clk;
   input [9:0]tmds_in;
   output tmds_out;
   output tmds_p;

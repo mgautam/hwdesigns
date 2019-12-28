@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
--- Date        : Sat Dec 28 01:10:00 2019
+-- Date        : Sat Dec 28 19:49:08 2019
 -- Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 -- Command     : write_vhdl -force -mode funcsim
---               c:/Users/Gautam/Vivado/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_signal_delay_0_0/hdmi_design_signal_delay_0_0_sim_netlist.vhdl
+--               c:/Users/Gautam/Vivado/hdmi/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_signal_delay_0_0/hdmi_design_signal_delay_0_0_sim_netlist.vhdl
 -- Design      : hdmi_design_signal_delay_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -92,7 +92,7 @@ architecture STRUCTURE of hdmi_design_signal_delay_0_0 is
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, FREQ_HZ 252000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1";
+  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, FREQ_HZ 251748251, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1";
 begin
 inst: entity work.hdmi_design_signal_delay_0_0_signal_delay
      port map (

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Dec 28 16:58:05 2019" VIVADOVERSION="2017.3">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Dec 28 20:11:19 2019" VIVADOVERSION="2017.3">
 
   <SYSTEMINFO ARCH="zynq" BOARD="digilentinc.com:zybo-z7-10:part0:1.0" DEVICE="7z010" NAME="hdmi_design" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -31,41 +31,6 @@
     <PORT DIR="I" NAME="HDMI_DDC_scl_i" SIGIS="undef"/>
     <PORT DIR="O" NAME="HDMI_DDC_scl_o" SIGIS="undef"/>
     <PORT DIR="O" NAME="HDMI_DDC_scl_t" SIGIS="undef"/>
-    <PORT DIR="O" NAME="tmds_p_0" SIGIS="undef" SIGNAME="data_serializer_0_tmds_p">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="data_serializer_0" PORT="tmds_p"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="tmds_n_0" SIGIS="undef" SIGNAME="data_serializer_0_tmds_n">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="data_serializer_0" PORT="tmds_n"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="tmds_p_1" SIGIS="undef" SIGNAME="data_serializer_1_tmds_p">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="data_serializer_1" PORT="tmds_p"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="tmds_n_1" SIGIS="undef" SIGNAME="data_serializer_1_tmds_n">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="data_serializer_1" PORT="tmds_n"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="tmds_p_2" SIGIS="undef" SIGNAME="data_serializer_2_tmds_p">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="data_serializer_2" PORT="tmds_p"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="tmds_n_2" SIGIS="undef" SIGNAME="data_serializer_2_tmds_n">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="data_serializer_2" PORT="tmds_n"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="done_0" SIGIS="undef" SIGNAME="data_serializer_0_done">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="data_serializer_0" PORT="done"/>
-      </CONNECTIONS>
-    </PORT>
     <PORT DIR="I" NAME="HPD_IN" SIGIS="data" SIGNAME="External_Ports_HPD_IN">
       <CONNECTIONS>
         <CONNECTION INSTANCE="External_Ports" PORT="HPD_STATUS"/>
@@ -76,14 +41,54 @@
         <CONNECTION INSTANCE="External_Ports" PORT="HPD_IN"/>
       </CONNECTIONS>
     </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_n_0" SIGIS="clk" SIGNAME="clock_divider_0_clk_n">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="clock_divider_0" PORT="clk_n"/>
+      </CONNECTIONS>
+    </PORT>
     <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_p_0" SIGIS="clk" SIGNAME="clock_divider_0_clk_p">
       <CONNECTIONS>
         <CONNECTION INSTANCE="clock_divider_0" PORT="clk_p"/>
       </CONNECTIONS>
     </PORT>
-    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_n_0" SIGIS="clk" SIGNAME="clock_divider_0_clk_n">
+    <PORT DIR="O" NAME="done_0" SIGIS="undef" SIGNAME="data_serializer_0_done">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="clock_divider_0" PORT="clk_n"/>
+        <CONNECTION INSTANCE="data_serializer_0" PORT="done"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="tmds_n_0" SIGIS="undef" SIGNAME="data_serializer_0_tmds_n">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="data_serializer_0" PORT="tmds_n"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="tmds_p_0" SIGIS="undef" SIGNAME="data_serializer_0_tmds_p">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="data_serializer_0" PORT="tmds_p"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="tmds_n_1" SIGIS="undef" SIGNAME="data_serializer_1_tmds_n">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="data_serializer_1" PORT="tmds_n"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="tmds_p_1" SIGIS="undef" SIGNAME="data_serializer_1_tmds_p">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="data_serializer_1" PORT="tmds_p"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="tmds_n_2" SIGIS="undef" SIGNAME="data_serializer_2_tmds_n">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="data_serializer_2" PORT="tmds_n"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="tmds_p_2" SIGIS="undef" SIGNAME="data_serializer_2_tmds_p">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="data_serializer_2" PORT="tmds_p"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="1" NAME="mux_in_0" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_mux_in_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Combinator_4x4_0" PORT="mux_in"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -146,6 +151,56 @@
   </EXTERNALINTERFACES>
 
   <MODULES>
+    <MODULE FULLNAME="/Combinator_4x4_0" HWVERSION="1.0" INSTANCE="Combinator_4x4_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Combinator_4x4" VLNV="xilinx.com:module_ref:Combinator_4x4:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="hdmi_design_Combinator_4x4_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="7" NAME="ibus1" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_red">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="vga_generator_0" PORT="red"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="ibus2" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_green">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="vga_generator_0" PORT="green"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="ibus3" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_blue">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="vga_generator_0" PORT="blue"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="ibus4" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="7" NAME="obus1" RIGHT="0" SIGIS="undef" SIGNAME="Combinator_4x4_0_obus1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="tmds_encoder_2" PORT="data_in"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe12"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="obus2" RIGHT="0" SIGIS="undef" SIGNAME="Combinator_4x4_0_obus2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="tmds_encoder_1" PORT="data_in"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe11"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="obus3" RIGHT="0" SIGIS="undef" SIGNAME="Combinator_4x4_0_obus3">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="tmds_encoder_0" PORT="data_in"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe7"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="obus4" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="1" NAME="mux_in" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_mux_in_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="mux_in_0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
     <MODULE FULLNAME="/clk_wiz_0" HWVERSION="5.4" INSTANCE="clk_wiz_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="clk_wiz" VLNV="xilinx.com:ip:clk_wiz:5.4">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=clk_wiz;v=v5_4;d=pg065-clk-wiz.pdf"/>
@@ -223,14 +278,14 @@
         <PARAMETER NAME="C_INCLK_SUM_ROW2" VALUE="no_secondary_input_clock"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW0A" VALUE="Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW0B" VALUE="Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)"/>
-        <PARAMETER NAME="C_OUTCLK_SUM_ROW1" VALUE="clk_out1___252.000______0.000______50.0______149.424____132.906"/>
+        <PARAMETER NAME="C_OUTCLK_SUM_ROW1" VALUE="clk_out1___251.748______0.000______50.0______232.016____280.643"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW2" VALUE="no_CLK_OUT2_output"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW3" VALUE="no_CLK_OUT3_output"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW4" VALUE="no_CLK_OUT4_output"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW5" VALUE="no_CLK_OUT5_output"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW6" VALUE="no_CLK_OUT6_output"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW7" VALUE="no_CLK_OUT7_output"/>
-        <PARAMETER NAME="C_CLKOUT1_REQUESTED_OUT_FREQ" VALUE="252"/>
+        <PARAMETER NAME="C_CLKOUT1_REQUESTED_OUT_FREQ" VALUE="251.750"/>
         <PARAMETER NAME="C_CLKOUT2_REQUESTED_OUT_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT3_REQUESTED_OUT_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT4_REQUESTED_OUT_FREQ" VALUE="100.000"/>
@@ -251,7 +306,7 @@
         <PARAMETER NAME="C_CLKOUT5_REQUESTED_DUTY_CYCLE" VALUE="50.000"/>
         <PARAMETER NAME="C_CLKOUT6_REQUESTED_DUTY_CYCLE" VALUE="50.000"/>
         <PARAMETER NAME="C_CLKOUT7_REQUESTED_DUTY_CYCLE" VALUE="50.000"/>
-        <PARAMETER NAME="C_CLKOUT1_OUT_FREQ" VALUE="252.000"/>
+        <PARAMETER NAME="C_CLKOUT1_OUT_FREQ" VALUE="251.748"/>
         <PARAMETER NAME="C_CLKOUT2_OUT_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT3_OUT_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT4_OUT_FREQ" VALUE="100.000"/>
@@ -283,17 +338,17 @@
         <PARAMETER NAME="C_CLKOUT7_SEQUENCE_NUMBER" VALUE="1"/>
         <PARAMETER NAME="C_MMCM_NOTES" VALUE="None"/>
         <PARAMETER NAME="C_MMCM_BANDWIDTH" VALUE="OPTIMIZED"/>
-        <PARAMETER NAME="C_MMCM_CLKFBOUT_MULT_F" VALUE="15.750"/>
+        <PARAMETER NAME="C_MMCM_CLKFBOUT_MULT_F" VALUE="36.000"/>
         <PARAMETER NAME="C_MMCM_CLKIN1_PERIOD" VALUE="4.000"/>
         <PARAMETER NAME="C_MMCM_CLKIN2_PERIOD" VALUE="10.0"/>
         <PARAMETER NAME="C_MMCM_CLKOUT4_CASCADE" VALUE="FALSE"/>
         <PARAMETER NAME="C_MMCM_CLOCK_HOLD" VALUE="FALSE"/>
         <PARAMETER NAME="C_MMCM_COMPENSATION" VALUE="ZHOLD"/>
-        <PARAMETER NAME="C_MMCM_DIVCLK_DIVIDE" VALUE="5"/>
+        <PARAMETER NAME="C_MMCM_DIVCLK_DIVIDE" VALUE="11"/>
         <PARAMETER NAME="C_MMCM_REF_JITTER1" VALUE="0.010"/>
         <PARAMETER NAME="C_MMCM_REF_JITTER2" VALUE="0.010"/>
         <PARAMETER NAME="C_MMCM_STARTUP_WAIT" VALUE="FALSE"/>
-        <PARAMETER NAME="C_MMCM_CLKOUT0_DIVIDE_F" VALUE="3.125"/>
+        <PARAMETER NAME="C_MMCM_CLKOUT0_DIVIDE_F" VALUE="3.250"/>
         <PARAMETER NAME="C_MMCM_CLKOUT1_DIVIDE" VALUE="1"/>
         <PARAMETER NAME="C_MMCM_CLKOUT2_DIVIDE" VALUE="1"/>
         <PARAMETER NAME="C_MMCM_CLKOUT3_DIVIDE" VALUE="1"/>
@@ -425,12 +480,12 @@
         <PARAMETER NAME="C_FILTER_1" VALUE="0000"/>
         <PARAMETER NAME="C_FILTER_2" VALUE="0000"/>
         <PARAMETER NAME="C_DIVIDE1_AUTO" VALUE="1"/>
-        <PARAMETER NAME="C_DIVIDE2_AUTO" VALUE="2.52"/>
-        <PARAMETER NAME="C_DIVIDE3_AUTO" VALUE="2.52"/>
-        <PARAMETER NAME="C_DIVIDE4_AUTO" VALUE="2.52"/>
-        <PARAMETER NAME="C_DIVIDE5_AUTO" VALUE="2.52"/>
-        <PARAMETER NAME="C_DIVIDE6_AUTO" VALUE="2.52"/>
-        <PARAMETER NAME="C_DIVIDE7_AUTO" VALUE="2.52"/>
+        <PARAMETER NAME="C_DIVIDE2_AUTO" VALUE="2.5175"/>
+        <PARAMETER NAME="C_DIVIDE3_AUTO" VALUE="2.5175"/>
+        <PARAMETER NAME="C_DIVIDE4_AUTO" VALUE="2.5175"/>
+        <PARAMETER NAME="C_DIVIDE5_AUTO" VALUE="2.5175"/>
+        <PARAMETER NAME="C_DIVIDE6_AUTO" VALUE="2.5175"/>
+        <PARAMETER NAME="C_DIVIDE7_AUTO" VALUE="2.5175"/>
         <PARAMETER NAME="C_PLLBUFGCEDIV" VALUE="false"/>
         <PARAMETER NAME="C_MMCMBUFGCEDIV" VALUE="false"/>
         <PARAMETER NAME="C_PLLBUFGCEDIV1" VALUE="false"/>
@@ -451,7 +506,7 @@
         <PARAMETER NAME="C_CLKOUT5_MATCHED_ROUTING" VALUE="false"/>
         <PARAMETER NAME="C_CLKOUT6_MATCHED_ROUTING" VALUE="false"/>
         <PARAMETER NAME="C_CLKOUT7_MATCHED_ROUTING" VALUE="false"/>
-        <PARAMETER NAME="C_CLKOUT0_ACTUAL_FREQ" VALUE="252.000"/>
+        <PARAMETER NAME="C_CLKOUT0_ACTUAL_FREQ" VALUE="251.748"/>
         <PARAMETER NAME="C_CLKOUT1_ACTUAL_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT2_ACTUAL_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT3_ACTUAL_FREQ" VALUE="100.000"/>
@@ -534,7 +589,7 @@
         <PARAMETER NAME="PSEN_PORT" VALUE="psen"/>
         <PARAMETER NAME="PSINCDEC_PORT" VALUE="psincdec"/>
         <PARAMETER NAME="PSDONE_PORT" VALUE="psdone"/>
-        <PARAMETER NAME="CLKOUT1_REQUESTED_OUT_FREQ" VALUE="252"/>
+        <PARAMETER NAME="CLKOUT1_REQUESTED_OUT_FREQ" VALUE="251.750"/>
         <PARAMETER NAME="CLKOUT1_REQUESTED_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="CLKOUT1_REQUESTED_DUTY_CYCLE" VALUE="50.000"/>
         <PARAMETER NAME="CLKOUT2_REQUESTED_OUT_FREQ" VALUE="100.000"/>
@@ -604,9 +659,9 @@
         <PARAMETER NAME="SS_MOD_TIME" VALUE="0.004"/>
         <PARAMETER NAME="OVERRIDE_MMCM" VALUE="false"/>
         <PARAMETER NAME="MMCM_NOTES" VALUE="None"/>
-        <PARAMETER NAME="MMCM_DIVCLK_DIVIDE" VALUE="5"/>
+        <PARAMETER NAME="MMCM_DIVCLK_DIVIDE" VALUE="11"/>
         <PARAMETER NAME="MMCM_BANDWIDTH" VALUE="OPTIMIZED"/>
-        <PARAMETER NAME="MMCM_CLKFBOUT_MULT_F" VALUE="15.750"/>
+        <PARAMETER NAME="MMCM_CLKFBOUT_MULT_F" VALUE="36.000"/>
         <PARAMETER NAME="MMCM_CLKFBOUT_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="MMCM_CLKFBOUT_USE_FINE_PS" VALUE="false"/>
         <PARAMETER NAME="MMCM_CLKIN1_PERIOD" VALUE="4.000"/>
@@ -617,7 +672,7 @@
         <PARAMETER NAME="MMCM_REF_JITTER1" VALUE="0.010"/>
         <PARAMETER NAME="MMCM_REF_JITTER2" VALUE="0.010"/>
         <PARAMETER NAME="MMCM_STARTUP_WAIT" VALUE="false"/>
-        <PARAMETER NAME="MMCM_CLKOUT0_DIVIDE_F" VALUE="3.125"/>
+        <PARAMETER NAME="MMCM_CLKOUT0_DIVIDE_F" VALUE="3.250"/>
         <PARAMETER NAME="MMCM_CLKOUT0_DUTY_CYCLE" VALUE="0.500"/>
         <PARAMETER NAME="MMCM_CLKOUT0_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="MMCM_CLKOUT0_USE_FINE_PS" VALUE="false"/>
@@ -695,8 +750,8 @@
         <PARAMETER NAME="CDDCREQ_PORT" VALUE="cddcreq"/>
         <PARAMETER NAME="ENABLE_CLKOUTPHY" VALUE="false"/>
         <PARAMETER NAME="CLKOUTPHY_REQUESTED_FREQ" VALUE="600.000"/>
-        <PARAMETER NAME="CLKOUT1_JITTER" VALUE="149.424"/>
-        <PARAMETER NAME="CLKOUT1_PHASE_ERROR" VALUE="132.906"/>
+        <PARAMETER NAME="CLKOUT1_JITTER" VALUE="232.016"/>
+        <PARAMETER NAME="CLKOUT1_PHASE_ERROR" VALUE="280.643"/>
         <PARAMETER NAME="CLKOUT2_JITTER" VALUE="0.0"/>
         <PARAMETER NAME="CLKOUT2_PHASE_ERROR" VALUE="0.0"/>
         <PARAMETER NAME="CLKOUT3_JITTER" VALUE="0.0"/>
@@ -726,13 +781,13 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="252000000" DIR="O" NAME="clk_out1" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
+        <PORT CLKFREQUENCY="251748251" DIR="O" NAME="clk_out1" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clock_divider_0" PORT="clk_in"/>
-            <CONNECTION INSTANCE="signal_delay_0" PORT="clk"/>
             <CONNECTION INSTANCE="data_serializer_0" PORT="clk"/>
             <CONNECTION INSTANCE="data_serializer_1" PORT="clk"/>
             <CONNECTION INSTANCE="data_serializer_2" PORT="clk"/>
+            <CONNECTION INSTANCE="signal_delay_0" PORT="clk"/>
             <CONNECTION INSTANCE="system_ila_0" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
@@ -760,15 +815,15 @@
         </PORT>
         <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="clock_divider_0_clk_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe0"/>
-            <CONNECTION INSTANCE="signal_delay_0" PORT="sig_in"/>
-            <CONNECTION INSTANCE="vga_generator_0" PORT="clk"/>
-            <CONNECTION INSTANCE="tmds_encoder_0" PORT="clk"/>
-            <CONNECTION INSTANCE="tmds_encoder_1" PORT="clk"/>
-            <CONNECTION INSTANCE="tmds_encoder_2" PORT="clk"/>
             <CONNECTION INSTANCE="dc_balancer_0" PORT="clk"/>
             <CONNECTION INSTANCE="dc_balancer_1" PORT="clk"/>
             <CONNECTION INSTANCE="dc_balancer_2" PORT="clk"/>
+            <CONNECTION INSTANCE="signal_delay_0" PORT="sig_in"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe0"/>
+            <CONNECTION INSTANCE="tmds_encoder_0" PORT="clk"/>
+            <CONNECTION INSTANCE="tmds_encoder_1" PORT="clk"/>
+            <CONNECTION INSTANCE="tmds_encoder_2" PORT="clk"/>
+            <CONNECTION INSTANCE="vga_generator_0" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_p" SIGIS="clk" SIGNAME="clock_divider_0_clk_p">
@@ -791,7 +846,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="252000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
+        <PORT CLKFREQUENCY="251748251" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_out1"/>
           </CONNECTIONS>
@@ -831,7 +886,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="252000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
+        <PORT CLKFREQUENCY="251748251" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_out1"/>
           </CONNECTIONS>
@@ -841,7 +896,11 @@
             <CONNECTION INSTANCE="dc_balancer_1" PORT="tmds_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="tmds_out" SIGIS="undef"/>
+        <PORT DIR="O" NAME="tmds_out" SIGIS="undef" SIGNAME="data_serializer_1_tmds_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe15"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" NAME="tmds_p" SIGIS="undef" SIGNAME="data_serializer_1_tmds_p">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="tmds_p_1"/>
@@ -867,7 +926,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="252000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
+        <PORT CLKFREQUENCY="251748251" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_out1"/>
           </CONNECTIONS>
@@ -877,7 +936,11 @@
             <CONNECTION INSTANCE="dc_balancer_2" PORT="tmds_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="tmds_out" SIGIS="undef"/>
+        <PORT DIR="O" NAME="tmds_out" SIGIS="undef" SIGNAME="data_serializer_2_tmds_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe16"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" NAME="tmds_p" SIGIS="undef" SIGNAME="data_serializer_2_tmds_p">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="tmds_p_2"/>
@@ -927,7 +990,7 @@
         <PORT DIR="O" LEFT="9" NAME="tmds_out" RIGHT="0" SIGIS="undef" SIGNAME="dc_balancer_0_tmds_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="data_serializer_0" PORT="tmds_in"/>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe4"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe3"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -968,6 +1031,7 @@
         <PORT DIR="O" LEFT="9" NAME="tmds_out" RIGHT="0" SIGIS="undef" SIGNAME="dc_balancer_1_tmds_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="data_serializer_1" PORT="tmds_in"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe13"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1008,6 +1072,7 @@
         <PORT DIR="O" LEFT="9" NAME="tmds_out" RIGHT="0" SIGIS="undef" SIGNAME="dc_balancer_2_tmds_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="data_serializer_2" PORT="tmds_in"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe14"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1321,7 +1386,7 @@
         <PARAMETER NAME="PCW_USE_S_AXI_HP1" VALUE="0"/>
         <PARAMETER NAME="PCW_USE_S_AXI_HP2" VALUE="0"/>
         <PARAMETER NAME="PCW_USE_S_AXI_HP3" VALUE="0"/>
-        <PARAMETER NAME="PCW_M_AXI_GP0_FREQMHZ" VALUE="252"/>
+        <PARAMETER NAME="PCW_M_AXI_GP0_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_M_AXI_GP1_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_S_AXI_GP0_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_S_AXI_GP1_FREQMHZ" VALUE="10"/>
@@ -2078,7 +2143,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="252000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
+        <PORT CLKFREQUENCY="251748251" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_out1"/>
           </CONNECTIONS>
@@ -2088,11 +2153,7 @@
             <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="sig_out" SIGIS="undef" SIGNAME="signal_delay_0_sig_out">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe3"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="sig_out" SIGIS="undef"/>
         <PORT DIR="O" NAME="sig_out_p" SIGIS="undef"/>
         <PORT DIR="O" NAME="sig_out_n" SIGIS="undef"/>
       </PORTS>
@@ -2202,7 +2263,7 @@
         <PARAMETER NAME="C_SLOT_13_APC_EN" VALUE="0"/>
         <PARAMETER NAME="C_SLOT_14_APC_EN" VALUE="0"/>
         <PARAMETER NAME="C_SLOT_15_APC_EN" VALUE="0"/>
-        <PARAMETER NAME="C_BRAM_CNT" VALUE="24"/>
+        <PARAMETER NAME="C_BRAM_CNT" VALUE="4"/>
         <PARAMETER NAME="C_SLOT_0_AXI_AW_SEL_DATA" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXI_W_SEL_DATA" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXI_B_SEL_DATA" VALUE="1"/>
@@ -4510,20 +4571,20 @@
         <PARAMETER NAME="C_PROBE14_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE13_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE12_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE11_WIDTH" VALUE="10"/>
-        <PARAMETER NAME="C_PROBE10_WIDTH" VALUE="10"/>
-        <PARAMETER NAME="C_PROBE9_WIDTH" VALUE="9"/>
-        <PARAMETER NAME="C_PROBE8_WIDTH" VALUE="8"/>
+        <PARAMETER NAME="C_PROBE11_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE10_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE9_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE8_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE7_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE6_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE5_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="10"/>
+        <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE3_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE2_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_DATA_DEPTH" VALUE="16384"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="12"/>
+        <PARAMETER NAME="C_DATA_DEPTH" VALUE="8192"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="18"/>
         <PARAMETER NAME="C_XLNX_HW_PROBE_INFO" VALUE="DEFAULT"/>
         <PARAMETER NAME="Component_Name" VALUE="hdmi_design_system_ila_0_0"/>
         <PARAMETER NAME="C_PROBE70_WIDTH" VALUE="1"/>
@@ -5539,12 +5600,12 @@
         <PARAMETER NAME="C_PROBE20_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE19_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE18_MU_CNT" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE17_MU_CNT" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE16_MU_CNT" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE15_MU_CNT" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE14_MU_CNT" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE13_MU_CNT" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE12_MU_CNT" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE17_MU_CNT" VALUE="2"/>
+        <PARAMETER NAME="C_PROBE16_MU_CNT" VALUE="2"/>
+        <PARAMETER NAME="C_PROBE15_MU_CNT" VALUE="2"/>
+        <PARAMETER NAME="C_PROBE14_MU_CNT" VALUE="2"/>
+        <PARAMETER NAME="C_PROBE13_MU_CNT" VALUE="2"/>
+        <PARAMETER NAME="C_PROBE12_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE11_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE10_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE9_MU_CNT" VALUE="2"/>
@@ -5787,11 +5848,11 @@
         <PARAMETER NAME="C_SLOT_15_AXIS_TID_WIDTH" VALUE="AUTO"/>
         <PARAMETER NAME="C_SLOT_15_AXIS_TUSER_WIDTH" VALUE="AUTO"/>
         <PARAMETER NAME="C_SLOT_15_AXIS_TDEST_WIDTH" VALUE="AUTO"/>
-        <PARAMETER NAME="C_PROBE_WIDTH_PROPAGATION" VALUE="MANUAL"/>
+        <PARAMETER NAME="C_PROBE_WIDTH_PROPAGATION" VALUE="AUTO"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="252000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
+        <PORT CLKFREQUENCY="251748251" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_out1"/>
           </CONNECTIONS>
@@ -5811,51 +5872,77 @@
             <CONNECTION INSTANCE="data_serializer_1" PORT="done"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="signal_delay_0_sig_out">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="signal_delay_0" PORT="sig_out"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="9" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="dc_balancer_0_tmds_out">
+        <PORT DIR="I" LEFT="9" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="dc_balancer_0_tmds_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="dc_balancer_0" PORT="tmds_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_hsync">
+        <PORT DIR="I" LEFT="0" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_hsync">
           <CONNECTIONS>
             <CONNECTION INSTANCE="vga_generator_0" PORT="hsync"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_vsync">
+        <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_vsync">
           <CONNECTIONS>
             <CONNECTION INSTANCE="vga_generator_0" PORT="vsync"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_video_on">
+        <PORT DIR="I" LEFT="0" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_video_on">
           <CONNECTIONS>
             <CONNECTION INSTANCE="vga_generator_0" PORT="video_on"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="7" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_blue">
+        <PORT DIR="I" LEFT="7" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="Combinator_4x4_0_obus3">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vga_generator_0" PORT="blue"/>
+            <CONNECTION INSTANCE="Combinator_4x4_0" PORT="obus3"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="8" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="tmds_encoder_0_tmds_out">
+        <PORT DIR="I" LEFT="8" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="tmds_encoder_0_tmds_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="tmds_encoder_0" PORT="tmds_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="9" NAME="probe10" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_hcounter">
+        <PORT DIR="I" LEFT="9" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_hcounter">
           <CONNECTIONS>
             <CONNECTION INSTANCE="vga_generator_0" PORT="hcounter"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="9" NAME="probe11" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_vcounter">
+        <PORT DIR="I" LEFT="9" NAME="probe10" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_vcounter">
           <CONNECTIONS>
             <CONNECTION INSTANCE="vga_generator_0" PORT="vcounter"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="7" NAME="probe11" RIGHT="0" SIGIS="undef" SIGNAME="Combinator_4x4_0_obus2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Combinator_4x4_0" PORT="obus2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="probe12" RIGHT="0" SIGIS="undef" SIGNAME="Combinator_4x4_0_obus1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Combinator_4x4_0" PORT="obus1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="9" NAME="probe13" RIGHT="0" SIGIS="undef" SIGNAME="dc_balancer_1_tmds_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dc_balancer_1" PORT="tmds_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="9" NAME="probe14" RIGHT="0" SIGIS="undef" SIGNAME="dc_balancer_2_tmds_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dc_balancer_2" PORT="tmds_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe15" RIGHT="0" SIGIS="undef" SIGNAME="data_serializer_1_tmds_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="data_serializer_1" PORT="tmds_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe16" RIGHT="0" SIGIS="undef" SIGNAME="data_serializer_2_tmds_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="data_serializer_2" PORT="tmds_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe17" RIGHT="0" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -5871,15 +5958,15 @@
             <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="7" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_blue">
+        <PORT DIR="I" LEFT="7" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="Combinator_4x4_0_obus3">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vga_generator_0" PORT="blue"/>
+            <CONNECTION INSTANCE="Combinator_4x4_0" PORT="obus3"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="8" NAME="tmds_out" RIGHT="0" SIGIS="undef" SIGNAME="tmds_encoder_0_tmds_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe9"/>
             <CONNECTION INSTANCE="dc_balancer_0" PORT="tmds_in"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe8"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -5897,9 +5984,9 @@
             <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="7" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_green">
+        <PORT DIR="I" LEFT="7" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="Combinator_4x4_0_obus2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vga_generator_0" PORT="green"/>
+            <CONNECTION INSTANCE="Combinator_4x4_0" PORT="obus2"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="8" NAME="tmds_out" RIGHT="0" SIGIS="undef" SIGNAME="tmds_encoder_1_tmds_out">
@@ -5922,9 +6009,9 @@
             <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="7" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_red">
+        <PORT DIR="I" LEFT="7" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="Combinator_4x4_0_obus1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vga_generator_0" PORT="red"/>
+            <CONNECTION INSTANCE="Combinator_4x4_0" PORT="obus1"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="8" NAME="tmds_out" RIGHT="0" SIGIS="undef" SIGNAME="tmds_encoder_2_tmds_out">
@@ -5954,48 +6041,47 @@
         </PORT>
         <PORT DIR="O" NAME="hsync" SIGIS="undef" SIGNAME="vga_generator_0_hsync">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe5"/>
             <CONNECTION INSTANCE="dc_balancer_0" PORT="C0"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe4"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="vsync" SIGIS="undef" SIGNAME="vga_generator_0_vsync">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe6"/>
             <CONNECTION INSTANCE="dc_balancer_0" PORT="C1"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe5"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="video_on" SIGIS="undef" SIGNAME="vga_generator_0_video_on">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe7"/>
             <CONNECTION INSTANCE="dc_balancer_0" PORT="data_enable"/>
             <CONNECTION INSTANCE="dc_balancer_1" PORT="data_enable"/>
             <CONNECTION INSTANCE="dc_balancer_2" PORT="data_enable"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe6"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="red" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_red">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="tmds_encoder_2" PORT="data_in"/>
+            <CONNECTION INSTANCE="Combinator_4x4_0" PORT="ibus1"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="green" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_green">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="tmds_encoder_1" PORT="data_in"/>
+            <CONNECTION INSTANCE="Combinator_4x4_0" PORT="ibus2"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="blue" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_blue">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe8"/>
-            <CONNECTION INSTANCE="tmds_encoder_0" PORT="data_in"/>
+            <CONNECTION INSTANCE="Combinator_4x4_0" PORT="ibus3"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="9" NAME="hcounter" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_hcounter">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe10"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe9"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="9" NAME="vcounter" RIGHT="0" SIGIS="undef" SIGNAME="vga_generator_0_vcounter">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe11"/>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe10"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -6032,8 +6118,8 @@
       <PORTS>
         <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_1_dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="clock_divider_0" PORT="reset"/>
             <CONNECTION INSTANCE="clk_wiz_0" PORT="reset"/>
+            <CONNECTION INSTANCE="clock_divider_0" PORT="reset"/>
             <CONNECTION INSTANCE="vga_generator_0" PORT="reset"/>
           </CONNECTIONS>
         </PORT>

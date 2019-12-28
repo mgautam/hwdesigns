@@ -2,21 +2,45 @@
 <Root MajorVersion="0" MinorVersion="33">
   <CompositeFile CompositeFileTopName="hdmi_design" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1577512685"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1577512685"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1577512685"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1577512685"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1577524279"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1577524279"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1577524279"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1577524279"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
-      <File Name="ip\hdmi_design_processing_system7_0_0\hdmi_design_processing_system7_0_0.xci" Type="IP">
-        <Instance HierarchyPath="processing_system7_0"/>
+      <File Name="ip\hdmi_design_clk_wiz_0_0\hdmi_design_clk_wiz_0_0.xci" Type="IP">
+        <Instance HierarchyPath="clk_wiz_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\hdmi_design_tmds_encoder_0_0\hdmi_design_tmds_encoder_0_0.xci" Type="IP">
-        <Instance HierarchyPath="tmds_encoder_0"/>
+      <File Name="ip\hdmi_design_clock_divider_0_0\hdmi_design_clock_divider_0_0.xci" Type="IP">
+        <Instance HierarchyPath="clock_divider_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_data_serializer_0_0\hdmi_design_data_serializer_0_0.xci" Type="IP">
+        <Instance HierarchyPath="data_serializer_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_data_serializer_1_0\hdmi_design_data_serializer_1_0.xci" Type="IP">
+        <Instance HierarchyPath="data_serializer_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_data_serializer_2_0\hdmi_design_data_serializer_2_0.xci" Type="IP">
+        <Instance HierarchyPath="data_serializer_2"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -31,8 +55,96 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\hdmi_design_data_serializer_0_0\hdmi_design_data_serializer_0_0.xci" Type="IP">
-        <Instance HierarchyPath="data_serializer_0"/>
+      <File Name="ip\hdmi_design_dc_balancer_1_0\hdmi_design_dc_balancer_1_0.xci" Type="IP">
+        <Instance HierarchyPath="dc_balancer_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_dc_balancer_2_0\hdmi_design_dc_balancer_2_0.xci" Type="IP">
+        <Instance HierarchyPath="dc_balancer_2"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_processing_system7_0_0\hdmi_design_processing_system7_0_0.xci" Type="IP">
+        <Instance HierarchyPath="processing_system7_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_signal_delay_0_0\hdmi_design_signal_delay_0_0.xci" Type="IP">
+        <Instance HierarchyPath="signal_delay_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_system_ila_0_0\hdmi_design_system_ila_0_0.xci" Type="IP">
+        <Instance HierarchyPath="system_ila_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_tmds_encoder_0_0\hdmi_design_tmds_encoder_0_0.xci" Type="IP">
+        <Instance HierarchyPath="tmds_encoder_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_tmds_encoder_1_0\hdmi_design_tmds_encoder_1_0.xci" Type="IP">
+        <Instance HierarchyPath="tmds_encoder_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_tmds_encoder_2_0\hdmi_design_tmds_encoder_2_0.xci" Type="IP">
+        <Instance HierarchyPath="tmds_encoder_2"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_vga_generator_0_0\hdmi_design_vga_generator_0_0.xci" Type="IP">
+        <Instance HierarchyPath="vga_generator_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_xlconstant_0_0\hdmi_design_xlconstant_0_0.xci" Type="IP">
+        <Instance HierarchyPath="xlconstant_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_xlconstant_1_0\hdmi_design_xlconstant_1_0.xci" Type="IP">
+        <Instance HierarchyPath="xlconstant_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\hdmi_design_Combinator_4x4_0_0\hdmi_design_Combinator_4x4_0_0.xci" Type="IP">
+        <Instance HierarchyPath="Combinator_4x4_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -48,110 +160,6 @@
       <File Name="sim\hdmi_design.v" Type="Verilog">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_tmds_encoder_1_0\hdmi_design_tmds_encoder_1_0.xci" Type="IP">
-        <Instance HierarchyPath="tmds_encoder_1"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_dc_balancer_1_0\hdmi_design_dc_balancer_1_0.xci" Type="IP">
-        <Instance HierarchyPath="dc_balancer_1"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_data_serializer_1_0\hdmi_design_data_serializer_1_0.xci" Type="IP">
-        <Instance HierarchyPath="data_serializer_1"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_tmds_encoder_2_0\hdmi_design_tmds_encoder_2_0.xci" Type="IP">
-        <Instance HierarchyPath="tmds_encoder_2"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_dc_balancer_2_0\hdmi_design_dc_balancer_2_0.xci" Type="IP">
-        <Instance HierarchyPath="dc_balancer_2"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_data_serializer_2_0\hdmi_design_data_serializer_2_0.xci" Type="IP">
-        <Instance HierarchyPath="data_serializer_2"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_xlconstant_0_0\hdmi_design_xlconstant_0_0.xci" Type="IP">
-        <Instance HierarchyPath="xlconstant_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_vga_generator_0_0\hdmi_design_vga_generator_0_0.xci" Type="IP">
-        <Instance HierarchyPath="vga_generator_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_xlconstant_1_0\hdmi_design_xlconstant_1_0.xci" Type="IP">
-        <Instance HierarchyPath="xlconstant_1"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_clock_divider_0_0\hdmi_design_clock_divider_0_0.xci" Type="IP">
-        <Instance HierarchyPath="clock_divider_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_clk_wiz_0_0\hdmi_design_clk_wiz_0_0.xci" Type="IP">
-        <Instance HierarchyPath="clk_wiz_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_system_ila_0_0\hdmi_design_system_ila_0_0.xci" Type="IP">
-        <Instance HierarchyPath="system_ila_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\hdmi_design_signal_delay_0_0\hdmi_design_signal_delay_0_0.xci" Type="IP">
-        <Instance HierarchyPath="signal_delay_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="hdmi_design_ooc.xdc" Type="XDC">

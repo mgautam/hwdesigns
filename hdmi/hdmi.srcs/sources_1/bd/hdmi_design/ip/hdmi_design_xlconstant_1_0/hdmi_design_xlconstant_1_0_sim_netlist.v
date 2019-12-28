@@ -1,18 +1,18 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
-// Date        : Thu Dec 26 19:04:09 2019
+// Date        : Sat Dec 28 17:45:18 2019
 // Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 // Command     : write_verilog -force -mode funcsim -rename_top hdmi_design_xlconstant_1_0 -prefix
-//               hdmi_design_xlconstant_1_0_ hdmi_design_xlconstant_0_0_sim_netlist.v
-// Design      : hdmi_design_xlconstant_0_0
+//               hdmi_design_xlconstant_1_0_ hdmi_design_xlconstant_1_0_sim_netlist.v
+// Design      : hdmi_design_xlconstant_1_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
 // Device      : xc7z010clg400-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "hdmi_design_xlconstant_0_0,xlconstant_v1_1_3_xlconstant,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "xlconstant_v1_1_3_xlconstant,Vivado 2017.3" *) 
+(* CHECK_LICENSE_TYPE = "hdmi_design_xlconstant_1_0,xlconstant_v1_1_3_xlconstant,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "xlconstant_v1_1_3_xlconstant,Vivado 2017.3" *) 
 (* NotValidForBitStream *)
 module hdmi_design_xlconstant_1_0
    (dout);

@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
--- Date        : Sat Dec 28 02:22:36 2019
+-- Date        : Sat Dec 28 19:50:05 2019
 -- Host        : Gautam-PC running 64-bit Service Pack 1  (build 7601)
 -- Command     : write_vhdl -force -mode funcsim
---               C:/Users/Gautam/Vivado/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_vga_generator_0_0/hdmi_design_vga_generator_0_0_sim_netlist.vhdl
+--               c:/Users/Gautam/Vivado/hdmi/hdmi/hdmi.srcs/sources_1/bd/hdmi_design/ip/hdmi_design_vga_generator_0_0/hdmi_design_vga_generator_0_0_sim_netlist.vhdl
 -- Design      : hdmi_design_vga_generator_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -37,30 +37,29 @@ architecture STRUCTURE of hdmi_design_vga_generator_0_0_vga_generator is
   signal p_0_in : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal \p_0_in__0\ : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal \^vcounter\ : STD_LOGIC_VECTOR ( 9 downto 0 );
-  signal \vcounter[1]_i_1_n_0\ : STD_LOGIC;
   signal \vcounter[9]_i_1_n_0\ : STD_LOGIC;
   signal \vcounter[9]_i_3_n_0\ : STD_LOGIC;
+  signal \vcounter[9]_i_4_n_0\ : STD_LOGIC;
   signal vsync_i_1_n_0 : STD_LOGIC;
-  signal vsync_i_2_n_0 : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \blue[0]_INST_0_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \blue[0]_INST_0_i_1\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \hcounter[1]_i_1\ : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \hcounter[2]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \hcounter[3]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \hcounter[4]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \hcounter[3]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \hcounter[4]_i_1\ : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of \hcounter[6]_i_1\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \hcounter[7]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \hcounter[8]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \hcounter[9]_i_2\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \hcounter[8]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \hcounter[9]_i_2\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \vcounter[0]_i_1\ : label is "soft_lutpair8";
   attribute SOFT_HLUTNM of \vcounter[1]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \vcounter[2]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \vcounter[3]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \vcounter[2]_i_1\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \vcounter[3]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \vcounter[4]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \vcounter[7]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \vcounter[8]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \vcounter[9]_i_3\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of vsync_i_2 : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \vcounter[6]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \vcounter[7]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \vcounter[8]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \vcounter[9]_i_4\ : label is "soft_lutpair2";
 begin
   hcounter(9 downto 0) <= \^hcounter\(9 downto 0);
   hsync <= \^hsync\;
@@ -367,7 +366,7 @@ hsync_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \^vcounter\(0),
       I1 => \^vcounter\(1),
-      O => \vcounter[1]_i_1_n_0\
+      O => \p_0_in__0\(1)
     );
 \vcounter[2]_i_1\: unisim.vcomponents.LUT3
     generic map(
@@ -421,7 +420,7 @@ hsync_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => \^vcounter\(5),
-      I1 => \vcounter[9]_i_3_n_0\,
+      I1 => \vcounter[9]_i_4_n_0\,
       I2 => \^vcounter\(6),
       O => \p_0_in__0\(6)
     );
@@ -432,7 +431,7 @@ hsync_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \^vcounter\(5),
       I1 => \^vcounter\(6),
-      I2 => \vcounter[9]_i_3_n_0\,
+      I2 => \vcounter[9]_i_4_n_0\,
       I3 => \^vcounter\(7),
       O => \p_0_in__0\(7)
     );
@@ -441,7 +440,7 @@ hsync_reg: unisim.vcomponents.FDRE
       INIT => X"BFFF4000"
     )
         port map (
-      I0 => \vcounter[9]_i_3_n_0\,
+      I0 => \vcounter[9]_i_4_n_0\,
       I1 => \^vcounter\(6),
       I2 => \^vcounter\(5),
       I3 => \^vcounter\(7),
@@ -450,15 +449,15 @@ hsync_reg: unisim.vcomponents.FDRE
     );
 \vcounter[9]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFF0000E0000000"
+      INIT => X"FFF0FFF0FFF0FEF0"
     )
         port map (
-      I0 => \^vcounter\(0),
-      I1 => \^vcounter\(1),
-      I2 => \^vcounter\(3),
-      I3 => \^vcounter\(2),
-      I4 => \^vcounter\(9),
-      I5 => vsync_i_2_n_0,
+      I0 => \^vcounter\(5),
+      I1 => \^vcounter\(4),
+      I2 => \vcounter[9]_i_3_n_0\,
+      I3 => \^vcounter\(9),
+      I4 => \^vcounter\(7),
+      I5 => \^vcounter\(6),
       O => \vcounter[9]_i_1_n_0\
     );
 \vcounter[9]_i_2\: unisim.vcomponents.LUT6
@@ -466,7 +465,7 @@ hsync_reg: unisim.vcomponents.FDRE
       INIT => X"BFFFFFFF40000000"
     )
         port map (
-      I0 => \vcounter[9]_i_3_n_0\,
+      I0 => \vcounter[9]_i_4_n_0\,
       I1 => \^vcounter\(7),
       I2 => \^vcounter\(5),
       I3 => \^vcounter\(6),
@@ -474,7 +473,20 @@ hsync_reg: unisim.vcomponents.FDRE
       I5 => \^vcounter\(9),
       O => \p_0_in__0\(9)
     );
-\vcounter[9]_i_3\: unisim.vcomponents.LUT5
+\vcounter[9]_i_3\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FEAAAAAA00000000"
+    )
+        port map (
+      I0 => \^vcounter\(8),
+      I1 => \^vcounter\(0),
+      I2 => \^vcounter\(1),
+      I3 => \^vcounter\(3),
+      I4 => \^vcounter\(2),
+      I5 => \^vcounter\(9),
+      O => \vcounter[9]_i_3_n_0\
+    );
+\vcounter[9]_i_4\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"7FFFFFFF"
     )
@@ -484,7 +496,7 @@ hsync_reg: unisim.vcomponents.FDRE
       I2 => \^vcounter\(0),
       I3 => \^vcounter\(2),
       I4 => \^vcounter\(4),
-      O => \vcounter[9]_i_3_n_0\
+      O => \vcounter[9]_i_4_n_0\
     );
 \vcounter_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -504,7 +516,7 @@ hsync_reg: unisim.vcomponents.FDRE
         port map (
       C => \^hsync\,
       CE => '1',
-      D => \vcounter[1]_i_1_n_0\,
+      D => \p_0_in__0\(1),
       Q => \^vcounter\(1),
       R => \vcounter[9]_i_1_n_0\
     );
@@ -598,28 +610,16 @@ hsync_reg: unisim.vcomponents.FDRE
     );
 vsync_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFFFFFFFBBF"
-    )
-        port map (
-      I0 => \^vcounter\(3),
-      I1 => \^vcounter\(9),
-      I2 => \^vcounter\(1),
-      I3 => \^vcounter\(0),
-      I4 => vsync_i_2_n_0,
-      I5 => \^vcounter\(2),
-      O => vsync_i_1_n_0
-    );
-vsync_i_2: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFFFFFE"
+      INIT => X"FFFFFFFFFEFFFFFF"
     )
         port map (
       I0 => \^vcounter\(4),
-      I1 => \^vcounter\(7),
-      I2 => \^vcounter\(8),
-      I3 => \^vcounter\(6),
-      I4 => \^vcounter\(5),
-      O => vsync_i_2_n_0
+      I1 => \^vcounter\(9),
+      I2 => \^vcounter\(2),
+      I3 => \^vcounter\(1),
+      I4 => \^vcounter\(3),
+      I5 => \blue[0]_INST_0_i_1_n_0\,
+      O => vsync_i_1_n_0
     );
 vsync_reg: unisim.vcomponents.FDRE
     generic map(

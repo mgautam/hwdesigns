@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# clock_divider, data_serializer, data_serializer, data_serializer, dc_balancer, dc_balancer, dc_balancer, signal_delay, tmds_encoder, tmds_encoder, tmds_encoder, vga_generator
+# Combinator_4x4, clock_divider, data_serializer, data_serializer, data_serializer, dc_balancer, dc_balancer, dc_balancer, signal_delay, tmds_encoder, tmds_encoder, tmds_encoder, vga_generator
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -173,6 +173,7 @@ proc create_root_design { parentCell } {
   set clk_n_0 [ create_bd_port -dir O -type clk clk_n_0 ]
   set clk_p_0 [ create_bd_port -dir O -type clk clk_p_0 ]
   set done_0 [ create_bd_port -dir O done_0 ]
+  set mux_in_0 [ create_bd_port -dir I -from 1 -to 0 mux_in_0 ]
   set tmds_n_0 [ create_bd_port -dir O tmds_n_0 ]
   set tmds_n_1 [ create_bd_port -dir O tmds_n_1 ]
   set tmds_n_2 [ create_bd_port -dir O tmds_n_2 ]
@@ -180,14 +181,25 @@ proc create_root_design { parentCell } {
   set tmds_p_1 [ create_bd_port -dir O tmds_p_1 ]
   set tmds_p_2 [ create_bd_port -dir O tmds_p_2 ]
 
+  # Create instance: Combinator_4x4_0, and set properties
+  set block_name Combinator_4x4
+  set block_cell_name Combinator_4x4_0
+  if { [catch {set Combinator_4x4_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $Combinator_4x4_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: clk_wiz_0, and set properties
   set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:5.4 clk_wiz_0 ]
   set_property -dict [ list \
    CONFIG.CLKIN1_JITTER_PS {40.0} \
    CONFIG.CLKOUT1_DRIVES {BUFG} \
-   CONFIG.CLKOUT1_JITTER {149.424} \
-   CONFIG.CLKOUT1_PHASE_ERROR {132.906} \
-   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {252} \
+   CONFIG.CLKOUT1_JITTER {232.016} \
+   CONFIG.CLKOUT1_PHASE_ERROR {280.643} \
+   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {251.750} \
    CONFIG.CLKOUT2_DRIVES {BUFG} \
    CONFIG.CLKOUT3_DRIVES {BUFG} \
    CONFIG.CLKOUT4_DRIVES {BUFG} \
@@ -195,12 +207,12 @@ proc create_root_design { parentCell } {
    CONFIG.CLKOUT6_DRIVES {BUFG} \
    CONFIG.CLKOUT7_DRIVES {BUFG} \
    CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} \
-   CONFIG.MMCM_CLKFBOUT_MULT_F {15.750} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {36.000} \
    CONFIG.MMCM_CLKIN1_PERIOD {4.000} \
    CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
-   CONFIG.MMCM_CLKOUT0_DIVIDE_F {3.125} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {3.250} \
    CONFIG.MMCM_COMPENSATION {ZHOLD} \
-   CONFIG.MMCM_DIVCLK_DIVIDE {5} \
+   CONFIG.MMCM_DIVCLK_DIVIDE {11} \
    CONFIG.PRIMITIVE {MMCM} \
    CONFIG.PRIM_IN_FREQ {250} \
  ] $clk_wiz_0
@@ -781,29 +793,53 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.ALL_PROBE_SAME_MU_CNT {2} \
    CONFIG.C_ADV_TRIGGER {true} \
-   CONFIG.C_BRAM_CNT {24} \
-   CONFIG.C_DATA_DEPTH {16384} \
+   CONFIG.C_BRAM_CNT {4} \
+   CONFIG.C_DATA_DEPTH {8192} \
    CONFIG.C_EN_STRG_QUAL {1} \
    CONFIG.C_MON_TYPE {NATIVE} \
-   CONFIG.C_NUM_OF_PROBES {12} \
+   CONFIG.C_NUM_OF_PROBES {18} \
    CONFIG.C_PROBE0_MU_CNT {2} \
    CONFIG.C_PROBE10_MU_CNT {2} \
-   CONFIG.C_PROBE10_WIDTH {10} \
+   CONFIG.C_PROBE10_TYPE {0} \
+   CONFIG.C_PROBE10_WIDTH {1} \
    CONFIG.C_PROBE11_MU_CNT {2} \
-   CONFIG.C_PROBE11_WIDTH {10} \
+   CONFIG.C_PROBE11_TYPE {0} \
+   CONFIG.C_PROBE11_WIDTH {1} \
+   CONFIG.C_PROBE12_MU_CNT {2} \
+   CONFIG.C_PROBE12_TYPE {0} \
+   CONFIG.C_PROBE12_WIDTH {1} \
+   CONFIG.C_PROBE13_MU_CNT {2} \
+   CONFIG.C_PROBE13_TYPE {0} \
+   CONFIG.C_PROBE13_WIDTH {1} \
+   CONFIG.C_PROBE14_MU_CNT {2} \
+   CONFIG.C_PROBE14_TYPE {0} \
+   CONFIG.C_PROBE14_WIDTH {1} \
+   CONFIG.C_PROBE15_MU_CNT {2} \
+   CONFIG.C_PROBE15_TYPE {0} \
+   CONFIG.C_PROBE15_WIDTH {1} \
+   CONFIG.C_PROBE16_MU_CNT {2} \
+   CONFIG.C_PROBE16_TYPE {0} \
+   CONFIG.C_PROBE17_MU_CNT {2} \
    CONFIG.C_PROBE1_MU_CNT {2} \
    CONFIG.C_PROBE2_MU_CNT {2} \
    CONFIG.C_PROBE3_MU_CNT {2} \
+   CONFIG.C_PROBE3_TYPE {0} \
    CONFIG.C_PROBE4_MU_CNT {2} \
-   CONFIG.C_PROBE4_WIDTH {10} \
+   CONFIG.C_PROBE4_TYPE {0} \
+   CONFIG.C_PROBE4_WIDTH {1} \
    CONFIG.C_PROBE5_MU_CNT {2} \
+   CONFIG.C_PROBE5_TYPE {0} \
    CONFIG.C_PROBE6_MU_CNT {2} \
+   CONFIG.C_PROBE6_TYPE {0} \
    CONFIG.C_PROBE7_MU_CNT {2} \
+   CONFIG.C_PROBE7_TYPE {0} \
    CONFIG.C_PROBE8_MU_CNT {2} \
-   CONFIG.C_PROBE8_WIDTH {8} \
+   CONFIG.C_PROBE8_TYPE {0} \
+   CONFIG.C_PROBE8_WIDTH {1} \
    CONFIG.C_PROBE9_MU_CNT {2} \
-   CONFIG.C_PROBE9_WIDTH {9} \
-   CONFIG.C_PROBE_WIDTH_PROPAGATION {MANUAL} \
+   CONFIG.C_PROBE9_TYPE {0} \
+   CONFIG.C_PROBE9_WIDTH {1} \
+   CONFIG.C_PROBE_WIDTH_PROPAGATION {AUTO} \
  ] $system_ila_0
 
   # Create instance: tmds_encoder_0, and set properties
@@ -868,6 +904,14 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net processing_system7_0_IIC_0 [get_bd_intf_ports HDMI_DDC] [get_bd_intf_pins processing_system7_0/IIC_0]
 
   # Create port connections
+  connect_bd_net -net Combinator_4x4_0_obus1 [get_bd_pins Combinator_4x4_0/obus1] [get_bd_pins system_ila_0/probe12] [get_bd_pins tmds_encoder_2/data_in]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets Combinator_4x4_0_obus1]
+  connect_bd_net -net Combinator_4x4_0_obus2 [get_bd_pins Combinator_4x4_0/obus2] [get_bd_pins system_ila_0/probe11] [get_bd_pins tmds_encoder_1/data_in]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets Combinator_4x4_0_obus2]
   connect_bd_net -net HPD_IN_1 [get_bd_ports HPD_IN] [get_bd_ports HPD_STATUS]
   connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins clock_divider_0/clk_out] [get_bd_pins dc_balancer_0/clk] [get_bd_pins dc_balancer_1/clk] [get_bd_pins dc_balancer_2/clk] [get_bd_pins signal_delay_0/sig_in] [get_bd_pins system_ila_0/probe0] [get_bd_pins tmds_encoder_0/clk] [get_bd_pins tmds_encoder_1/clk] [get_bd_pins tmds_encoder_2/clk] [get_bd_pins vga_generator_0/clk]
   set_property -dict [ list \
@@ -888,49 +932,61 @@ HDL_ATTRIBUTE.DEBUG {true} \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets data_serializer_1_done]
   connect_bd_net -net data_serializer_1_tmds_n [get_bd_ports tmds_n_1] [get_bd_pins data_serializer_1/tmds_n]
+  connect_bd_net -net data_serializer_1_tmds_out [get_bd_pins data_serializer_1/tmds_out] [get_bd_pins system_ila_0/probe15]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets data_serializer_1_tmds_out]
   connect_bd_net -net data_serializer_1_tmds_p [get_bd_ports tmds_p_1] [get_bd_pins data_serializer_1/tmds_p]
   connect_bd_net -net data_serializer_2_tmds_n [get_bd_ports tmds_n_2] [get_bd_pins data_serializer_2/tmds_n]
+  connect_bd_net -net data_serializer_2_tmds_out [get_bd_pins data_serializer_2/tmds_out] [get_bd_pins system_ila_0/probe16]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets data_serializer_2_tmds_out]
   connect_bd_net -net data_serializer_2_tmds_p [get_bd_ports tmds_p_2] [get_bd_pins data_serializer_2/tmds_p]
-  connect_bd_net -net dc_balancer_0_tmds_out [get_bd_pins data_serializer_0/tmds_in] [get_bd_pins dc_balancer_0/tmds_out] [get_bd_pins system_ila_0/probe4]
+  connect_bd_net -net dc_balancer_0_tmds_out [get_bd_pins data_serializer_0/tmds_in] [get_bd_pins dc_balancer_0/tmds_out] [get_bd_pins system_ila_0/probe3]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets dc_balancer_0_tmds_out]
-  connect_bd_net -net dc_balancer_1_tmds_out [get_bd_pins data_serializer_1/tmds_in] [get_bd_pins dc_balancer_1/tmds_out]
-  connect_bd_net -net dc_balancer_2_tmds_out [get_bd_pins data_serializer_2/tmds_in] [get_bd_pins dc_balancer_2/tmds_out]
-  connect_bd_net -net hcounter [get_bd_pins system_ila_0/probe10] [get_bd_pins vga_generator_0/hcounter]
+  connect_bd_net -net dc_balancer_1_tmds_out [get_bd_pins data_serializer_1/tmds_in] [get_bd_pins dc_balancer_1/tmds_out] [get_bd_pins system_ila_0/probe13]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets dc_balancer_1_tmds_out]
+  connect_bd_net -net dc_balancer_2_tmds_out [get_bd_pins data_serializer_2/tmds_in] [get_bd_pins dc_balancer_2/tmds_out] [get_bd_pins system_ila_0/probe14]
+  set_property -dict [ list \
+HDL_ATTRIBUTE.DEBUG {true} \
+ ] [get_bd_nets dc_balancer_2_tmds_out]
+  connect_bd_net -net hcounter [get_bd_pins system_ila_0/probe9] [get_bd_pins vga_generator_0/hcounter]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets hcounter]
+  connect_bd_net -net mux_in_0_1 [get_bd_ports mux_in_0] [get_bd_pins Combinator_4x4_0/mux_in]
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins processing_system7_0/FCLK_CLK0]
-  connect_bd_net -net signal_delay_0_sig_out [get_bd_pins signal_delay_0/sig_out] [get_bd_pins system_ila_0/probe3]
-  set_property -dict [ list \
-HDL_ATTRIBUTE.DEBUG {true} \
- ] [get_bd_nets signal_delay_0_sig_out]
-  connect_bd_net -net tmds_encoder_0_tmds_out [get_bd_pins dc_balancer_0/tmds_in] [get_bd_pins system_ila_0/probe9] [get_bd_pins tmds_encoder_0/tmds_out]
+  connect_bd_net -net tmds_encoder_0_tmds_out [get_bd_pins dc_balancer_0/tmds_in] [get_bd_pins system_ila_0/probe8] [get_bd_pins tmds_encoder_0/tmds_out]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets tmds_encoder_0_tmds_out]
   connect_bd_net -net tmds_encoder_1_tmds_out [get_bd_pins dc_balancer_1/tmds_in] [get_bd_pins tmds_encoder_1/tmds_out]
   connect_bd_net -net tmds_encoder_2_tmds_out [get_bd_pins dc_balancer_2/tmds_in] [get_bd_pins tmds_encoder_2/tmds_out]
-  connect_bd_net -net vcounter [get_bd_pins system_ila_0/probe11] [get_bd_pins vga_generator_0/vcounter]
+  connect_bd_net -net vcounter [get_bd_pins system_ila_0/probe10] [get_bd_pins vga_generator_0/vcounter]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vcounter]
-  connect_bd_net -net vga_generator_0_blue [get_bd_pins system_ila_0/probe8] [get_bd_pins tmds_encoder_0/data_in] [get_bd_pins vga_generator_0/blue]
+  connect_bd_net -net vga_generator_0_blue [get_bd_pins Combinator_4x4_0/obus3] [get_bd_pins system_ila_0/probe7] [get_bd_pins tmds_encoder_0/data_in]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vga_generator_0_blue]
-  connect_bd_net -net vga_generator_0_green [get_bd_pins tmds_encoder_1/data_in] [get_bd_pins vga_generator_0/green]
-  connect_bd_net -net vga_generator_0_hsync [get_bd_pins dc_balancer_0/C0] [get_bd_pins system_ila_0/probe5] [get_bd_pins vga_generator_0/hsync]
+  connect_bd_net -net vga_generator_0_blue1 [get_bd_pins Combinator_4x4_0/ibus3] [get_bd_pins vga_generator_0/blue]
+  connect_bd_net -net vga_generator_0_green [get_bd_pins Combinator_4x4_0/ibus2] [get_bd_pins vga_generator_0/green]
+  connect_bd_net -net vga_generator_0_hsync [get_bd_pins dc_balancer_0/C0] [get_bd_pins system_ila_0/probe4] [get_bd_pins vga_generator_0/hsync]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vga_generator_0_hsync]
-  connect_bd_net -net vga_generator_0_red [get_bd_pins tmds_encoder_2/data_in] [get_bd_pins vga_generator_0/red]
-  connect_bd_net -net vga_generator_0_video_on [get_bd_pins dc_balancer_0/data_enable] [get_bd_pins dc_balancer_1/data_enable] [get_bd_pins dc_balancer_2/data_enable] [get_bd_pins system_ila_0/probe7] [get_bd_pins vga_generator_0/video_on]
+  connect_bd_net -net vga_generator_0_red [get_bd_pins Combinator_4x4_0/ibus1] [get_bd_pins vga_generator_0/red]
+  connect_bd_net -net vga_generator_0_video_on [get_bd_pins dc_balancer_0/data_enable] [get_bd_pins dc_balancer_1/data_enable] [get_bd_pins dc_balancer_2/data_enable] [get_bd_pins system_ila_0/probe6] [get_bd_pins vga_generator_0/video_on]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vga_generator_0_video_on]
-  connect_bd_net -net vga_generator_0_vsync [get_bd_pins dc_balancer_0/C1] [get_bd_pins system_ila_0/probe6] [get_bd_pins vga_generator_0/vsync]
+  connect_bd_net -net vga_generator_0_vsync [get_bd_pins dc_balancer_0/C1] [get_bd_pins system_ila_0/probe5] [get_bd_pins vga_generator_0/vsync]
   set_property -dict [ list \
 HDL_ATTRIBUTE.DEBUG {true} \
  ] [get_bd_nets vga_generator_0_vsync]
