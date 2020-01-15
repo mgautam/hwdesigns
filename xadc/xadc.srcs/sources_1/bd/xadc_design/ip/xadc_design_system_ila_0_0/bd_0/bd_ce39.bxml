@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root MajorVersion="0"
+		MinorVersion="33">
+	<CompositeFile CompositeFileTopName="bd_ce39"
+			CanBeSetAsTop="true"
+			CanDisplayChildGraph="true">
+		<Description>Composite Fileset</Description>
+		<Generation Name="SYNTHESIS"
+				State="RESET"
+				Timestamp="1579059619"/>
+		<Generation Name="IMPLEMENTATION"
+				State="RESET"
+				Timestamp="1579059619"/>
+		<Generation Name="SIMULATION"
+				State="RESET"
+				Timestamp="1579059619"/>
+		<Generation Name="HW_HANDOFF"
+				State="RESET"
+				Timestamp="1579059619"/>
+		<FileCollection Name="SOURCES"
+				Type="SOURCES">
+			<File Name="ip\ip_0\bd_ce39_ila_lib_0.xci"
+					Type="IP">
+				<Instance HierarchyPath="ila_lib"/>
+				<Properties IsEditable="false"
+						IsVisible="true"
+						Timestamp="0"
+						IsTrackable="true"
+						IsStatusTracked="true"/>
+				<Library Name="xil_defaultlib"/>
+				<UsedIn Val="SYNTHESIS"/>
+				<UsedIn Val="IMPLEMENTATION"/>
+				<UsedIn Val="SIMULATION"/>
+			</File>
+		</FileCollection>
+	</CompositeFile>
+</Root>
