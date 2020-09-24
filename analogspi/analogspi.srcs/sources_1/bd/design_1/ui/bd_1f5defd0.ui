@@ -1,0 +1,46 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-172,-7",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:9.0 non-TLS
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 4 -x 1160 -y 610 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 4 -x 1160 -y 630 -defaultsOSRD
+preplace port sck_o_0 -pg 1 -lvl 4 -x 1160 -y 290 -defaultsOSRD
+preplace port io0_o_0 -pg 1 -lvl 4 -x 1160 -y 310 -defaultsOSRD
+preplace portBus ss_o_0 -pg 1 -lvl 4 -x 1160 -y 590 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -x 240 -y 670 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -x 640 -y 140 -defaultsOSRD
+preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -x 240 -y 180 -defaultsOSRD
+preplace inst axi_gpio_0 -pg 1 -lvl 3 -x 990 -y 170 -defaultsOSRD
+preplace inst risingedge_0 -pg 1 -lvl 1 -x 240 -y 350 -defaultsOSRD
+preplace inst ila_0 -pg 1 -lvl 3 -x 990 -y 450 -defaultsOSRD
+preplace inst spigenerator_0 -pg 1 -lvl 2 -x 640 -y 420 -defaultsOSRD
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 420 470 300 850
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 30 430 440
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 480 310 830J
+preplace netloc axi_gpio_0_gpio_io_o 1 1 3 490 290 810J 80 1130
+preplace netloc axi_gpio_0_gpio2_io_o 1 0 4 40 280 NJ 280 800J 70 1140
+preplace netloc spigenerator_0_sent_interrupt 1 0 3 40 550 NJ 550 790
+preplace netloc processing_system7_0_FCLK_CLK1 1 1 2 480 530 830J
+preplace netloc spigenerator_0_sclk 1 2 2 820 290 NJ
+preplace netloc spigenerator_0_mosi 1 2 2 840 310 NJ
+preplace netloc spigenerator_0_ss 1 2 2 810 590 NJ
+preplace netloc spigenerator_0_poscntr 1 2 1 820 430n
+preplace netloc spigenerator_0_negcntr 1 2 1 800 450n
+preplace netloc risingedge_0_q 1 1 2 460 540 840J
+preplace netloc processing_system7_0_FIXED_IO 1 1 3 NJ 630 NJ 630 NJ
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 450 60n
+preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 N 150
+preplace netloc processing_system7_0_DDR 1 1 3 NJ 610 NJ 610 NJ
+levelinfo -pg 1 0 240 640 990 1160
+pagesize -pg 1 -db -bbox -sgen 0 0 1290 790
+"
+}
+{
+   "da_axi4_cnt":"2",
+   "da_board_cnt":"2",
+   "da_clkrst_cnt":"1",
+   "da_ps7_cnt":"1"
+}
